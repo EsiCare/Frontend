@@ -1,0 +1,14 @@
+.full-width-table {
+  width: 100%;
+}
+
+.mat-table td{
+  border: none; 
+}
+
+.search {
+  box-shadow: none;
+}
+.qr-code {
+  aspect-ratio: 1;
+}

@@ -12,8 +12,33 @@
     
   
   }
+html {
+  overflow: hidden;
+}
 
 html, body,#root {
     height: 100%;
     width: 100%;
 }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #61CAE8 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 14px;
+
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 14px;
+    border: 1px groove #000000;
+  }
