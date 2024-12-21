@@ -17,7 +17,9 @@
 .custom-text-gray {
   color: var(--gray-color);
 }
-
+.custom-border-gray {
+  border-color: #DBDBDB
+}
 
 
 html {
@@ -26,8 +28,7 @@ html {
 
 html,
 body,
-#root ,
-#roott{
+#root {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -58,4 +59,8 @@ body,
 
 .cdk-describedby-message-container {
   display: none;
+}
+.cdk-overlay-container {
+  display: none;
+
 }

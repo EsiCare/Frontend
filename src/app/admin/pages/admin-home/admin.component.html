@@ -1,0 +1,29 @@
+<div class="flex flex-col h-full grow">
+    <app-nav-bar></app-nav-bar>
+    <div class=" flex gap-4 p-6 overflow-hidden">
+        <div class="flex flex-col gap-4">
+            <div class="flex justify-between">
+                <button class="text-lg px-4 py-2 rounded-lg border-2 flex items-center gap-4 shadow" >
+                    <span>{{curHospital}}</span>
+                    <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0 0.529703C0 0.395328 0.053125 0.257812 0.15625 0.154687C0.3625 -0.0515625 0.7 -0.0515625 0.90625 0.154687L7.96562 7.21406L14.9219 0.257812C15.1281 0.0515624 15.4656 0.0515624 15.6719 0.257812C15.8781 0.464062 15.8781 0.801562 15.6719 1.00781L8.34062 8.34219C8.13437 8.54844 7.79688 8.54844 7.59062 8.34219L0.15625 0.907812C0.05 0.801562 0 0.667187 0 0.529703Z"
+                            fill="black" />
+                    </svg>
+                </button>
+                <button class="text-lg px-4 py-2 rounded text-white font-bold" style="background-color: #61CAE8;"><span
+                        class="text-2xl mr-2">+</span> <span>Add New Hospital</span> </button>
+
+            </div>
+
+            <app-admin-status class="bg-white"> </app-admin-status>
+            <app-admin-patients
+                class="bg-white flex overflow-hidden border-2 rounded-lg px-8 py-8 flex flex-col gap-4">
+            </app-admin-patients>
+        </div>
+
+
+        <app-admin-workers class="bg-white flex overflow-hidden border-2 rounded-lg px-8 py-8 flex flex-col gap-4"></app-admin-workers>
+
+    </div>
+</div>

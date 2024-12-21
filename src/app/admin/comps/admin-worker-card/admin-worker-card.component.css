@@ -1,0 +1,23 @@
+.selected {
+    background-color: #21323A;
+    color: white;
+}
+
+.full-width-table {
+    width: 100%;
+}
+
+.mat-table td {
+    border: none;
+}
+
+
+.options-menu {
+    top: 20px;
+    right: 10px;
+    display: block;
+}
+
+.close {
+    color: #F53A3A;
+}

@@ -25,7 +25,13 @@ import { PriorityStatusComponent } from './doctor/comps/priority-status/priority
 import { RadiologyPopupComponent } from './popups/radiology-popup/radiology-popup.component';
 import { MedicalPopupComponent } from './popups/medical-popup/medical-popup.component';
 import { GraphPopupComponent } from './popups/graph-popup/graph-popup.component';
-
+import { AdminComponent } from './admin/pages/admin-home/admin.component';
+import { AdminStatusComponent } from './admin/comps/admin-status/admin-status.component';
+import { AdminPatientsComponent } from './admin/comps/admin-patients/admin-patients.component';
+import { AdminWorkersComponent } from './admin/comps/admin-workers/admin-workers.component';
+import { AdminWorkerCardComponent } from './admin/comps/admin-worker-card/admin-worker-card.component';
+import { AdminStatsItemComponent } from './admin/comps/admin-stats-item/admin-stats-item.component';
+import { LineChartComponent } from './admin/comps/admin-status/graph/line-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,9 +50,17 @@ import { GraphPopupComponent } from './popups/graph-popup/graph-popup.component'
     PatientsComponent,
     DpiHistoryComponent,
     RadiologyPopupComponent,
-GraphPopupComponent,
+    GraphPopupComponent,
+    MedicalPopupComponent,
+    AdminComponent,
+    AdminStatusComponent,
+    AdminPatientsComponent,
+    AdminWorkersComponent,
+    AdminWorkerCardComponent,
+    AdminStatsItemComponent,
+    LineChartComponent,
 
-MedicalPopupComponent,
+
 
 
   ],

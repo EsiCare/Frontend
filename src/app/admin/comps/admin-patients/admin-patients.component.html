@@ -1,0 +1,42 @@
+<h1 class="text-3xl font-bold">Patients</h1>
+
+<div class="mat-elevation-z8 overflow-y-scroll overflow-x-hidden">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <ng-container matColumnDef="nss">
+      <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>NSS</th>
+      <td class="text-lg" mat-cell *matCellDef="let row">{{row.nss}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td class="text-lg" mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+      <td class="text-lg" mat-cell *matCellDef="let row">{{row.gender}}</td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="address">
+      <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+      <td class="text-lg" mat-cell *matCellDef="let row">{{row.address}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="entered_at">
+      <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>Entered At</th>
+      <td class="text-lg" mat-cell *matCellDef="let row">{{row.entered_at}}</td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row class="!border-0" *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
+  </mat-paginator>
+</div>
