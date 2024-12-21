@@ -4,34 +4,43 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
+
+
+type SGPHType = "Pending" | "Failed" | "Completed"; 
+
+
 export interface PatientHistoryItem {
-  name: string;
   id: number;
+  name: string;
+  date : string;
+  lasted_for : string;
+  SGPH : SGPHType;
+  resaon : string;  
+  actions: string;
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: PatientHistoryItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+  {id: 1,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 2,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Failed", resaon: "some reason", actions : ""},
+  {id: 3,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 4,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Completed", resaon: "some reason", actions : ""},
+  {id: 5,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 6,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 7,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 8,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 9,  name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 10, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 11, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 12, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 13, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 14, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 15, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 16, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 17, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 18, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 19, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
+  {id: 20, name: 'Mr.Mansouri', date : "2/11/2012", lasted_for: "28 Days" , SGPH : "Pending", resaon: "some reason", actions : ""},
 ];
 
 /**
@@ -109,3 +118,6 @@ export class PatientHistoryDataSource extends DataSource<PatientHistoryItem> {
 function compare(a: string | number, b: string | number, isAsc: boolean): number {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+
+
+export type {SGPHType}

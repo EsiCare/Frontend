@@ -1,0 +1,33 @@
+<div class="radiology-popup flex flex-col p-6 bg-white rounded-xl text-lg gap-4 shadow"
+     (click)="onClick($event)"    
+>
+    <div class="flex justify-between">
+        <h1 class="font-bold text-3xl">{{(popupService.getData() | async).title}}</h1>
+        <svg class="cursor-pointer" (click)="popupService.hidePopup()" width="14" height="14" viewBox="0 0 14 14"
+            fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L13 13M13 1L1 13" stroke="#898989" stroke-width="2" stroke-linecap="round" />
+        </svg>
+
+    </div>
+    <h1>Done By {{(popupService.getData() | async).actor}} At {{(popupService.getData() | async).done_at}} </h1>
+    <div class="flex flex-row justify-center  items-center gap-2 self-center rounded flex-1 overflow-hidden">
+        <div [class.hidden]="(popupService.getData() | async).imgs.length == 1" class="cursor-pointer" (click)="decImgIdx()">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M28.1255 14.9993C28.1255 12.4034 27.3557 9.8658 25.9135 7.70741C24.4713 5.54902 22.4215 3.86675 20.0232 2.87335C17.6249 1.87995 14.9859 1.62003 12.4399 2.12646C9.89393 2.63289 7.55528 3.88293 5.71971 5.71849C3.88415 7.55406 2.63412 9.89271 2.12768 12.4387C1.62125 14.9847 1.88117 17.6237 2.87457 20.022C3.86797 22.4203 5.55024 24.4701 7.70863 25.9123C9.86703 27.3545 12.4046 28.1243 15.0005 28.1243C18.4815 28.1243 21.8199 26.7415 24.2813 24.28C26.7427 21.8186 28.1255 18.4802 28.1255 14.9993ZM22.5005 15.9368L11.1099 15.9368L16.3411 21.1933L15.0005 22.4993L7.50049 14.9993L15.0005 7.49927L16.3411 8.83708L11.1099 14.0618L22.5005 14.0618V15.9368Z"
+                    fill="#7DC8C1" />
+            </svg>
+        </div>
+        <div class="flex-1 h-full">
+            <img class="h-full rounded" src="{{(popupService.getData() | async).imgs[imgIndex]}}" alt="">
+        </div>
+        <div [class.hidden]="(popupService.getData() | async).imgs.length == 1" class="cursor-pointer" (click)="incImgIdx()">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0.875 14C0.875 16.5959 1.64477 19.1335 3.08696 21.2919C4.52915 23.4503 6.579 25.1325 8.97728 26.1259C11.3756 27.1193 14.0146 27.3792 16.5606 26.8728C19.1066 26.3664 21.4452 25.1163 23.2808 23.2808C25.1163 21.4452 26.3664 19.1066 26.8728 16.5606C27.3792 14.0146 27.1193 11.3756 26.1259 8.97728C25.1325 6.579 23.4503 4.52915 21.2919 3.08696C19.1335 1.64477 16.5959 0.875 14 0.875C10.519 0.875 7.18064 2.25781 4.71922 4.71922C2.25781 7.18064 0.875 10.519 0.875 14ZM6.5 13.0625H17.8906L12.6594 7.80594L14 6.5L21.5 14L14 21.5L12.6594 20.1622L17.8906 14.9375H6.5V13.0625Z"
+                    fill="#7DC8C1" />
+            </svg>
+        </div>
+
+    </div>
+</div>

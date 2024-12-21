@@ -5,40 +5,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-    --primary-error: #bc544b;  
-  
-    --background-color: #FCFCFC;  
-    --text-color: #363636;  
-    
-  
-  }
+  --primary-error: #bc544b;
+
+  --background-color: #FCFCFC;
+  --text-color: #363636;
+
+
+  --gray-color: #8C8C95
+}
+
+.custom-text-gray {
+  color: var(--gray-color);
+}
+
+
+
 html {
   overflow: hidden;
 }
 
-html, body,#root {
-    height: 100%;
-    width: 100%;
+html,
+body,
+#root ,
+#roott{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
 }
 
 /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #61CAE8 #ffffff;
-  }
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #61CAE8 #ffffff;
+}
 
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 14px;
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 14px;
 
-  }
+}
 
-  *::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
 
-  *::-webkit-scrollbar-thumb {
-    border-radius: 14px;
-    border: 1px groove #000000;
-  }
+*::-webkit-scrollbar-thumb {
+  border-radius: 14px;
+  border: 1px groove #000000;
+}
+
+.cdk-describedby-message-container {
+  display: none;
+}

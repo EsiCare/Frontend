@@ -1,1 +1,9 @@
 <router-outlet></router-outlet>
+
+<div id="popup" [class.hidden-popup]="!(popupService.isVisible() | async)" (click)="popupService.hidePopup()"
+    class="flex flex-col items-center justify-center w-full h-full" [ngSwitch]="popupService.getType()  | async">
+    <app-radiology-popup *ngSwitchCase="'Radiology'" class="flex flex-col items-center justify-center w-full h-full"></app-radiology-popup>
+    <app-medical-popup *ngSwitchCase="'Medical'" class="flex flex-col items-center justify-center w-full h-full"></app-medical-popup>
+    <app-graph-popup *ngSwitchCase="'Graph'" class="flex flex-col items-center justify-center w-full h-full"></app-graph-popup>
+
+</div>

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { PopupService } from './services/popup.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'EsiCare';
 
-  constructor() {
+
+  constructor(public popupService : PopupService ) {
   }
 }

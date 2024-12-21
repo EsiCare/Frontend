@@ -1,0 +1,18 @@
+.full-width-table {
+  width: 100%;
+}
+
+.mat-table td{
+  border: none; 
+}
+
+
+.options-menu {
+  top: 10px;
+  right: 30px;
+  display: block;
+}
+
+.close {
+  color: #F53A3A;
+}

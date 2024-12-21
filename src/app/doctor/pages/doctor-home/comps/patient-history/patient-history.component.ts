@@ -15,15 +15,30 @@ export class PatientHistoryComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<PatientHistoryItem>;
   dataSource: PatientHistoryDataSource;
 
-  displayedColumns = ["id", "date","duration","sgph","reason"]
+  optionMenuID : number = -1;
+  
+
+  displayedColumns = ["id", "date","duration","sgph","reason","actions"]
 
   constructor() {
     this.dataSource = new PatientHistoryDataSource();
   }
+
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+
+
+  public showOptionsMenu(id : number) {
+    this.optionMenuID = id;
+  }
+  public hideOptionsMenu(e : any) {
+    e.stopPropagation();
+    this.optionMenuID = -1;
+  }
+
+
 }

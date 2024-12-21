@@ -1,0 +1,4 @@
+<div class="px-3 py-1 cursor-default w-32 h-fit rounded-full flex items-center justfiy-between gap-2"  [class.pending]="status == 'Pending'" [class.failed]="status == 'Failed'" [class.completed]="status == 'Completed'">
+    <div class="w-2 h-2 rounded-full"></div>
+    <p class="mx-2"> {{status}}</p>
+</div>

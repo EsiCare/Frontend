@@ -1,23 +1,30 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from 'src/login/login.component';
 import { MInputComponent } from '../comps/minput/minput.component';
 import { DoctorHomeComponent } from './doctor/pages/doctor-home/doctor-home.component';
 import { NavBarComponent } from './comps/nav-bar/nav-bar.component';
-import { PatientInfoComponent } from './doctor/pages/patient-info/patient-info.component';
 import { TitleInfoComponent } from './doctor/comps/title-info/title-info.component';
-import { PatientHistoryComponent } from './doctor/pages/patient-history/patient-history.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PatientsComponent } from './doctor/pages/patients/patients.component';
 import { PatientCardComponent } from './doctor/comps/patient-card/patient-card.component';
-
+import { SgphStatusComponent } from './doctor/comps/sgph-status/sgph-status.component';
+import { DoctorPreviewComponent } from './doctor/pages/doctor-preview/doctor-preview.component';
+import { DpiInfoComponent } from './doctor/pages/doctor-preview/comps/patient-info/dpi-info.component';
+import { PatientInfoComponent } from './doctor/pages/doctor-home/comps/patient-info/patient-info.component';
+import { PatientHistoryComponent } from './doctor/pages/doctor-home/comps/patient-history/patient-history.component';
+import { PatientsComponent } from './doctor/pages/doctor-home/comps/patients/patients.component';
+import { DpiHistoryComponent } from './doctor/pages/doctor-preview/comps/dpi-history/dpi-history.component';
+import { PriorityStatusComponent } from './doctor/comps/priority-status/priority-status.component';
+import { RadiologyPopupComponent } from './popups/radiology-popup/radiology-popup.component';
+import { MedicalPopupComponent } from './popups/medical-popup/medical-popup.component';
+import { GraphPopupComponent } from './popups/graph-popup/graph-popup.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +33,22 @@ import { PatientCardComponent } from './doctor/comps/patient-card/patient-card.c
     MInputComponent,
     DoctorHomeComponent,
     NavBarComponent,
-    PatientInfoComponent,
     TitleInfoComponent,
-    PatientHistoryComponent,
-    PatientsComponent,
     PatientCardComponent,
+    SgphStatusComponent,
+    DoctorPreviewComponent,
+    DpiInfoComponent,
+    PatientInfoComponent,
+    PatientHistoryComponent,
+    PriorityStatusComponent,
+    PatientsComponent,
+    DpiHistoryComponent,
+    RadiologyPopupComponent,
+GraphPopupComponent,
+
+MedicalPopupComponent,
+
+
   ],
   imports: [
     BrowserModule,
