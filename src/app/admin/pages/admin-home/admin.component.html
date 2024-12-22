@@ -1,7 +1,7 @@
 <div class="flex flex-col h-full grow">
     <app-nav-bar></app-nav-bar>
-    <div class=" flex gap-4 p-6 overflow-hidden">
-        <div class="flex flex-col gap-4">
+    <div class=" flex gap-4 p-6 overflow-hidden justify-around">
+        <div class="flex flex-col gap-4 flex-1">
             <div class="flex justify-between">
                 <button class="text-lg px-4 py-2 rounded-lg border-2 flex items-center gap-4 shadow" >
                     <span>{{curHospital}}</span>
@@ -11,8 +11,10 @@
                             fill="black" />
                     </svg>
                 </button>
-                <button class="text-lg px-4 py-2 rounded text-white font-bold" style="background-color: #61CAE8;"><span
-                        class="text-2xl mr-2">+</span> <span>Add New Hospital</span> </button>
+                
+                <button (click)="onCreateHospital()" class="text-lg px-4 py-2 rounded text-white font-bold" style="background-color: #61CAE8;">
+                    <span class="text-2xl mr-2">+</span> <span>Add New Hospital</span> 
+                </button>
 
             </div>
 

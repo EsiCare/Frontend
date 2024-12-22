@@ -21,10 +21,22 @@
   border-color: #DBDBDB
 }
 
+.custom-text-black {
+  color: #222
+
+}
+.custom-max-w-72 {
+  width: 300px;
+}
 
 html {
   overflow: hidden;
+  color: #222;
+
+
+  min-width: 768px;
 }
+
 
 html,
 body,

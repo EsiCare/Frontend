@@ -28,5 +28,12 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+
+  "theme": {
+    "screens": {
+      "smol": { "max": "1px" }, 
+
+    },
   }
 }

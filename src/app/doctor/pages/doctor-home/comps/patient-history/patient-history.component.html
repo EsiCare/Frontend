@@ -1,6 +1,7 @@
-<h1 class="text-3xl font-bold">History</h1>
+<app-frame title="History" class="flex-1" in_class="h-full flex flex-col overflow-hidden">
 
-<div class="mat-elevation-z8 overflow-y-scroll overflow-x-hidden">
+
+<div class="mat-elevation-z8 overflow-y-scroll overflow-x-hidden flex flex-col">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <ng-container matColumnDef="id">
       <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>Doctor</th>
@@ -63,3 +64,5 @@
     [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
   </mat-paginator>
 </div>
+
+</app-frame>

@@ -32,6 +32,12 @@ import { AdminWorkersComponent } from './admin/comps/admin-workers/admin-workers
 import { AdminWorkerCardComponent } from './admin/comps/admin-worker-card/admin-worker-card.component';
 import { AdminStatsItemComponent } from './admin/comps/admin-stats-item/admin-stats-item.component';
 import { LineChartComponent } from './admin/comps/admin-status/graph/line-chart.component';
+import { AdminCreateHospitalComponent } from './popups/admin-create-hospital/admin-create-hospital.component';
+import { TitleInputComponent } from './comps/title-input/title-input.component';
+import { CustomButtonComponent } from './comps/custom-button/custom-button.component';
+import { AdminCreateWorkerComponent } from './popups/admin-create-worker/admin-create-worker.component';
+import { DeleteWorkerComponent } from './popups/delete-worker/delete-worker.component';
+import { FrameComponent } from './comps/frame/frame.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +65,12 @@ import { LineChartComponent } from './admin/comps/admin-status/graph/line-chart.
     AdminWorkerCardComponent,
     AdminStatsItemComponent,
     LineChartComponent,
+    AdminCreateHospitalComponent,
+    TitleInputComponent,
+    CustomButtonComponent,
+    AdminCreateWorkerComponent,
+    DeleteWorkerComponent,
+    FrameComponent,
 
 
 

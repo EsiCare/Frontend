@@ -1,18 +1,9 @@
-.axis {
-    font: 10px sans-serif;
-}
+
 
 .axis path,
 .axis line {
     fill: none;
-    stroke: #000;
     shape-rendering: crispEdges;
-}
-
-.axis-title {
-    fill: none;
-    stroke: black;
-    stroke-width: 0.5px;
 }
 
 
@@ -22,6 +13,23 @@
 
 .line {
     fill: none;
-    stroke: steelblue;
     stroke-width: 1.5px;
+}
+.line-first {
+    stroke: #7BC7BF;
+
+}
+.line-second {
+    stroke: #61CAE8;
+}
+
+
+#graph {
+    height: 100%;
+    width: 100%;
+}
+
+g.tick line, .domain {
+    stroke-dasharray: 4;
+    stroke: #CCCCCC;
 }

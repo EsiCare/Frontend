@@ -12,3 +12,7 @@
 .qr-code {
   aspect-ratio: 1;
 }
+
+.hidden-bar {
+  position: absolute;
+}
