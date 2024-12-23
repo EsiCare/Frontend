@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Output, ViewChild , EventEmitter } from '@ang
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { RightBarService } from 'src/app/services/right-bar.service';
 
 @Component({
   selector: 'app-admin-workers',
@@ -14,7 +15,7 @@ export class AdminWorkersComponent  {
   numbers = Array.from({ length: 10 }, (_, i) => i + 1);
   idx = 0;
 
-  constructor() {
+  constructor(public rightBarService: RightBarService) {
   }
 
   ngAfterViewInit(): void {

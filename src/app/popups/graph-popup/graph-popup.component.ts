@@ -50,8 +50,9 @@ export class GraphPopupComponent implements OnInit {
 
   private svg: any;
   private margin = 50;
+  private margin_top = 25;
   private width = 750 - (this.margin * 2);
-  private height = 400 - (this.margin * 2);
+  private height = 300 - (this.margin_top);
 
 
   private drawBars(data: any[]): void {
@@ -59,9 +60,9 @@ export class GraphPopupComponent implements OnInit {
     this.svg = d3.select("figure#bar")
       .append("svg")
       .attr("width", this.width + (this.margin * 2))
-      .attr("height", this.height + (this.margin * 2))
+      .attr("height", this.height + (this.margin_top * 2))
       .append("g")
-      .attr("transform", "translate(" + this.margin + "," + this.margin + ")");
+      .attr("transform", "translate(" + this.margin + "," + this.margin_top + ")");
 
 
 
@@ -82,15 +83,20 @@ export class GraphPopupComponent implements OnInit {
     var x = d3.scaleBand()
       .domain(groups as any)
       .range([0, this.width])
-      .padding([0.7] as any)
+      .padding([0.4] as any)
+
     this.svg.append("g")
+      .attr("class", "asdasdasd")
       .attr("transform", "translate(0," + this.height + ")")
-      .call(d3.axisBottom(x).tickSizeOuter(0));
+      .call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(-this.height));
+
     var y = d3.scaleLinear()
       .domain([0, height_max])
       .range([this.height, 0]);
+
     this.svg.append("g")
-      .call(d3.axisLeft(y));
+      .attr("class", "asdasdasd")
+      .call(d3.axisLeft(y).tickSizeInner(-this.width));
 
     var stackedData = d3.stack()
       .keys(subgroups)(data as any)
@@ -114,15 +120,14 @@ export class GraphPopupComponent implements OnInit {
       .data(data)
       .enter()
       .append("text")
-      .text((d: any) => d.top) 
+      .text((d: any) => d.top)
       .attr("x", (d: any) => {
         return x(d.name);
       })
       .attr("y", (d: any) => { return y(d.top + d.bottom + 0.5); })
-      .attr("text-anchor", "middle") 
-      .attr("fill", "black") 
+      .attr("text-anchor", "middle")
       .style("font-size", "12px")
-      .attr("transform", "translate(8,0)");
+      .attr("transform", "translate(16,0)");
 
 
 
@@ -131,15 +136,14 @@ export class GraphPopupComponent implements OnInit {
       .data(data)
       .enter()
       .append("text")
-      .text((d: any) => d.bottom) 
+      .text((d: any) => d.bottom)
       .attr("x", (d: any) => {
         return x(d.name);
       })
       .attr("y", (d: any) => { return y(d.bottom + 0.5); })
-      .attr("text-anchor", "middle") 
-      .attr("fill", "black")
+      .attr("text-anchor", "middle")
       .style("font-size", "12px")
-      .attr("transform", "translate(8,0)");
+      .attr("transform", "translate(16,0)");
 
   }
 

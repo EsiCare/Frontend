@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
-type PopupType = "None" | "Radiology" | "Medical" | "Graph" | 
+type PopupType = "None" | "dpi:radiology" | "dpi:medical" | "dpi:graph" | 
                  "admin:create-hospital" | "admin:create-worker" | "admin:delete-worker";
 
 @Injectable({

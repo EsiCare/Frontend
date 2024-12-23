@@ -1,13 +1,15 @@
-<div class="flex justify-between">
-    <h1 class="text-3xl font-bold">Patient {{name}}</h1>
-    <button class="border-2 border-gray-500 px-4 py-1 rounded-lg font-bold" style="color: #21323A">Preview
-        Prescriptions</button>
-</div>
-<div class="flex flex-col gap-2">
-    <h1 class="font-bold text-xl">Reason</h1>
-    <p>{{reason}}</p>
-</div>
-<div class="flex flex-col gap-2">
-    <h1 class="font-bold text-xl">Resume</h1>
-    <p>{{resume}}</p>
+
+<div class="border-2 rounded-lg px-8 py-8 flex flex-col gap-4 bold bg-white  custom-border-gray flex flex-col gap-3">
+    <div class="flex justify-between ">
+        <h1 class="font-bold" style="font-size: 28px;">Patient {{name}}</h1>
+        <button class="border-2 custom-border-gray px-4 py-1 rounded-lg font-bold" style="color: #21323A">Preview Prescriptions</button>
+    </div>
+    <div class="flex flex-col gap-2">
+        <h1 class="font-medium text-xl">Reason</h1>
+        <p>{{reason}}</p>
+    </div>
+    <div class="flex flex-col gap-3">
+        <h1 class="font-medium text-xl">Resume</h1>
+        <p>{{resume}}</p>
+    </div>
 </div>

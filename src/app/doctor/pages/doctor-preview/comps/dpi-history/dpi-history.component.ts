@@ -31,17 +31,18 @@ export class DpiHistoryComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
 
-    this.popupService.setData({
-      title: "Full Blood Test",
-      done_at: "2024-12-7 15:82",
-      actor: "Mr.bouboutani",
-      obs: [
-        "Patient tolerated the injection well.",
-        "No bleeding or swelling at the injection site post-administration.",
-        "Patient reported mild discomfort during the procedure, which subsided immediately."
-      ],
-    });
-    this.popupService.showPopup("Graph");
+    // this.popupService.setData({
+      // title: "Sql injection",
+      // done_at: "2024-12-7 15:82",
+      // actor: "Mr.bouboutani",
+      // obs: [
+      //   "Patient tolerated the injection well.",
+      //   "No bleeding or swelling at the injection site post-administration.",
+      //   "Patient reported mild discomfort during the procedure, which subsided immediately."
+      // ],
+    // });
+    // this.popupService.showPopup("dpi:medical");
+
   }
 
 
@@ -52,7 +53,7 @@ export class DpiHistoryComponent implements AfterViewInit {
     //   actor: "Mr.bouboutani",
     //   imgs: ["https://aquifer.org/wp-content/uploads/2017/12/Aquifer-Website-Featured-Images-e1518011485609.jpg"],
     // });
-    // this.popupService.showPopup("Radiology");
+    // this.popupService.showPopup("dpi:radiology");
 
 
     // this.popupService.setData({
@@ -65,7 +66,7 @@ export class DpiHistoryComponent implements AfterViewInit {
     //     "Patient reported mild discomfort during the procedure, which subsided immediately."
     //   ],
     // });
-    // this.popupService.showPopup("Medical");
+    // this.popupService.showPopup("dpi:medical");
 
 
     this.popupService.setData({
@@ -78,7 +79,7 @@ export class DpiHistoryComponent implements AfterViewInit {
         "Patient reported mild discomfort during the procedure, which subsided immediately."
       ],
     });
-    this.popupService.showPopup("Graph");
+    this.popupService.showPopup("dpi:graph");
   }
 
 

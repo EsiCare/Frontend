@@ -1,16 +1,18 @@
-<div class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-4 shadow" (click)="onClick($event)">
-    <div class="flex justify-between">
-        <h1 class="font-bold text-3xl">{{(popupService.getData() | async).title}}</h1>
-        <svg class="cursor-pointer" (click)="popupService.hidePopup()" width="14" height="14" viewBox="0 0 14 14"
-            fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L13 13M13 1L1 13" stroke="#898989" stroke-width="2" stroke-linecap="round" />
-        </svg>
+<div class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-16 shadow" (click)="onClick($event)">
+    <div class="flex flex-col gap-4">
+        <div class="flex justify-between">
+            <h1 class="font-medium text-3xl">{{(popupService.getData() | async).title}}</h1>
+            <svg class="cursor-pointer" (click)="popupService.hidePopup()" width="14" height="14" viewBox="0 0 14 14"
+                fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L13 13M13 1L1 13" stroke="#898989" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </div>
+
+    <h1 class="text-lg"> Done By {{(popupService.getData() | async).actor}} At {{(popupService.getData() | async).done_at}} </h1>
 
     </div>
-    <h1>Done By {{(popupService.getData() | async).actor}} At {{(popupService.getData() | async).done_at}} </h1>
-    <h1 class="obs font-bold text-lg">Observation:</h1>
-   
-
-    <h2>Bar Chart</h2>
-<figure id="bar"></figure>
+    <div class="flex flex-col gap-8">
+        <h1 class="obs font-medium text-2xl">Observation:</h1>
+        <figure id="bar" class="self-center"></figure>
+    </div>
 </div>

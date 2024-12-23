@@ -1,6 +1,20 @@
-.radiology-popup {
-    width: 40%;
-    height: 80%;
-    max-width: 700px;
-    max-height: 800px;
+.medical-popup { 
+     width: 50%; 
+     height: fit-content; 
+     min-width: 840px;
+ } 
+ 
+
+
+#bar g {
+    stroke: red;
+}
+.asdasdasd {
+}
+#bar {
+    /* background-color: green; */
+}
+
+line , .asdasdasd {
+    stroke-width: 2;
 }

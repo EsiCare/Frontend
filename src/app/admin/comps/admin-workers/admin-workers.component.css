@@ -12,3 +12,7 @@
 .qr-code {
   aspect-ratio: 1;
 }
+:host {
+  display: flex;
+  flex-direction: column;
+}

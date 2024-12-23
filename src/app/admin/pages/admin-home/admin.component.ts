@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PopupService } from 'src/app/services/popup.service';
+import { RightBarService } from 'src/app/services/right-bar.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +9,7 @@ import { PopupService } from 'src/app/services/popup.service';
 })
 export class AdminComponent implements OnInit {
   curHospital : string = "Esi Hospital";
-  constructor(public popupService : PopupService) { }
+  constructor(public popupService : PopupService,public rightBarService: RightBarService) { }
 
   ngOnInit(): void {
     this.onCreateHospital();
