@@ -1,0 +1,16 @@
+
+
+<div class="flex flex-col gap-2 {{in_class}}">
+      <p *ngIf="required_title.length" class="text-xl font-medium">{{required_title}} <span class="text-xl font-light text-red-600">*</span></p>
+      
+      <input #input 
+      [defaultValue]="defaultValue"
+      (input)="onChange()" 
+       type="text" 
+       class="w-full rounded-lg px-4 py-3 border-2 lg:text-lg sm:text-sm " 
+       placeholder="{{title}}"
+        style="border-color: #b3b3b381;"
+       >
+  </div>
+
+

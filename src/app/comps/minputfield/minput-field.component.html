@@ -1,0 +1,16 @@
+
+
+
+<div class="flex flex-col gap-2">
+      <p *ngIf="required_title.length" class="text-xl font-medium">{{required_title}} <span class="text-xl font-light text-red-600">*</span></p>
+      
+      <textarea #input 
+      (input)="onChange()" 
+       type="text" 
+       class="w-full rounded px-4 py-4 border-2 h-full {{this.class}}" 
+       placeholder="{{title}}"
+        style="border-color: #b3b3b381;"
+       >
+</textarea>
+  </div>
+

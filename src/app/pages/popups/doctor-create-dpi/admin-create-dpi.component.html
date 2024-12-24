@@ -1,0 +1,13 @@
+<div id="form-popup" class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-4 shadow"
+    (click)="onClick($event)">
+    <div class="flex flex-col justify-between gap-6 ">
+        <div>
+            <h1 class="font-bold text-3xl">Create a new DPI page</h1>
+        </div>
+        <div class="flex flex-col gap-2">
+            <p class="text-xl font-medium">Reason <span class="text-xl font-light text-red-600">*</span></p>
+            <app-minput-field class="h-40" title="eg.heart attack much cheese the man almost killed himself because he wanted to be happy"></app-minput-field>
+        </div>
+        <app-custom-button (click)="onCreateDpi()" title="Create" class="self-end"> </app-custom-button>
+    </div>
+</div>

@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { LoginComponent } from 'src/login/login.component';
-import { DoctorHomeComponent } from './doctor/pages/doctor-home/doctor-home.component';
-import { DoctorPreviewComponent } from './doctor/pages/doctor-preview/doctor-preview.component';
-import { AdminComponent } from './admin/pages/admin-home/admin.component';
+import { LoginComponent } from './pages/login/login.component';
+import { DoctorHomeComponent } from './pages/doctor/pages/doctor-home/doctor-home.component';
+import { DoctorPreviewComponent } from './pages/doctor/pages/doctor-preview/doctor-preview.component';
+import { AdminComponent } from './pages/admin/pages/admin-home/admin.component';
+import { DpiComponent } from './pages/dpi/dpi.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: "doctor/:id", component: DoctorHomeComponent},
   {path: "doctor/:id/dpi/:id", component: DoctorPreviewComponent},
   {path: "admin", component: AdminComponent},
+  {path: "dpi", component: DpiComponent},
   {path: '*', pathMatch: 'full', redirectTo: 'not-found'},
 ];
 

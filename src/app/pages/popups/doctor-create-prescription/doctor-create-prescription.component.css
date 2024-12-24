@@ -1,0 +1,11 @@
+#form-popup {
+    width: 70%;
+    /* max-width: 700px; */
+    /* max-height: 800px; */
+
+    min-width: 700px;
+}
+table {
+    border-spacing: 10px 10px;
+    border-collapse: separate;
+}

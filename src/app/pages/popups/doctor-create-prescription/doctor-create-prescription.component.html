@@ -1,0 +1,91 @@
+<div id="form-popup" class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-4 shadow"
+    (click)="onClick($event)">
+    <div class="flex flex-col justify-between gap-6 ">
+        <h1 class="font-bold text-3xl">Create Prescription</h1>
+
+
+        <div>
+            <h1 class="text-2xl">Medications</h1>
+
+            <table>
+                <tr class="text-left border-b-2">
+                    <th>Drug name</th>
+                    <th>Dosage</th>
+                    <th>Frequency</th>
+                    <th>Duration</th>
+                    <th>Instructions</th>
+                    <th></th>
+                </tr>
+                <ng-container *ngFor="let prescription of prescriptions; let i = index">
+                    <tr *ngIf="i != prescriptions.length - 1" class="my-4 relative">
+                        <td><app-minput in_class="bg-red-100" [defaultValue]="prescription.drug" title="eg. cocaine"></app-minput></td>
+                        <td><app-minput in_class="bg-red-100" [defaultValue]="prescription.dosage" title="eg. 1000mg"></app-minput></td>
+                        <td><app-minput in_class="bg-red-100" [defaultValue]="prescription.frequency" title="eg. once a day"></app-minput></td>
+                        <td><app-minput in_class="bg-red-100" [defaultValue]="prescription.duration" title="eg. one week"></app-minput></td>
+                        <td><app-minput in_class="bg-red-100" [defaultValue]="prescription.instructions"
+                                title="eg. before breakfast"></app-minput></td>
+                        <td class="cursor-pointer" (click)="onDeleteItem(i)">
+                            <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.22242 6.95267C9.86446 6.36841 10.7257 6.04144 11.6224 6.0415H24.4937C25.2412 6.0415 26.1112 6.23517 26.8224 6.647C27.5462 7.06467 28.2099 7.78334 28.2099 8.81234V20.1873C28.2099 21.2163 27.5462 21.9338 26.8224 22.3527C26.1186 22.7463 25.3141 22.9554 24.4937 22.9582H11.6224C10.7257 22.9582 9.86446 22.6313 9.22242 22.047L2.53492 15.9617C2.3259 15.7715 2.15978 15.5441 2.04636 15.2931C1.93294 15.042 1.87451 14.7723 1.87451 14.4998C1.87451 14.2274 1.93294 13.9577 2.04636 13.7066C2.15978 13.4555 2.3259 13.2282 2.53492 13.038L9.22242 6.95267ZM17.5374 11.5482C17.4516 11.4622 17.3481 11.3932 17.2331 11.3454C17.1181 11.2976 16.9939 11.2719 16.8681 11.2698C16.7422 11.2677 16.6172 11.2894 16.5004 11.3334C16.3837 11.3774 16.2776 11.4429 16.1886 11.526C16.0996 11.609 16.0294 11.708 15.9823 11.817C15.9351 11.9259 15.912 12.0426 15.9142 12.1601C15.9164 12.2776 15.944 12.3935 15.9952 12.5008C16.0464 12.6081 16.1203 12.7047 16.2124 12.7848L18.0499 14.4998L16.2124 16.2148C16.1203 16.2949 16.0464 16.3915 15.9952 16.4989C15.944 16.6062 15.9164 16.7221 15.9142 16.8396C15.912 16.957 15.9351 17.0737 15.9823 17.1827C16.0294 17.2917 16.0996 17.3906 16.1886 17.4737C16.2776 17.5568 16.3837 17.6223 16.5004 17.6663C16.6172 17.7103 16.7422 17.7319 16.8681 17.7299C16.9939 17.7278 17.1181 17.7021 17.2331 17.6542C17.3481 17.6064 17.4516 17.5375 17.5374 17.4515L19.3749 15.7365L21.2124 17.4515C21.2982 17.5375 21.4017 17.6064 21.5167 17.6542C21.6317 17.7021 21.7559 17.7278 21.8818 17.7299C22.0076 17.7319 22.1327 17.7103 22.2494 17.6663C22.3661 17.6223 22.4722 17.5568 22.5612 17.4737C22.6502 17.3906 22.7204 17.2917 22.7676 17.1827C22.8147 17.0737 22.8379 16.957 22.8357 16.8396C22.8334 16.7221 22.8059 16.6062 22.7546 16.4989C22.7034 16.3915 22.6295 16.2949 22.5374 16.2148L20.6999 14.4998L22.5374 12.7848C22.6295 12.7047 22.7034 12.6081 22.7546 12.5008C22.8059 12.3935 22.8334 12.2776 22.8357 12.1601C22.8379 12.0426 22.8147 11.9259 22.7676 11.817C22.7204 11.708 22.6502 11.609 22.5612 11.526C22.4722 11.4429 22.3661 11.3774 22.2494 11.3334C22.1327 11.2894 22.0076 11.2677 21.8818 11.2698C21.7559 11.2719 21.6317 11.2976 21.5167 11.3454C21.4017 11.3932 21.2982 11.4622 21.2124 11.5482L19.3749 13.2632L17.5374 11.5482Z"
+                                    fill="#7DC8C1" />
+                            </svg>
+    
+                        </td>
+    
+                    </tr>
+                </ng-container>
+    
+                <tr #lastInput [class.absolute]="prescriptions.length == 0" [class.opacity-0]="prescriptions.length == 0"
+                    [class.pointer-events-none]="prescriptions.length == 0">
+                    <td><app-minput
+                            [defaultValue]="prescriptions.length == 0 ? '' :prescriptions[prescriptions.length - 1].drug"
+                            title="eg. cocaine"></app-minput></td>
+                    <td><app-minput
+                            [defaultValue]="prescriptions.length == 0 ? '' :prescriptions[prescriptions.length - 1].dosage"
+                            title="eg. 1000mg"></app-minput></td>
+                    <td><app-minput
+                            [defaultValue]="prescriptions.length == 0 ? '' :prescriptions[prescriptions.length - 1].frequency"
+                            title="eg. once a day"></app-minput></td>
+                    <td><app-minput
+                            [defaultValue]="prescriptions.length == 0 ? '' :prescriptions[prescriptions.length - 1].duration"
+                            title="eg. one week"></app-minput></td>
+                    <td><app-minput
+                            [defaultValue]="prescriptions.length == 0 ? '' :prescriptions[prescriptions.length - 1].instructions"
+                            title="eg. before breakfast"></app-minput></td>
+                    <td class="cursor-pointer" (click)="onDeleteItem(prescriptions.length - 1)">
+                        <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.22242 6.95267C9.86446 6.36841 10.7257 6.04144 11.6224 6.0415H24.4937C25.2412 6.0415 26.1112 6.23517 26.8224 6.647C27.5462 7.06467 28.2099 7.78334 28.2099 8.81234V20.1873C28.2099 21.2163 27.5462 21.9338 26.8224 22.3527C26.1186 22.7463 25.3141 22.9554 24.4937 22.9582H11.6224C10.7257 22.9582 9.86446 22.6313 9.22242 22.047L2.53492 15.9617C2.3259 15.7715 2.15978 15.5441 2.04636 15.2931C1.93294 15.042 1.87451 14.7723 1.87451 14.4998C1.87451 14.2274 1.93294 13.9577 2.04636 13.7066C2.15978 13.4555 2.3259 13.2282 2.53492 13.038L9.22242 6.95267ZM17.5374 11.5482C17.4516 11.4622 17.3481 11.3932 17.2331 11.3454C17.1181 11.2976 16.9939 11.2719 16.8681 11.2698C16.7422 11.2677 16.6172 11.2894 16.5004 11.3334C16.3837 11.3774 16.2776 11.4429 16.1886 11.526C16.0996 11.609 16.0294 11.708 15.9823 11.817C15.9351 11.9259 15.912 12.0426 15.9142 12.1601C15.9164 12.2776 15.944 12.3935 15.9952 12.5008C16.0464 12.6081 16.1203 12.7047 16.2124 12.7848L18.0499 14.4998L16.2124 16.2148C16.1203 16.2949 16.0464 16.3915 15.9952 16.4989C15.944 16.6062 15.9164 16.7221 15.9142 16.8396C15.912 16.957 15.9351 17.0737 15.9823 17.1827C16.0294 17.2917 16.0996 17.3906 16.1886 17.4737C16.2776 17.5568 16.3837 17.6223 16.5004 17.6663C16.6172 17.7103 16.7422 17.7319 16.8681 17.7299C16.9939 17.7278 17.1181 17.7021 17.2331 17.6542C17.3481 17.6064 17.4516 17.5375 17.5374 17.4515L19.3749 15.7365L21.2124 17.4515C21.2982 17.5375 21.4017 17.6064 21.5167 17.6542C21.6317 17.7021 21.7559 17.7278 21.8818 17.7299C22.0076 17.7319 22.1327 17.7103 22.2494 17.6663C22.3661 17.6223 22.4722 17.5568 22.5612 17.4737C22.6502 17.3906 22.7204 17.2917 22.7676 17.1827C22.8147 17.0737 22.8379 16.957 22.8357 16.8396C22.8334 16.7221 22.8059 16.6062 22.7546 16.4989C22.7034 16.3915 22.6295 16.2949 22.5374 16.2148L20.6999 14.4998L22.5374 12.7848C22.6295 12.7047 22.7034 12.6081 22.7546 12.5008C22.8059 12.3935 22.8334 12.2776 22.8357 12.1601C22.8379 12.0426 22.8147 11.9259 22.7676 11.817C22.7204 11.708 22.6502 11.609 22.5612 11.526C22.4722 11.4429 22.3661 11.3774 22.2494 11.3334C22.1327 11.2894 22.0076 11.2677 21.8818 11.2698C21.7559 11.2719 21.6317 11.2976 21.5167 11.3454C21.4017 11.3932 21.2982 11.4622 21.2124 11.5482L19.3749 13.2632L17.5374 11.5482Z"
+                                fill="#7DC8C1" />
+                        </svg>
+    
+                    </td>
+                </tr>
+    
+    
+                <tr #tempInput class="py-4">
+                    <td><app-minput (onInputChange)="onLastChange()" title="eg. cocaine"></app-minput></td>
+                    <td><app-minput (onInputChange)="onLastChange()" title="eg. 1000mg"></app-minput></td>
+                    <td><app-minput (onInputChange)="onLastChange()" title="eg. once a day"></app-minput></td>
+                    <td><app-minput (onInputChange)="onLastChange()" title="eg. one week"></app-minput></td>
+                    <td><app-minput (onInputChange)="onLastChange()" title="eg. before breakfast"></app-minput></td>
+                </tr>
+    
+            </table>
+        </div>
+
+        <div class="flex flex-col gap-2"> 
+            <h1 class="lg:text-2xl sm:text-sm ">Additional Notes</h1>
+            <app-minput-field class="h-40" title="eg. souhaib is  the greatest of all time  valorant player"></app-minput-field>
+        </div>  
+        <div class="flex gap-2 self-end">
+            <button  class="text-xl px-6 py-1 w-fit h-full  rounded  font-bold border-2 custom-border-color">
+                <span>Preview</span>
+            </button>
+
+            <app-custom-button title="Create"></app-custom-button>
+            
+    </div>
+    </div>
+</div>

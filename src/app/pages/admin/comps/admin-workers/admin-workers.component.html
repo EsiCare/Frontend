@@ -1,0 +1,28 @@
+<app-frame title="Workers" class="overflow-visible flex flex-col  h-full relative" in_class="flex flex-col gap-8 custom-max-w-72 overflow-hidden p-2 h-full  overflow-visible">
+
+  <div class="flex items-center justify-between gap-2">
+    <div class="flex items-center border-2 border-gray-300 rounded-lg py-1 px-2 text-xl">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M7 0C8.72391 0 10.3772 0.684819 11.5962 1.90381C12.8152 3.12279 13.5 4.77609 13.5 6.5C13.5 8.11 12.91 9.59 11.94 10.73L12.21 11H13L18 16L16.5 17.5L11.5 12.5V11.71L11.23 11.44C10.0504 12.4465 8.55065 12.9996 7 13C5.27609 13 3.62279 12.3152 2.40381 11.0962C1.18482 9.87721 0.5 8.22391 0.5 6.5C0.5 4.77609 1.18482 3.12279 2.40381 1.90381C3.62279 0.684819 5.27609 0 7 0ZM7 2C4.5 2 2.5 4 2.5 6.5C2.5 9 4.5 11 7 11C9.5 11 11.5 9 11.5 6.5C11.5 4 9.5 2 7 2Z"
+          fill="#A0A0A0" />
+      </svg>
+      <input type="text" placeholder="Search..." class="search outline-none border-none w-full">
+    </div>
+    <button (click)="onAddWorker()" class="text-lg px-4 rounded text-white font-bold h-full" style="background-color: #61CAE8;"><span class="text-2xl mr-2">+</span> <span>New</span> </button>
+  </div>
+
+  <div class="flex flex-col gap-4 overflow-y-scroll pr-2 -mr-6">
+    <app-admin-worker-card *ngFor="let i of numbers" [showMenu]="i === idx" (showOptionsMenu)="showOptionsMenu(i)"
+      (hideOptionsMenu)="hideOptionsMenu()" name="Boutemine Djaoued" role="Administrator"></app-admin-worker-card>
+  </div>
+
+
+  <img (click)="
+  rightBarService.togglePatientsBar()"
+   width="32" 
+   [class.rotate-180]="(rightBarService.isPatientsBarVisible() | async)"
+   style="left: -16px; top: calc(50% - 16px);" src="/assets/back.png" alt="back" 
+   class="absolute bg-white lg:hidden">
+
+</app-frame>
