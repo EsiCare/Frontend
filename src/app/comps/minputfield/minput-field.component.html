@@ -1,8 +1,9 @@
 
 
 
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-2 {{in_class}}">
       <p *ngIf="required_title.length" class="text-xl font-medium">{{required_title}} <span class="text-xl font-light text-red-600">*</span></p>
+      <p *ngIf="none_required_title.length" class="text-xl font-medium">{{this.none_required_title}} </p>
       
       <textarea #input 
       (input)="onChange()" 

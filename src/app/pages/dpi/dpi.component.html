@@ -34,11 +34,19 @@
         <app-minput class="flex-1 rounded-lg" title="eg. IRM" required_title="Test Title"></app-minput>
         </div>
         <app-minput title="eg. IRM" required_title="Test Title"></app-minput>
-        <app-minput-field required_title="Description" class="text-lg flex-1"
+        <app-minput-field required_title="Description" class="text-lg flex-1 flex-1" in_class="h-full"
             title="eg. Severe abdominal pain prompted"></app-minput-field>
         <app-custom-button title="Request" class="self-end"> </app-custom-button>
     </div>
 </section>
 
-<app-test-history class="flex overflow-hidden"> </app-test-history>
+<div [class.bar-hidden]="!(rightBarService.isPatientsBarVisible() | async)" 
+class="lg:static lg:p-0 lg:overflow-visible lg:bg-transparent lg:w-fit
+       sm:absolute sm:right-0  sm:px-6 sm:pb-12 sm:overflow-hidden 
+       h-full flex justify-end 
+       z-10
+       ">
+
+<app-test-history class="flex overflow-visible"> </app-test-history>
+</div>
 </div>

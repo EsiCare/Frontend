@@ -1,0 +1,15 @@
+:host {
+    width: 100%;
+}
+
+.img-placeholder p{
+    bottom: -40px;
+}
+
+.file-container {
+    min-height: 100px;
+}
+
+.bar-hidden {
+    right: -360px;
+}

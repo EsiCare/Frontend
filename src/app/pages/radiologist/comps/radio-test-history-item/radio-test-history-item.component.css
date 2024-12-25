@@ -1,0 +1,8 @@
+.pending { background-color: #FEF9C3; color: #713F12;}
+.pending div { background-color: #FFE900; }
+
+.failed { background-color: #FEE2E2; color: #7F1D1D; }
+.failed div { background-color: #FF2020; }
+
+.completed { background-color: #DCFCE7; color: #14532D;}
+.completed div { background-color: #22C55E; }

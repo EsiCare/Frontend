@@ -44,6 +44,10 @@ import { DpiComponent } from './pages/dpi/dpi.component';
 import { TestHistoryComponent } from "./pages/dpi/comps/test-history/test-history.component";
 import { TestHistoryItemComponent } from "./pages/dpi/comps/test-history-item/test-history-item.component";
 import { DoctorCreatePerscriptionComponent } from "./pages/popups/doctor-create-prescription/doctor-create-prescription.component";
+import { RadiologistComponent } from './pages/radiologist/radiologist.component';
+import { RadioTestHistoryComponent } from "./pages/radiologist/comps/radio-test-history/radio-test-history.component";
+import { RadioTestHistoryItemComponent } from "./pages/radiologist/comps/radio-test-history-item/radio-test-history-item.component";
+
 
 @NgModule({
   declarations: [
@@ -84,6 +88,9 @@ import { DoctorCreatePerscriptionComponent } from "./pages/popups/doctor-create-
     TestHistoryComponent,
     TestHistoryItemComponent,
     DoctorCreatePerscriptionComponent,
+    RadiologistComponent,
+    RadioTestHistoryComponent,
+RadioTestHistoryItemComponent,
   ],
   imports: [
     BrowserModule,

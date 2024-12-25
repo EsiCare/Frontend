@@ -9,7 +9,9 @@ export class MInputFieldComponent implements OnInit {
   @ViewChild("input") inputRef : ElementRef<HTMLInputElement> | null = null;
   @Input() title  = "placeholder";
   @Input() class  = "";
+  @Input() in_class  = "";
   @Input() required_title  = "";
+  @Input() none_required_title  = "";
 
   constructor() { 
 

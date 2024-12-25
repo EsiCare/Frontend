@@ -5,6 +5,7 @@ import { DoctorHomeComponent } from './pages/doctor/pages/doctor-home/doctor-hom
 import { DoctorPreviewComponent } from './pages/doctor/pages/doctor-preview/doctor-preview.component';
 import { AdminComponent } from './pages/admin/pages/admin-home/admin.component';
 import { DpiComponent } from './pages/dpi/dpi.component';
+import { RadiologistComponent } from './pages/radiologist/radiologist.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: "doctor/:id/dpi/:id", component: DoctorPreviewComponent},
   {path: "admin", component: AdminComponent},
   {path: "dpi", component: DpiComponent},
-  {path: '*', pathMatch: 'full', redirectTo: 'not-found'},
+  {path: "radiologist", component: RadiologistComponent},
+  {path: '**',  redirectTo: 'not-found'},
 ];
 
 @NgModule({
