@@ -2,13 +2,13 @@
     (click)="onClick($event)">
     <div class="flex flex-col justify-between gap-6 ">
         <h1 class="font-bold text-2xl">Create A New Worker</h1>
-        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.name || ''" title="enter Name..."
+        <app-minput #name (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.name || ''" title="enter Name..."
             required_title="Full Name"> </app-minput>
-        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.email || ''" title="enter Email..."
+        <app-minput #email (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.email || ''" title="enter Email..."
             required_title="Email"> </app-minput>
-        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.phone || ''" title="enter Phone..."
+        <app-minput #phone (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.phone || ''" title="enter Phone..."
             required_title="Phone"> </app-minput>
-        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.nss || ''" title="enter NSS..."
+        <app-minput #nss (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.nss || ''" title="enter NSS..."
             required_title="NSS"> </app-minput>
 
         <div class="flex justify-between">

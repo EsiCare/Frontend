@@ -35,6 +35,7 @@ export class AdminWorkerCardComponent implements OnInit {
   onAddWorker(e: any) {
     e.stopPropagation();
     this.popupService.setData({
+      id: this.worker?.id,
       name : this.worker?.name ,
       email : this.worker?.email,
       phone : this.worker?.phoneNumber,

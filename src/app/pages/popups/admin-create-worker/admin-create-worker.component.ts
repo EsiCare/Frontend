@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { take } from 'rxjs';
 import { MInputComponent } from 'src/app/comps/minput/minput.component';
+import { validateNoEmpty } from 'src/app/modules/input-validators';
 import { AdminService } from 'src/app/services/admin.service';
 import { POPUP_CREATE_WORKER_KEY, PopupService } from 'src/app/services/popup.service';
 
@@ -10,10 +11,10 @@ import { POPUP_CREATE_WORKER_KEY, PopupService } from 'src/app/services/popup.se
   styleUrls: ['./admin-create-worker.component.css']
 })
 export class AdminCreateWorkerComponent implements OnInit {
-  @ViewChild("name")  nameRef : ElementRef<MInputComponent> | null = null;
-  @ViewChild("email") emailRef : ElementRef<MInputComponent> | null = null;
-  @ViewChild("phone") phoneRef : ElementRef<MInputComponent> | null = null;
-  @ViewChild("nss")   nssRef : ElementRef<MInputComponent> | null = null;
+  @ViewChild("name")  nameRef : MInputComponent | null  = null;
+  @ViewChild("email") emailRef : MInputComponent | null  = null;
+  @ViewChild("phone") phoneRef : MInputComponent | null  = null;
+  @ViewChild("nss")   nssRef : MInputComponent | null  = null;
 
   selectedRole : string = "Doctor";
   selectedSpecialty : string = "Kids";
@@ -21,13 +22,28 @@ export class AdminCreateWorkerComponent implements OnInit {
   constructor(public popupService : PopupService,public adminService:  AdminService) { 
   
     this.adminService.getWorkerCreationStatus().subscribe( (value) => {
-      if(value == "Successful") {
-        this.nameRef?.nativeElement.setInput("");
-        this.emailRef?.nativeElement.setInput("");
-        this.phoneRef?.nativeElement.setInput("");
-        this.nssRef?.nativeElement.setInput("");
+      let isEdit = false;
+      this.popupService.getData().pipe(take(1)).subscribe(data => {
+        isEdit = data[POPUP_CREATE_WORKER_KEY] != "create";
+      }).unsubscribe();
+      if(
+          value == "Successful" && 
+          !isEdit 
+        ) {
+        this.nameRef?.setInput("");
+        this.emailRef?.setInput("");
+        this.phoneRef?.setInput("");
+        this.nssRef?.setInput("");
       }
     });
+
+
+    this.popupService.getData().pipe(take(1)).subscribe(data => {
+      console.log(data);
+      this.selectedRole = data["role"];
+      this.selectedSpecialty = data["specialty"] || "Kids";
+    }).unsubscribe();
+
   }
 
   ngOnInit(): void {
@@ -43,10 +59,25 @@ export class AdminCreateWorkerComponent implements OnInit {
   }
 
   onConfirm() {
-    let name = this.nameRef?.nativeElement.getInput()!;
-    let email = this.emailRef?.nativeElement.getInput()!;
-    let phone = this.phoneRef?.nativeElement.getInput()!;
-    let nss = this.nssRef?.nativeElement.getInput()!;
+
+    let nameValid = this.nameRef?.validateInput(validateNoEmpty);
+    let emailValid = this.emailRef?.validateInput(validateNoEmpty);
+    let phoneValid = this.phoneRef?.validateInput(validateNoEmpty);
+    let nssValid = this.nssRef?.validateInput(validateNoEmpty);
+    if(
+      !nameValid || 
+      !emailValid || 
+      !phoneValid || 
+      !nssValid 
+    ) {
+      return;
+    }
+
+
+    let name = this.nameRef?.getInput()!;
+    let email = this.emailRef?.getInput()!;
+    let phone = this.phoneRef?.getInput()!;
+    let nss = this.nssRef?.getInput()!;
 
 
     let createOrEdit = "create";
@@ -54,7 +85,7 @@ export class AdminCreateWorkerComponent implements OnInit {
     if(createOrEdit == "create") {
       this.adminService.createWorker(this.selectedRole,this.selectedSpecialty,name,email,phone,nss,);
     } else {
-      // this.adminService.updateWorker();
+      this.adminService.updateWorker(this.selectedRole,this.selectedSpecialty,name,email,phone,nss,);
     }
   }
 

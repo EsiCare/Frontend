@@ -156,7 +156,6 @@ export class AdminService {
 
 
   public async createWorker(role:  string,spec:  string,name: string,email: string,phone: string,nss: string,) {
-
     let res: any;
 
     this.workerCreationStatus.next("Loading");
@@ -169,7 +168,8 @@ export class AdminService {
         phoneNumber: phone,
         SSN : nss,
         hospital : this.selectedHospitalName,
-        specialty : spec
+        specialty : spec,
+        name,
       }).pipe(catchError((e) => { 
         return of(e["error"]); 
       })));
@@ -186,13 +186,45 @@ export class AdminService {
 
     this.workerCreationMsg = res["message"];
     
-    // "role": "string", // doctor, nurse, administrative, radiologist, or laborantin
-    // "email": "string",
-    // "name": "string",
-    // "phoneNumber": "string",
-    // "SSN": "string",
-    // "hospital": "string",
-    // "specialty": "string" // required for doctors only
+  } 
+
+
+  public async updateWorker(role:  string,spec:  string,name: string,email: string,phone: string,nss: string,) {
+    let workerInfo : any; 
+    this.popupService.getData().pipe(take(1)).subscribe(data => workerInfo = data).unsubscribe();
+    
+
+    let res: any;
+    this.workerCreationStatus.next("Loading");
+    try {
+      res = await lastValueFrom(this.http.put(`http://127.0.0.1:8000/api/worker/edit/`,{
+        id: workerInfo.id,
+        
+        role: role.toLowerCase(),
+        email,
+        phoneNumber: phone,
+        SSN : nss,
+        hospital : this.selectedHospitalName,
+        specialty : spec,
+        name,
+      }).pipe(catchError((e) => { 
+        return of(e["error"]); 
+      })));
+    } catch (e) { }
+
+    console.log(res);
+
+
+
+
+    if(res["status"] == "error") {
+      this.workerCreationStatus.next("Failed");
+    } else {
+      this.workerCreationStatus.next("Successful");
+    }
+
+    this.workerCreationMsg = res["message"];
+    
   } 
 
 
