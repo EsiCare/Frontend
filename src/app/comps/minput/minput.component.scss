@@ -1,11 +1,17 @@
 input {
+    box-shadow: none !important;
 }
 
 
 
 .refuse-input {
-    border: 1px solid var(--primary-error);
+    border-color: var(--primary-error);
     animation: shake 0.5s;
+    animation-iteration-count: 1;
+}
+.refuse-input-same {
+    border-color: var(--primary-error);
+    animation: shake-same 0.5s;
     animation-iteration-count: 1;
 }
 
@@ -32,12 +38,7 @@ input {
     }
 }
 
-.refuse-input-same {
-    border: 1px solid var(--primary-error);
-    animation: shake-same 0.5s;
 
-    animation-iteration-count: 1;
-}
 
 @keyframes shake-same {
 

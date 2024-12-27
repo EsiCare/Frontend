@@ -12,8 +12,8 @@
 
 
     <div class="flex flex-col flex flex-col flex-1">
-        <p>{{name}}</p>
-        <p class="font-bold">{{role}}</p>
+        <p>{{worker?.name}}</p>
+        <p class="font-bold">{{ worker!.role[0].toUpperCase() + worker!.role.slice(1)}}</p>
     </div>
     <button (click)="_showOptionsMenu()" (blur)="_hideOptionsMenu()" class="cursor-pointer">
 

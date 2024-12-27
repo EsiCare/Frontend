@@ -29,7 +29,6 @@ export class MInputFieldComponent implements OnInit {
 
   validateInput(callback? : (text : string) => boolean ) {
     callback = callback || function() { return true;};
-    console.log(callback(this.inputRef!.nativeElement.value));
     if(!callback(this.inputRef!.nativeElement.value)) {
       if(this.inputRef?.nativeElement.classList.contains("refuse-input")) {
         this.inputRef?.nativeElement.classList.remove("refuse-input");

@@ -12,9 +12,10 @@
     <button (click)="onAddWorker()" class="text-lg px-4 rounded text-white font-bold h-full" style="background-color: #61CAE8;"><span class="text-2xl mr-2">+</span> <span>New</span> </button>
   </div>
 
-  <div class="flex flex-col gap-4 overflow-y-scroll pr-2 -mr-6">
-    <app-admin-worker-card *ngFor="let i of numbers" [showMenu]="i === idx" (showOptionsMenu)="showOptionsMenu(i)"
-      (hideOptionsMenu)="hideOptionsMenu()" name="Boutemine Djaoued" role="Administrator"></app-admin-worker-card>
+  <div class="flex flex-col gap-4 overflow-y-visible pr-2 -mr-6 w-full">
+    <p *ngIf="this.list.length == 0" class="text-sky-400 text-center"> no workers yet. add some</p>
+    <app-admin-worker-card *ngFor="let worker of this.list; let i = index" [showMenu]="i === this.idx" (showOptionsMenu)="showOptionsMenu(i)"
+      (hideOptionsMenu)="hideOptionsMenu()" [worker]="worker" ></app-admin-worker-card>
   </div>
 
 

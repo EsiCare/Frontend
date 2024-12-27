@@ -44,5 +44,9 @@ export class PopupService {
 
 }
 
+const POPUP_CREATE_WORKER_KEY = "create-worker-popup"
 
 export type {PopupType};
+export {
+  POPUP_CREATE_WORKER_KEY
+}

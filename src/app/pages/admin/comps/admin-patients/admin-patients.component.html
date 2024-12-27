@@ -1,6 +1,6 @@
 <h1 class="text-3xl font-bold">Patients</h1>
 
-<div class="mat-elevation-z8 overflow-y-scroll overflow-x-hidden">
+<div class="mat-elevation-z8 overflow-y-scroll overflow-x-hidden flex-1">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <ng-container matColumnDef="nss">
       <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>NSS</th>
@@ -36,7 +36,6 @@
     <tr mat-row class="!border-0" *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
+  <mat-paginator class="flex-1" #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="5" aria-label="Select page">
   </mat-paginator>
 </div>

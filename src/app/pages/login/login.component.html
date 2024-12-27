@@ -14,7 +14,7 @@
         <div class="left">
             <img src="/assets/login-thumb.png" alt="login-thumb.png">
         </div>
-        <div class="right">
+        <div class="right relative">
             <div class="headline">
                 <h1 class=>ESI <span>CARE</span></h1>
                 <p style="font-size: 17px;">
@@ -33,15 +33,27 @@
             
             <section class="inputs">
                 <app-minput #emailRef title="Email"></app-minput>
-                <app-minput #passRef  title="Password"></app-minput>
+                <app-minput inputType="password" #passRef  title="Password"></app-minput>
             </section>
 
-            <button
-                (click)="onSignIn($event)" 
-                class="signin outline-none shadow text-xl  text-white px-16 py-4 rounded font-bold">Sign in</button>
 
+            <div class="w-full flex items-center justify-center h-18"> 
+                <div ngClass="self-center" *ngIf="(this.authService.getLoginStatus() | async) == 'Loading'" class="loader"></div>
+                <button
+                    *ngIf="(this.authService.getLoginStatus() | async) != 'Loading'"
+                    (click)="onLoginIn($event)" 
+                    class="signin outline-none shadow text-xl w-full text-white px-16 py-4 rounded font-bold">Sign in
+                </button>
+            </div>
+           
             <p class="prblm">Encounted a problem? <span>contact support</span></p>
-        </div>
+            <p class="self-center text-red-400 absolute" style="bottom: -32px;" 
+                *ngIf="(this.authService.getLoginRes() | async) == 'Failure'">
+                Wrong email or password. please verfiy
+            </p>
+    </div>
     </section>
+
+
 
 </section>

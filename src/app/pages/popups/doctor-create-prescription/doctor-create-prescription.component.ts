@@ -37,7 +37,6 @@ export class DoctorCreatePerscriptionComponent implements OnInit {
   }
 
   onLastChange() {
-    console.log("casj");
     if(this.prescriptions.length == 0) {
       let Drug = this.tmpInput?.nativeElement.querySelectorAll("input")[0].value;
       let Dosage = this.tmpInput?.nativeElement.querySelectorAll("input")[1].value;

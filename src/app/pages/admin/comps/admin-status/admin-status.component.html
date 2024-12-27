@@ -4,7 +4,7 @@
     <div class="flex flex-row justify-around px-6 gap-8 flex-wrap">
 
         <app-admin-stats-item class="flex flex-1 gap-4 items-center px-4 basis-30 py-2 w-fit rounded-lg"
-            style="background-color: #E9FAFF;" name="Doctor" [stat]="412">
+            style="background-color: #E9FAFF;" name="Doctor" [stat]="stats.doctor_count">
             <svg width="44" height="44" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="0.5" width="40" height="40" rx="20" fill="white" fill-opacity="0.76" />
                 <g clip-path="url(#clip0_313_751)">
@@ -22,7 +22,7 @@
 
 
         <app-admin-stats-item class="flex flex-1 gap-6 items-center px-4 basis-30 py-2 w-fit rounded-lg"
-            style="background-color: #EBF3FF;" name="Radiologits" [stat]="39">
+            style="background-color: #EBF3FF;" name="Radiologits" [stat]="stats.radiologist_count">
             <svg width="44" height="44" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="0.5" width="40" height="40" rx="20" fill="white" fill-opacity="0.76" />
                 <g clip-path="url(#clip0_313_751)">
@@ -39,7 +39,7 @@
         </app-admin-stats-item>
 
         <app-admin-stats-item class="flex flex-1 gap-6 items-center px-4 basis-30 py-2 w-fit rounded-lg"
-            style="background-color: #F7F0FF;" name="Biologists" [stat]="58">
+            style="background-color: #F7F0FF;" name="Biologists" [stat]="stats.laborantin_count">
             <svg width="44" height="44" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="0.5" width="40" height="40" rx="20" fill="white" fill-opacity="0.76" />
                 <g clip-path="url(#clip0_313_751)">
@@ -57,7 +57,7 @@
 
 
         <app-admin-stats-item class="flex flex-1 gap-6 items-center px-4 basis-30 py-2 w-fit rounded-lg"
-            style="background-color: #DCE5F7;" name="Nurses" [stat]="209">
+            style="background-color: #DCE5F7;" name="Nurses" [stat]="stats.nurse_count">
             <svg width="44" height="44" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="0.5" width="40" height="40" rx="20" fill="white" fill-opacity="0.76" />
                 <g clip-path="url(#clip0_313_751)">

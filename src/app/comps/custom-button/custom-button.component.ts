@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-custom-button',
@@ -8,6 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CustomButtonComponent implements OnInit {
   @Input() title! : string;
   @Input() bg_color : string = "#61CAE8";
+  @Output() onClick :EventEmitter<any>  = new EventEmitter();
+
+
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -15,6 +19,10 @@ export class CustomButtonComponent implements OnInit {
 
   btnStyle() {
     return `background-color: ${this.bg_color};`
+  }
+
+  _onClick() {
+    this.onClick.emit();
   }
 
 }

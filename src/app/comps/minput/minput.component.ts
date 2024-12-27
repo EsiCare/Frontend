@@ -11,7 +11,8 @@ export class MInputComponent implements OnInit {
   @Input() required_title  = "";
   @Input() in_class  = "";
   @Input() defaultValue  = "";
-  
+  @Input() inputType = "text";
+
   @Output() onInputChange :EventEmitter<any>  = new EventEmitter();
   
   
@@ -31,10 +32,11 @@ export class MInputComponent implements OnInit {
   }
 
 
-  validateInput(callback? : (text : string) => boolean ) {
+
+  public validateInput(callback? : (text : string) => boolean ) {
+    let inputElem = this.inputRef!.nativeElement.querySelectorAll("input")[0]; 
     callback = callback || function() { return true;};
-    console.log(callback(this.inputRef!.nativeElement.value));
-    if(!callback(this.inputRef!.nativeElement.value)) {
+    if(!callback(inputElem.value)) {
       if(this.inputRef?.nativeElement.classList.contains("refuse-input")) {
         this.inputRef?.nativeElement.classList.remove("refuse-input");
         this.inputRef?.nativeElement.classList.add("refuse-input-same");
@@ -47,4 +49,13 @@ export class MInputComponent implements OnInit {
     return true;
   } 
 
+
+
+  public getInput() {
+    return this.inputRef!.nativeElement.querySelectorAll("input")[0].value; 
+  }
+
+  public setInput(value : string) {
+    this.inputRef!.nativeElement.querySelectorAll("input")[0].value  = value; 
+  }
 }

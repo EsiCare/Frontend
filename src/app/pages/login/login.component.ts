@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MInputComponent } from 'src/app/comps/minput/minput.component';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,21 +13,21 @@ export class LoginComponent {
   @ViewChild("emailRef") emailRef : MInputComponent | null = null;
   @ViewChild("passRef") passRef : MInputComponent | null = null;
   
-  constructor(private router: Router) {
+  constructor(private router: Router,public authService : AuthService) {
 
   }
-  public onSignIn(event: MouseEvent) {
-
+  public onLoginIn(event: MouseEvent) {
 
     let emailValid = this.emailRef?.validateInput(validateEmail); 
     let passValid = this.passRef?.validateInput(validateNoEmpty); 
     if(!emailValid || !passValid) 
       return;
     
-    const email = this.emailRef?.inputRef?.nativeElement.value;
-    const pass = this.passRef?.inputRef?.nativeElement.value;
-    this.router.navigateByUrl("/user");
+    
+    const email = this.emailRef?.inputRef?.nativeElement.querySelectorAll("input")[0].value as string;
+    const pass = this.passRef?.inputRef?.nativeElement.querySelectorAll("input")[0].value as string;
 
+    this.authService.onLoginIn(email,pass);
 
   }
   

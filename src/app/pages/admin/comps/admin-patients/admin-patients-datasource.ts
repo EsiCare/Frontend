@@ -3,20 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import PatientHistoryItem from 'src/app/modules/patient-history-Item';
 
 
 
-type SGPHType = "Pending" | "Failed" | "Completed"; 
-
-
-export interface PatientHistoryItem {
-  id: number;
-  nss: string;
-  name: string;
-  gender: string;
-  address: string;
-  entered_at: string;
-}
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: PatientHistoryItem[] = [
@@ -52,8 +42,10 @@ export class PatientHistoryDataSource extends DataSource<PatientHistoryItem> {
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
-  constructor() {
+  constructor(data? : PatientHistoryItem[]) {
     super();
+
+    this.data =  data || this.data;
   }
 
   /**
@@ -105,8 +97,8 @@ export class PatientHistoryDataSource extends DataSource<PatientHistoryItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'name': return compare(a.name || "", b.name || "", isAsc);
+        case 'id': return compare(+(a.id || 0), +(b.id || 0), isAsc);
         default: return 0;
       }
     });
@@ -118,5 +110,3 @@ function compare(a: string | number, b: string | number, isAsc: boolean): number
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
-
-export type {SGPHType}

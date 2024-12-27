@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, Output, ViewChild , EventEmitter } from '@angular/core';
+import { AfterViewInit, Component, Output, ViewChild , EventEmitter, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { WorkerInfo } from 'src/app/modules/hospital-info';
 import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
@@ -13,8 +14,8 @@ import { RightBarService } from 'src/app/services/right-bar.service';
 export class AdminWorkersComponent  {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  numbers = Array.from({ length: 10 }, (_, i) => i + 1);
-  idx = 0;
+  @Input() list : WorkerInfo[] =  [];
+  idx = -1;
 
   constructor(public popupService: PopupService,public rightBarService: RightBarService) {
   }
@@ -32,6 +33,7 @@ export class AdminWorkersComponent  {
 
   
   onAddWorker() {
+    this.popupService.setData({ "create-worker-popup": "create" });
     this.popupService.showPopup("admin:create-worker");
   }
   onDeleteWorker() {

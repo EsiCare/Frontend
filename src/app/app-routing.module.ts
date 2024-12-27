@@ -9,8 +9,8 @@ import { RadiologistComponent } from './pages/radiologist/radiologist.component'
 
 
 const routes: Routes = [
-  {path: "login", component: LoginComponent},
-  {path: "doctor/:id", component: DoctorHomeComponent},
+  {path: "", component: LoginComponent},
+  {path: "doctor", component: DoctorHomeComponent},
   {path: "doctor/:id/dpi/:id", component: DoctorPreviewComponent},
   {path: "admin", component: AdminComponent},
   {path: "dpi", component: DpiComponent},

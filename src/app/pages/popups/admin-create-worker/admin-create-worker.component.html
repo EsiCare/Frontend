@@ -1,12 +1,48 @@
-<div id="form-popup" class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-4 shadow" (click)="onClick($event)">
+<div id="form-popup" class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-4 shadow"
+    (click)="onClick($event)">
     <div class="flex flex-col justify-between gap-6 ">
         <h1 class="font-bold text-2xl">Create A New Worker</h1>
-        <app-title-input title="Full Name"> </app-title-input>
-        <app-title-input title="Email"> </app-title-input>
-        <app-title-input title="Phone"> </app-title-input>
-        <app-title-input title="NSS"> </app-title-input>
-        <app-custom-button title="Create" class="self-end"> </app-custom-button>
+        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.name || ''" title="enter Name..."
+            required_title="Full Name"> </app-minput>
+        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.email || ''" title="enter Email..."
+            required_title="Email"> </app-minput>
+        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.phone || ''" title="enter Phone..."
+            required_title="Phone"> </app-minput>
+        <app-minput (onInputChange)="onChangeInput()" [defaultValue]="(this.popupService.getData() | async)?.nss || ''" title="enter NSS..."
+            required_title="NSS"> </app-minput>
+
+        <div class="flex justify-between">
+            <div class="flex flex-col gap-1">
+                <p class="text-xl font-medium">Role <span class="text-xl font-light text-red-600">*</span></p>
+                <app-dropdown (onSelectItemCallback)="onSelectRole($event)" [selectedItem]="this.selectedRole"
+                    [items]="['Doctor','Administrative','Nurse','Radiologist','Laborantin']"></app-dropdown>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <p class="text-xl font-medium">Speciality <span class="text-xl font-light text-red-600">*</span></p>
+                <app-dropdown (onSelectItemCallback)="onSelectSpecialty($event)" [selectedItem]="this.selectedSpecialty"
+                    [items]="['Kids','Man','Woman']"></app-dropdown>
+            </div>
+        </div>
+
+
+
+        <div class="flex align-center justify-end h-18"> 
+            <app-custom-button 
+                *ngIf="(this.adminService.getWorkerCreationStatus() | async) != 'Loading'" 
+                (click)="onConfirm()"
+                [title]="(this.popupService.getData() | async)['create-worker-popup'] == 'create' ?  'Create' : 'Update'"
+                class="self-end"> 
+            </app-custom-button>
+            <!-- <app-custom-button      title="Create" class="self-end"> </app-custom-button> -->
+            <app-loading-indicator *ngIf="(this.adminService.getWorkerCreationStatus() | async) == 'Loading'" class="self-center" style="width: 40px; height: 40px;"></app-loading-indicator>
+        </div>
+        <ng-container *ngIf="['Failed' , 'Successful'].includes((this.adminService.getWorkerCreationStatus() | async)!)">
+            <div class="status relative flex justify-center" [ngSwitch]="(this.adminService.getWorkerCreationStatus() | async)!">
+                <p class="absolute text-red-500 bottom-0 status-msg" *ngSwitchCase="'Failed'">{{(this.adminService.getWorkerCreationMsg() | async)!}}</p>
+                <p class="absolute text-green-500 bottom-0 status-msg" *ngSwitchCase="'Successful'">{{(this.adminService.getWorkerCreationMsg() | async)!}}</p>
+            </div>
+        </ng-container>
+       
     </div>
 </div>
-
-

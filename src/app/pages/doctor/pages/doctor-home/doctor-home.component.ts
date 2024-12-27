@@ -12,12 +12,10 @@ export class DoctorHomeComponent implements OnInit {
   constructor(public rightBarService: RightBarService,public popupService: PopupService) { }
 
   ngOnInit(): void {
-    this.onCreateDpi();
   }
   
 
   onCreateDpi() {
-
 
     this.popupService.showPopup("doctor:create-dpi");
   }

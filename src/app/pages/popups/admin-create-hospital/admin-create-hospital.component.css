@@ -5,3 +5,7 @@
 
     min-width: 600px;
 }
+
+.status-msg {
+    bottom: -16px;    
+}

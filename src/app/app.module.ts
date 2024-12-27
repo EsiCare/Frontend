@@ -47,6 +47,12 @@ import { DoctorCreatePerscriptionComponent } from "./pages/popups/doctor-create-
 import { RadiologistComponent } from './pages/radiologist/radiologist.component';
 import { RadioTestHistoryComponent } from "./pages/radiologist/comps/radio-test-history/radio-test-history.component";
 import { RadioTestHistoryItemComponent } from "./pages/radiologist/comps/radio-test-history-item/radio-test-history-item.component";
+import { HttpClientModule } from "@angular/common/http";
+import { LoadingIndicatorComponent } from './comps/loading-indicator/loading-indicator.component';
+import { MatFormField, MatFormFieldModule, MatLabel } from "@angular/material/form-field";
+import { MatSelect, MatSelectModule } from "@angular/material/select";
+import { FormsModule } from "@angular/forms";
+import { DropdownComponent } from './comps/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -90,7 +96,10 @@ import { RadioTestHistoryItemComponent } from "./pages/radiologist/comps/radio-t
     DoctorCreatePerscriptionComponent,
     RadiologistComponent,
     RadioTestHistoryComponent,
-RadioTestHistoryItemComponent,
+    RadioTestHistoryItemComponent,
+    LoadingIndicatorComponent,
+    DropdownComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -98,7 +107,12 @@ RadioTestHistoryItemComponent,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+  MatFormFieldModule, MatSelectModule,  
+  FormsModule,
+  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

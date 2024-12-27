@@ -3,10 +3,24 @@
         <div>
             <h1 class="font-bold text-3xl">Create a new hospital</h1>
         </div>
-        <app-title-input title="Hospital Name"> </app-title-input>
-        <app-title-input title="Address"> </app-title-input>
-        <app-custom-button title="Create" class="self-end"> </app-custom-button>
+
+    <app-minput #nameRef (onInputChange)="onChangeInput()" required_title="Hospital Name" title="Hospital Name..."></app-minput>
+    <app-minput #addrRef (onInputChange)="onChangeInput()" required_title="Address" title="Address..."></app-minput>
+        
+    
+    <div class="flex align-center justify-end h-18"> 
+        <app-custom-button     *ngIf="(this.admin_service.getHospitalCreationStatus() | async) != 'Loading'" (click)="_onCreateHospital()" title="Create" class="self-end"> </app-custom-button>
+        <app-loading-indicator *ngIf="(this.admin_service.getHospitalCreationStatus() | async) == 'Loading'" class="self-center" style="width: 40px; height: 40px;"></app-loading-indicator>
     </div>
+        
+    
+    <ng-container *ngIf="['Failed' , 'Successful'].includes((this.admin_service.getHospitalCreationStatus() | async)!)">
+            <div class="status relative flex justify-center" [ngSwitch]="(this.admin_service.getHospitalCreationStatus() | async)!">
+                <p class="absolute text-red-500 bottom-0 status-msg" *ngSwitchCase="'Failed'">{{(this.admin_service.getHospitalCreationMsg() | async)!}}</p>
+                <p class="absolute text-green-500 bottom-0 status-msg" *ngSwitchCase="'Successful'">{{(this.admin_service.getHospitalCreationMsg() | async)!}}</p>
+            </div>
+        </ng-container>
+</div>
 </div>
 
 
