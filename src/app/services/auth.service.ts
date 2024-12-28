@@ -34,7 +34,7 @@ export class AuthService {
 
   public async onLoginIn(email: string, pass: string)  {
 
-    email = "susan28@example.com";
+    email = "cnichols@example.com";
     pass = "1111";
 
     this.login_status = "Loading";
@@ -49,11 +49,12 @@ export class AuthService {
       this.login_response = "Failure"
       return;
     } 
+    console.log(res);
     
 
 
     this.login_response = "Successful";
-    this.actor =  Actor.fromRes(res);
+    this.actor =  Actor.fromRes((res as any)["data"]);
     this.actor.save_localStorage()
 
     // "patient"

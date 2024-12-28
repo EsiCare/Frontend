@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { WorkerInfo } from 'src/app/modules/hospital-info';
+import { AdminService } from 'src/app/services/admin.service';
 import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
@@ -17,7 +18,7 @@ export class AdminWorkersComponent  {
   @Input() list : WorkerInfo[] =  [];
   idx = -1;
 
-  constructor(public popupService: PopupService,public rightBarService: RightBarService) {
+  constructor(public adminService : AdminService,public popupService: PopupService,public rightBarService: RightBarService) {
   }
 
   ngAfterViewInit(): void {
@@ -38,5 +39,9 @@ export class AdminWorkersComponent  {
   }
   onDeleteWorker() {
     this.popupService.showPopup("admin:delete-worker");
+  }
+
+  onSearch(e : any) {
+    this.adminService.searchWorker(e.target.value);
   }
 }

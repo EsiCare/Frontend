@@ -10,4 +10,5 @@
 'Gender': 'male'
 }
 
-{'name': 'Brittany Munoz', 'email': 'susan28@example.com', 'phoneNumber': '378.530.78', 'role': 'admin', 'SSN': '483-60-5732'}
+
+{'status': 'success', 'message': 'Admin registered successfully', 'data': {'id': 11, 'name': 'Christie Glover', 'email': 'cnichols@example.com', 'role': 'admin', 'hospital': None, 'tokens': {'refresh': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNTQ2OTY5MiwiaWF0IjoxNzM1MzgzMjkyLCJqdGkiOiIyZWNhY2RiZDFmY2U0NzY3YTUwZWE0MDJlMmFhZDJjNCIsInVzZXJfaWQiOjQ2fQ.419rV1MyfDSyWR_GcjWlJ2jAT4M8UYyVRT4T-S75NFQ', 'access': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MzgzNTkyLCJpYXQiOjE3MzUzODMyOTIsImp0aSI6ImIzNTdiYWViMzcxMDRkZmU5ODExOGM3NTY3OWE4YmY0IiwidXNlcl9pZCI6NDZ9.ptBWcSyxVy06brl8TpHcdxnKPNhZ4ju9__b1JpqquTE'}}}

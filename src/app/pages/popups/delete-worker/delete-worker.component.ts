@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-delete-worker',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteWorkerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public popupService: PopupService,public adminService: AdminService) { }
 
   ngOnInit(): void {
   }
@@ -15,5 +17,12 @@ export class DeleteWorkerComponent implements OnInit {
   onClick(e: any) {
     e.stopPropagation();
   } 
+
+
+  onDelete() {
+    this.adminService.deleteWorker();
+    this.popupService.hidePopup();
+  }
+
 
 }

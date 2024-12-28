@@ -5,6 +5,8 @@ import HospitalInfo, { HospitalStat, WorkerInfo } from '../modules/hospital-info
 import PatientHistoryItem from '../modules/patient-history-Item';
 import Actor from '../modules/actor';
 import { PopupService } from './popup.service';
+import { lowertalize } from '../utils/func';
+import { AuthService } from './auth.service';
 
 
 type HospitalCreationStatus = "Pending" | "Loading" | "Failed" | "Successful";
@@ -36,16 +38,26 @@ export class AdminService {
 
 
 
-  constructor(private http: HttpClient, public popupService: PopupService) { }
+  constructor(private http: HttpClient, public authService : AuthService,public popupService: PopupService) { }
 
 
   public async createHospital(name: string, address: string) {
+    let userData : any;
+    this.authService.getActor().pipe(take(1)).subscribe((data) => {
+      userData = data;
+    }).unsubscribe();
+
+
 
     this.hospitalCreationStatus.next("Loading");
     let res: any;
 
     try {
-      res = await lastValueFrom(this.http.post("http://127.0.0.1:8000/api/hospital/create/", { name, address }).pipe(
+      res = await lastValueFrom(this.http.post("http://127.0.0.1:8000/api/hospital/create/", { 
+        name, address, user : {
+          actor_id: userData.id,
+        } 
+      }).pipe(
         catchError((e) => {
           return of(e["error"]);
         })
@@ -185,36 +197,34 @@ export class AdminService {
     }
 
     this.workerCreationMsg = res["message"];
+
+    this.loadHospitalWorker(this.selectedHospitalName);
     
   } 
 
 
   public async updateWorker(role:  string,spec:  string,name: string,email: string,phone: string,nss: string,) {
     let workerInfo : any; 
-    this.popupService.getData().pipe(take(1)).subscribe(data => workerInfo = data).unsubscribe();
+    this.popupService.getData().pipe(take(1)).subscribe(data => workerInfo = data.worker).unsubscribe();
+    
     
 
     let res: any;
     this.workerCreationStatus.next("Loading");
     try {
       res = await lastValueFrom(this.http.put(`http://127.0.0.1:8000/api/worker/edit/`,{
-        id: workerInfo.id,
-        
-        role: role.toLowerCase(),
+        name,
+        role       : lowertalize(role),
         email,
+        id: workerInfo.id,
         phoneNumber: phone,
         SSN : nss,
         hospital : this.selectedHospitalName,
         specialty : spec,
-        name,
       }).pipe(catchError((e) => { 
         return of(e["error"]); 
       })));
     } catch (e) { }
-
-    console.log(res);
-
-
 
 
     if(res["status"] == "error") {
@@ -224,7 +234,53 @@ export class AdminService {
     }
 
     this.workerCreationMsg = res["message"];
+    this.loadHospitalWorker(this.selectedHospitalName);
     
+  } 
+
+
+
+  public async deleteWorker() {
+    let workerInfo : any; 
+    this.popupService.getData().pipe(take(1)).subscribe(data => workerInfo = data.worker).unsubscribe();
+    
+    let res: any;
+    try {
+      res = await lastValueFrom(this.http.delete(`http://127.0.0.1:8000/api/worker/delete?role=${lowertalize(workerInfo.role)}&id=${workerInfo.id}`).pipe(catchError((e) => { 
+        return of(e["error"]); 
+      })));
+    } catch (e) { }
+
+
+    this.loadHospitalInfo(this.selectedHospitalName);
+    
+  } 
+
+  public async searchWorker(input : string) {
+    if(input == "") {
+      this.loadHospitalWorker(this.selectedHospitalName);
+      return;
+    }
+
+    console.log(input);
+    let res: any;
+    try {
+      res = await lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/search-worker/?name=${input}`).pipe(catchError((e) => { 
+        return of(e["error"]); 
+      })));
+    } catch (e) { }
+
+    let administrative = res["data"]["administrative"] as WorkerInfo[];
+    let doctors = res["data"]["doctors"] as WorkerInfo[];
+    let nurses = res["data"]["nurses"] as WorkerInfo[];
+    let radiologists = res["data"]["radiologists"] as WorkerInfo[];
+    this.curHospitalWorkers.next([
+      ...administrative,
+      ...doctors,
+      ...nurses,
+      ...radiologists,
+    ]);
+
   } 
 
 

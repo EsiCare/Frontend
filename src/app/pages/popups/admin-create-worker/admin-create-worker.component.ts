@@ -4,6 +4,7 @@ import { MInputComponent } from 'src/app/comps/minput/minput.component';
 import { validateNoEmpty } from 'src/app/modules/input-validators';
 import { AdminService } from 'src/app/services/admin.service';
 import { POPUP_CREATE_WORKER_KEY, PopupService } from 'src/app/services/popup.service';
+import { capitalize } from 'src/app/utils/func';
 
 @Component({
   selector: 'app-admin-create-worker',
@@ -38,10 +39,12 @@ export class AdminCreateWorkerComponent implements OnInit {
     });
 
 
+    
     this.popupService.getData().pipe(take(1)).subscribe(data => {
-      console.log(data);
-      this.selectedRole = data["role"];
-      this.selectedSpecialty = data["specialty"] || "Kids";
+      if(data[POPUP_CREATE_WORKER_KEY] == "edit") {
+        this.selectedRole = capitalize(data.worker.role);
+        this.selectedSpecialty = data.worker.specialty || "Kids";
+      }
     }).unsubscribe();
 
   }

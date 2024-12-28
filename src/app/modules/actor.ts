@@ -12,16 +12,6 @@ export default class Actor {
     // diff rountes 
 
     
-    // admin:
-    hospitals : string[] = [];
-    graph_data: number[] = [];
-    entered_petients : any = [];
-    workers : any = [];
-    count_doctors: number = 0;
-    count_radio: number = 0;
-    count_bio: number = 0;
-    count_nurses: number = 0;
-
 
     constructor(id : string,type : string,refresh : string,token : string) {
         this.id = id; 
@@ -33,7 +23,7 @@ export default class Actor {
     static fromRes(data : any) {
         return new Actor(
             data["actor_id"],
-            data["actor-type"],
+            data["role"],
             data["refresh"],
             data["token"],
         );

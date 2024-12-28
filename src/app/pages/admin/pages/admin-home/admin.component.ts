@@ -5,6 +5,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 import { AdminPatientsComponent } from '../../comps/admin-patients/admin-patients.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -23,7 +24,7 @@ export class AdminComponent implements OnInit {
 
   hospitalStats? : HospitalStat;
 
-  constructor(public popupService : PopupService,public rightBarService: RightBarService, public adminService : AdminService) { }
+  constructor(public popupService : PopupService,public rightBarService: RightBarService, public adminService : AdminService, public authService : AuthService) { }
 
   ngOnInit(): void {
     this.adminService.loadAllHospitals();
@@ -31,6 +32,9 @@ export class AdminComponent implements OnInit {
       this.hospitalList = list;
       this.hospitalNames = list.map(item => item.name); 
       this.curHospital = list[0] || this.curHospital;
+      if(this.curHospital.name != "...") {
+        this.adminService.loadHospitalInfo(this.curHospital.name);
+      }
     });
     this. adminService.getPetientList().subscribe(list => {
       this.petientList = list;
@@ -44,6 +48,7 @@ export class AdminComponent implements OnInit {
     this. adminService.getHospitalStats().subscribe(stats => {
       this.hospitalStats = stats;
     });
+
 
 
 

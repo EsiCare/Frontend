@@ -32,9 +32,10 @@ export class AdminWorkerCardComponent implements OnInit {
   }
 
 
-  onAddWorker(e: any) {
+  onEditWorker(e: any) {
     e.stopPropagation();
     this.popupService.setData({
+      worker: this.worker,
       id: this.worker?.id,
       name : this.worker?.name ,
       email : this.worker?.email,
@@ -50,6 +51,10 @@ export class AdminWorkerCardComponent implements OnInit {
     e.stopPropagation();
 
     this._hideOptionsMenu();
+    this.popupService.setData({
+      worker: this.worker,
+    });
+
     this.popupService.showPopup("admin:delete-worker");
   }
 
