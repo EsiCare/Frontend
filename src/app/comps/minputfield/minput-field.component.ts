@@ -10,7 +10,7 @@ export class MInputFieldComponent implements OnInit {
   @Input() title  = "placeholder";
   @Input() class  = "";
   @Input() in_class  = "";
-  @Input() required_title  = "";
+  @Input()required_title  = "";
   @Input() none_required_title  = "";
 
   constructor() { 

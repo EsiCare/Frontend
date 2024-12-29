@@ -187,6 +187,8 @@ export class AdminService {
       })));
     } catch (e) { }
 
+    console.log(res);
+
 
 
 
@@ -262,7 +264,6 @@ export class AdminService {
       return;
     }
 
-    console.log(input);
     let res: any;
     try {
       res = await lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/search-worker/?name=${input}`).pipe(catchError((e) => { 

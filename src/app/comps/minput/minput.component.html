@@ -3,7 +3,8 @@
 <div  #input class="flex flex-col gap-2 rounded-lg  {{in_class}}">
       <p *ngIf="required_title.length" class="text-xl font-medium">{{required_title}} <span class="text-xl font-light text-red-600">*</span></p>
       
-      <input   
+      <input  
+      autocomplete=off 
       [type]="inputType"
       [defaultValue]="defaultValue"
       (input)="onChange()" 

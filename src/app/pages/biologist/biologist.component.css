@@ -1,0 +1,29 @@
+:host {
+    width: 100%;
+}
+
+.img-placeholder p{
+    bottom: -40px;
+}
+
+.file-container {
+    min-height: 100px;
+}
+
+.bar-hidden {
+    right: -360px;
+}
+
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+  
+  

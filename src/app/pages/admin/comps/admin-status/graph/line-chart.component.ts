@@ -44,19 +44,16 @@ export class LineChartComponent implements OnInit {
 
     constructor() {
     }
-
     ngOnInit() {
-
-    }
-
-
-    onResize(event: any) {
-        this.initSvg();
-        this.initAxis();
-        this.drawAxis();
-        this.drawLine();
+        setTimeout(() => {
+            this.onResize();
+        },10);
     }
     ngAfterViewInit() {
+        this.onResize();
+    }
+
+    onResize() {
         this.initSvg();
         this.initAxis();
         this.drawAxis();
@@ -115,8 +112,8 @@ export class LineChartComponent implements OnInit {
             .datum(GRAPH1)
             .attr('class', 'line line-first')
             .attr('d', d3Shape.line()
-            .curve(d3Utils.curveBasis)
-            
+                .curve(d3Utils.curveBasis)
+
                 .x((d: any) => this.x(d.date))
                 .y((d: any) => this.y(d.value)));
 
@@ -129,7 +126,7 @@ export class LineChartComponent implements OnInit {
                     .curve(d3Utils.curveBasis)
                     .x((d: any) => this.x(d.date))
                     .y((d: any) => this.y(d.value))
-                    
+
 
             );
     }

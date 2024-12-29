@@ -6,6 +6,8 @@ import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 import { AdminPatientsComponent } from '../../comps/admin-patients/admin-patients.component';
 import { AuthService } from 'src/app/services/auth.service';
+import Actor from 'src/app/modules/actor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -24,9 +26,12 @@ export class AdminComponent implements OnInit {
 
   hospitalStats? : HospitalStat;
 
-  constructor(public popupService : PopupService,public rightBarService: RightBarService, public adminService : AdminService, public authService : AuthService) { }
+  constructor(public router : Router ,public popupService : PopupService,public rightBarService: RightBarService, public adminService : AdminService, public authService : AuthService) { }
 
   ngOnInit(): void {
+
+
+
     this.adminService.loadAllHospitals();
     this.adminService.getHospitalList().subscribe((list) => {
       this.hospitalList = list;

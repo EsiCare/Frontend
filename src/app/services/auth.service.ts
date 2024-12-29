@@ -34,7 +34,13 @@ export class AuthService {
 
   public async onLoginIn(email: string, pass: string)  {
 
-    email = "cnichols@example.com";
+    // email = "taki@gmail.com"; // doctor
+    // email = "aaroncunningham@example.com"; // patient
+    // email = "diazamy@example.com"; // radio
+    // email = "cookaudrey@example.com"; // nurse
+    email = "amyknight@example.com"; // boi
+    
+    
     pass = "1111";
 
     this.login_status = "Loading";
@@ -45,26 +51,24 @@ export class AuthService {
     } catch(e) { }
     this.login_status = "Pending";
    
+
+
     if((res as any)["status"] != "success") {
       this.login_response = "Failure"
       return;
     } 
-    console.log(res);
-    
-
 
     this.login_response = "Successful";
-    this.actor =  Actor.fromRes((res as any)["data"]);
+    this.actor =  Actor.fromRes((res as any));
     this.actor.save_localStorage()
+    this.router.navigateByUrl("/"+this.actor.type);
 
-    // "patient"
-    // "doctor"
-    // "administrative"
-    // "nurse"
-    // "radiologist"
-    // "laborantin"
-    this.router.navigateByUrl("/admin");
+  }
 
+
+  loadFromLocalStorage() {
+    this.actor =  Actor.load_localStorage();
+    return this.actor;
   }
 
 
@@ -76,6 +80,10 @@ export class AuthService {
   }
   public getLoginRes() : Observable<LoginRespond | null> {
     return of(this.login_response);
+  }
+
+  public clear_localStorage() {
+    localStorage.clear();
   }
 }
 

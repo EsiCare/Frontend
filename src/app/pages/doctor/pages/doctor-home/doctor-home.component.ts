@@ -9,6 +9,7 @@ import { RightBarService } from 'src/app/services/right-bar.service';
 })
 export class DoctorHomeComponent implements OnInit {
   @Output() myDataArray = [];
+
   constructor(public rightBarService: RightBarService,public popupService: PopupService) { }
 
   ngOnInit(): void {

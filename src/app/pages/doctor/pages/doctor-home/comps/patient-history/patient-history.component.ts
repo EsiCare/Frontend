@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { PatientHistoryDataSource, PatientHistoryItem } from './patient-history-datasource';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-history',
@@ -20,7 +21,7 @@ export class PatientHistoryComponent implements AfterViewInit {
 
   displayedColumns = ["id", "date","duration","sgph","reason","actions"]
 
-  constructor() {
+  constructor(public router : Router) {
     this.dataSource = new PatientHistoryDataSource();
   }
 
@@ -38,6 +39,11 @@ export class PatientHistoryComponent implements AfterViewInit {
   public hideOptionsMenu(e : any) {
     e.stopPropagation();
     this.optionMenuID = -1;
+  }
+
+
+  onClickPreivewDPI() {
+      this.router.navigateByUrl("patient/dpi");
   }
 
 

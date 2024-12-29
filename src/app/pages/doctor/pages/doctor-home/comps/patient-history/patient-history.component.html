@@ -45,7 +45,7 @@
         </svg>
        
         <div [class.options-menu]="row.id == optionMenuID"  class="absolute z-10 flex items-start    bg-white  hidden rounded border-2">
-          <h1 class=" cursor-pointer hover:bg-gray-50 pt-1 px-2">Preview</h1>
+          <h1 (click)="onClickPreivewDPI()" class=" cursor-pointer hover:bg-gray-50 pt-1 px-2">Preview</h1>
           <div class="border-b-2 mx-2"></div>
           <h1  (click)="hideOptionsMenu($event)" class="close cursor-pointer hover:bg-gray-50 py-1 px-2">Close</h1>
         </div>

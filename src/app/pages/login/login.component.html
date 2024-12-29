@@ -1,4 +1,4 @@
-<section class="h-full flex p-10 flex-col" >
+<section class="h-full flex p-10 flex-col" route-protect>
     <div>
         <svg id="logo" width="89" height="24" viewBox="0 0 89 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -10,28 +10,28 @@
         </svg>
     </div>
 
-    <section class="bi-container h-full p-16 flex align-center justify-center flex-1 ">
-        <div class="left">
+    <section class="bi-container h-full flex items-center justify-around gap-4 flex-1">
+        <div class="left" >
             <img src="/assets/login-thumb.png" alt="login-thumb.png">
         </div>
-        <div class="right relative">
-            <div class="headline">
-                <h1 class=>ESI <span>CARE</span></h1>
-                <p style="font-size: 17px;">
+        <div class="right relative flex flex-col gap-8" style="min-width: 300px">
+            <div class="headline text-4xl">
+                <h1 class=>ESI <span style="color: #61CAE8;">CARE</span></h1>
+                <p class="text-lg">
                     Empowering Better Care, Every Step of the Way.
                 </p>
             </div>
        
             <div class="wellcome">
-                <h1>
-                    Welcome Sir !
+                <h1 class="text-3xl font-medium">
+                    Welcome
                 </h1>
-                <p style="font-size: 20px; font-weight: 400;" class="font-bold">
+                <p class="text-xl">
                     Let's get you logged in
                 </p>
             </div>
             
-            <section class="inputs">
+            <section class="inputs flex flex-col gap-2">
                 <app-minput #emailRef title="Email"></app-minput>
                 <app-minput inputType="password" #passRef  title="Password"></app-minput>
             </section>
@@ -42,11 +42,12 @@
                 <button
                     *ngIf="(this.authService.getLoginStatus() | async) != 'Loading'"
                     (click)="onLoginIn($event)" 
+                    style="background-color: #61CAE8;"
                     class="signin outline-none shadow text-xl w-full text-white px-16 py-4 rounded font-bold">Sign in
                 </button>
             </div>
            
-            <p class="prblm">Encounted a problem? <span>contact support</span></p>
+            <p class="prblm text-center">Encounted a problem? <span>contact support</span></p>
             <p class="self-center text-red-400 absolute" style="bottom: -32px;" 
                 *ngIf="(this.authService.getLoginRes() | async) == 'Failure'">
                 Wrong email or password. please verfiy

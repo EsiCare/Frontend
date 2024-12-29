@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 type PopupType = "None" | 
+                "user:profile"|
                 "dpi:radiology" | "dpi:medical" | "dpi:graph" | 
                 "doctor:create-dpi" | "doctor:create-prescription" |
                 "admin:create-hospital" | "admin:create-worker" | "admin:delete-worker";

@@ -1,18 +1,28 @@
 <app-frame title="Patient's Info" in_class="flex flex-col gap-3">
-    <div class="flex flex-row  gap w-full">
-        <app-title-info class="flex-1 custom-text-gray" title="Name" info="Harti Dhayaa"></app-title-info>
-        <app-title-info class="flex-1 custom-text-gray" title="Gender" info="Male"></app-title-info>
-        <app-title-info class="flex-1 custom-text-gray" title="Address" info="Azazga, Tizi Ouzou"></app-title-info>
-        <app-title-info class="flex-1 custom-text-gray" title="Email" info="tipaza gmail.com"></app-title-info>
+
+
+
+    <div class="flex flex-row  w-full">
+        <app-title-info class="flex-1 custom-text-gray" title="Name"
+            [info]="(authService.getActor() | async)!.name"></app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="Gender"
+            [info]="(authService.getActor() | async)!.gender"></app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="Address" [info]="'TEMP'"></app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="Email"
+            [info]="(authService.getActor() | async)!.email"></app-title-info>
     </div>
     <div class="flex flex-row  w-full">
-        <app-title-info class="flex-1 custom-text-gray" title="NSS" info="0001823838"></app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="NSS"
+            [info]="(authService.getActor() | async)!.SSN"></app-title-info>
+        <!-- <app-title-info class="flex-1 custom-text-gray" title="Age" [info]="'TEMP'"></app-title-info> -->
+        <app-title-info class="flex-1 custom-text-gray" title="Phone Number"
+            [info]="(authService.getActor() | async)!.phoneNumber"></app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="Emergency Contact" [info]="'TEMP'"></app-title-info>
         <app-title-info class="flex-1 custom-text-gray" title="Age" info="20"></app-title-info>
-        <app-title-info class="flex-1 custom-text-gray" title="Phone Number" info="0558 28 88 12"></app-title-info>
-        <app-title-info class="flex-1 custom-text-gray" title="Emergency Contact" info="0553 12 11 99"></app-title-info>
     </div>
-        <app-title-info class="flex-1 custom-text-gray" title="Past Medical Condition" 
-        info="Hypertension (diagnosed in 2018), managed with Amlodipine 5 mg daily and lifestyle
+
+
+    <app-title-info class="flex-1 custom-text-gray" title="Past Medical Condition" info="Hypertension (diagnosed in 2018), managed with Amlodipine 5 mg daily and lifestyle
         changes.Blood pressure stabilized since 2021 without complications.Patient adheres to a low-sodium diet and
         regular exercise routine.">
     </app-title-info>

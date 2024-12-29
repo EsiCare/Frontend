@@ -6,16 +6,26 @@ import { DoctorPreviewComponent } from './pages/doctor/pages/doctor-preview/doct
 import { AdminComponent } from './pages/admin/pages/admin-home/admin.component';
 import { DpiComponent } from './pages/dpi/dpi.component';
 import { RadiologistComponent } from './pages/radiologist/radiologist.component';
+import { PatientHomeComponent } from './pages/patient/pages/patient-home/patient-home.component';
+import { NurseHomeComponent } from './pages/nurse/nurse.component';
+import { BoilogistHomeComponent } from './pages/biologist/biologist.component';
 
 
 const routes: Routes = [
-  {path: "", component: LoginComponent},
+  {path: "", component:  LoginComponent},
   {path: "doctor", component: DoctorHomeComponent},
-  {path: "doctor/:id/dpi/:id", component: DoctorPreviewComponent},
-  {path: "admin", component: AdminComponent},
+  {path: "doctor/dpi/:id", component: DoctorPreviewComponent},
+  {path: "patient", component: PatientHomeComponent},
+  {path: "patient/dpi", component: DoctorPreviewComponent},
+  
+  {path: "administrative", component: AdminComponent},
   {path: "dpi", component: DpiComponent},
   {path: "radiologist", component: RadiologistComponent},
-  {path: '**',  redirectTo: 'not-found'},
+  {path: "laborantin", component: BoilogistHomeComponent},
+  {path: "nurse", component: NurseHomeComponent},
+  
+  {path: "nurse", component: RadiologistComponent},
+  {path: '**',  redirectTo: "/"},
 ];
 
 @NgModule({

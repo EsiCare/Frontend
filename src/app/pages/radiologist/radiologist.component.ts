@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
 
 
 interface RadioImgData {
   name: string;
+  date: string;
   data: Uint8Array | undefined;
   
 }
@@ -12,6 +14,7 @@ interface RadioRequestedTestInfo {
   name : string;
   imgs : RadioImgData[];
   notes: string[];
+
 }
 
 @Component({
@@ -24,7 +27,7 @@ export class RadiologistComponent implements OnInit {
   @ViewChild("fileInput") fileInput : ElementRef<HTMLInputElement> | null = null;
 
 
-  constructor(public rightBarService: RightBarService) {
+  constructor(public rightBarService: RightBarService,public authService :AuthService) {
     this.requested = {
       name: "Head Radio",
       notes: [
@@ -48,8 +51,8 @@ export class RadiologistComponent implements OnInit {
     let files = e.target.files as FileList;
     let data =  (await files[0].stream().getReader().read()).value;
     let name = files[0].name;
-    this.requested.imgs.push({name, data});
-    console.log(this.requested)
+    let date = new Date().toLocaleString(); 
+    this.requested.imgs.push({name, data,date});
   }
 
 }

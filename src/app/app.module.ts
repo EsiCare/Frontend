@@ -53,7 +53,11 @@ import { MatFormField, MatFormFieldModule, MatLabel } from "@angular/material/fo
 import { MatSelect, MatSelectModule } from "@angular/material/select";
 import { FormsModule } from "@angular/forms";
 import { DropdownComponent } from './comps/dropdown/dropdown.component';
-
+import { UserSettingComponent } from './pages/popups/user-setting/user-setting.component';
+import { RouteProtectDirective } from './directives/route-protect.directive';
+import { PatientHomeComponent } from "./pages/patient/pages/patient-home/patient-home.component";
+import { NurseHomeComponent } from "./pages/nurse/nurse.component";
+import { BoilogistHomeComponent } from "./pages/biologist/biologist.component";
 
 @NgModule({
   declarations: [
@@ -99,6 +103,11 @@ import { DropdownComponent } from './comps/dropdown/dropdown.component';
     RadioTestHistoryItemComponent,
     LoadingIndicatorComponent,
     DropdownComponent,
+    UserSettingComponent,
+    BoilogistHomeComponent,
+    RouteProtectDirective,
+    PatientHomeComponent,
+NurseHomeComponent,
 
   ],
   imports: [
