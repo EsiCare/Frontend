@@ -1,9 +1,8 @@
-// import { faker } from '@faker-js/faker'
-
 import { randEmail, randFullName, randGender, randNumber, randPastDate, randUuid } from "@ngneat/falso";
 
+
+
 export default class Actor {
-    refresh: string = "";
     token: string = "";
     type: string = "";
     id: string = "";
@@ -13,20 +12,16 @@ export default class Actor {
     SSN: string = "";
     dateAdded: string = "";
     email: string = "";
+    address: string = "";
+    hospital: string = "";
+    emergencyContactPhone : string = "";
 
 
-
-
-    // actors contains all data bc its faster, easier and less painfull for me
-    // diff rountes 
-
-
-
-    constructor(id: string, type: string, refresh: string, token: string, { gender, name, phoneNumber, SSN, dateAdded, email, }: any
+    constructor(id: string, type: string,  token: string, 
+        { gender, name, phoneNumber, SSN, dateAdded, email,hospital, address, emergencyContactPhone }: any
     ) {
         this.id = id;
         this.type = type;
-        this.refresh = refresh;
         this.token = token;
         this.name = name;
 
@@ -36,15 +31,16 @@ export default class Actor {
         this.SSN = SSN;
         this.dateAdded = dateAdded;
         this.email = email;
+        this.hospital = hospital;
+        this.address = address;
+        this.emergencyContactPhone = emergencyContactPhone;
 
     }
 
     static fromRes(data: any) {
-        console.log(data);
         return new Actor(
             data["actor_id"],
             data["role"],
-            data["refresh"],
             data["token"],
             data
         );
@@ -53,12 +49,10 @@ export default class Actor {
 
 
 
-
     save_localStorage() {
         let userInfo = {
             id: this.id,
             type: this.type,
-            refresh: this.refresh,
             token: this.token,
             name: this.name,
             gender: this.gender,
@@ -66,6 +60,9 @@ export default class Actor {
             SSN: this.SSN,
             dateAdded: this.dateAdded,
             email: this.email,
+            hospital: this.hospital,
+            address : this.address, 
+            emergencyContactPhone : this.emergencyContactPhone,   
         };
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
     }
@@ -78,7 +75,6 @@ export default class Actor {
         return new Actor(
             userInfo["id"],
             userInfo["type"],
-            userInfo["refresh"],
             userInfo["token"],
             userInfo,
         );
@@ -89,7 +85,6 @@ export default class Actor {
         return new Actor(
             randUuid(),
             "Petient",
-            randUuid(),
             randUuid(),
             {
                 name: randFullName(),
@@ -103,3 +98,5 @@ export default class Actor {
     }
 
 }
+
+

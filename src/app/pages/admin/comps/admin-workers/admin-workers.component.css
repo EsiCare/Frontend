@@ -10,7 +10,7 @@
   box-shadow: none;
 }
 .qr-code {
-  aspect-ratio: 1;
+  height: fit-content;
 }
 :host {
   display: flex;

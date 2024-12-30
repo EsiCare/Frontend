@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CustomButtonComponent implements OnInit {
   @Input() title! : string;
   @Input() bg_color : string = "#61CAE8";
+  @Input() in_class : string = "";
   @Output() onClick :EventEmitter<any>  = new EventEmitter();
 
 

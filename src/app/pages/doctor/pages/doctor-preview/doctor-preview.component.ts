@@ -1,4 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
   selector: 'app-doctor-preview',
@@ -7,9 +9,17 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 })
 export class DoctorPreviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public doctorService: DoctorService,public router:  Router) {
+    this.doctorService.selectedDpi.asObservable().subscribe((dpi) => {
+      if(dpi == undefined) {
+        // this.router.navigateByUrl("/doctor");
+      }
+    });
+   }
 
   ngOnInit(): void {
+  
+
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SGPHType } from '../../pages/doctor-home/comps/patient-history/patient-history-datasource';
+import { SGPHType } from 'src/app/modules/patient-history-Item';
 @Component({
   selector: 'app-sgph-status',
   templateUrl: './sgph-status.component.html',

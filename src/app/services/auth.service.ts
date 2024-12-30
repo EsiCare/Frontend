@@ -34,11 +34,11 @@ export class AuthService {
 
   public async onLoginIn(email: string, pass: string)  {
 
-    // email = "taki@gmail.com"; // doctor
+    email = "taki@gmail.com"; // doctor
     // email = "aaroncunningham@example.com"; // patient
     // email = "diazamy@example.com"; // radio
     // email = "cookaudrey@example.com"; // nurse
-    email = "amyknight@example.com"; // boi
+    // email = "amyknight@example.com"; // boi
     
     
     pass = "1111";
@@ -52,11 +52,13 @@ export class AuthService {
     this.login_status = "Pending";
    
 
+    
 
     if((res as any)["status"] != "success") {
       this.login_response = "Failure"
       return;
     } 
+
 
     this.login_response = "Successful";
     this.actor =  Actor.fromRes((res as any));
@@ -75,6 +77,8 @@ export class AuthService {
   public getActor() : Observable<Actor | null> {
     return of(this.actor);
   }
+
+
   public getLoginStatus() : Observable<LoginStatus | null> {
     return of(this.login_status);
   }

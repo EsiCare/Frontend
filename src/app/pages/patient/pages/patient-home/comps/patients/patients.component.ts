@@ -4,11 +4,11 @@ import { DoctorService } from 'src/app/services/doctor.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
 @Component({
-  selector: 'app-patients',
+  selector: 'app-patients2',
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.css']
 })
-export class PatientsComponent {
+export class PatientsComponent2 {
 
   displayedColumns = ['id', 'name'];
   patientsList : Petient[] = [];

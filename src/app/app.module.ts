@@ -12,7 +12,6 @@ import { SgphStatusComponent } from "./pages/doctor/comps/sgph-status/sgph-statu
 import { DoctorPreviewComponent } from "./pages/doctor/pages/doctor-preview/doctor-preview.component";
 import { DpiInfoComponent } from "./pages/doctor/pages/doctor-preview/comps/patient-info/dpi-info.component";
 import { PatientInfoComponent } from "./pages/doctor/pages/doctor-home/comps/patient-info/patient-info.component";
-import { PatientHistoryComponent } from "./pages/doctor/pages/doctor-home/comps/patient-history/patient-history.component";
 import { PriorityStatusComponent } from "./pages/doctor/comps/priority-status/priority-status.component";
 import { PatientsComponent } from "./pages/doctor/pages/doctor-home/comps/patients/patients.component";
 import { DpiHistoryComponent } from "./pages/doctor/pages/doctor-preview/comps/dpi-history/dpi-history.component";
@@ -40,7 +39,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { DpiComponent } from './pages/dpi/dpi.component';
+import { DoctorDpiComponent } from './pages/dpi/dpi.component';
 import { TestHistoryComponent } from "./pages/dpi/comps/test-history/test-history.component";
 import { TestHistoryItemComponent } from "./pages/dpi/comps/test-history-item/test-history-item.component";
 import { DoctorCreatePerscriptionComponent } from "./pages/popups/doctor-create-prescription/doctor-create-prescription.component";
@@ -58,7 +57,9 @@ import { RouteProtectDirective } from './directives/route-protect.directive';
 import { PatientHomeComponent } from "./pages/patient/pages/patient-home/patient-home.component";
 import { NurseHomeComponent } from "./pages/nurse/nurse.component";
 import { BoilogistHomeComponent } from "./pages/biologist/biologist.component";
-
+import { PatientsComponent2 } from "./pages/patient/pages/patient-home/comps/patients/patients.component";
+import { PatientHistoryComponent } from "./pages/patient/pages/patient-home/comps/patient-history/patient-history.component";
+import { DoctorPatientHistoryComponent } from "./pages/doctor/pages/doctor-home/comps/doctor-patient-history/doctor-patient-history.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +95,7 @@ import { BoilogistHomeComponent } from "./pages/biologist/biologist.component";
     FrameComponent,
     MInputFieldComponent,
     DoctorCreateDpiComponent,
-    DpiComponent,
+    DoctorDpiComponent,
     TestHistoryComponent,
     TestHistoryItemComponent,
     DoctorCreatePerscriptionComponent,
@@ -108,6 +109,8 @@ import { BoilogistHomeComponent } from "./pages/biologist/biologist.component";
     RouteProtectDirective,
     PatientHomeComponent,
 NurseHomeComponent,
+PatientsComponent2,
+DoctorPatientHistoryComponent,
 
   ],
   imports: [

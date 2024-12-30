@@ -5,7 +5,9 @@
       <p *ngIf="required_title.length" class="text-xl font-medium">{{required_title}} <span class="text-xl font-light text-red-600">*</span></p>
       <p *ngIf="none_required_title.length" class="text-xl font-medium">{{this.none_required_title}} </p>
       
-      <textarea #input 
+      <textarea 
+      [defaultValue]="default_value"
+      #input 
       (input)="onChange()" 
        type="text" 
        class="w-full rounded px-4 py-4 border-2 h-full {{this.class}}" 

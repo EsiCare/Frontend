@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-frame',
@@ -8,6 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class FrameComponent implements OnInit {
   @Input() title : string = "";
   @Input() in_class : string = "";
+
+  @Input() actionButton : string =  "";
+  @Output() onClickActionButton : EventEmitter<any> = new EventEmitter();
   
   constructor() { }
 
@@ -19,5 +22,9 @@ export class FrameComponent implements OnInit {
   getClass() {
     
   }
+
+onClickActionBtn() {
+  this.onClickActionButton.emit();
+}
 
 }

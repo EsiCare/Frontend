@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -21,7 +21,8 @@ export class DpiHistoryComponent implements AfterViewInit {
 
   displayedColumns = ["id", "date", "duration", "sgph", "reason", "actions"]
 
-  constructor(public popupService: PopupService) {
+  constructor(public popupService: PopupService,
+  ) {
     this.dataSource = new DpiHistoryDataSource();
   }
 

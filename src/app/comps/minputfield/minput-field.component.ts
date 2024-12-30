@@ -12,6 +12,7 @@ export class MInputFieldComponent implements OnInit {
   @Input() in_class  = "";
   @Input()required_title  = "";
   @Input() none_required_title  = "";
+  @Input() default_value = "";
 
   constructor() { 
 
@@ -41,6 +42,16 @@ export class MInputFieldComponent implements OnInit {
     }
     return true;
   } 
+
+
+
+  public getInput() {
+    return this.inputRef!.nativeElement.value; 
+  }
+
+  public setInput(value : string) {
+    this.inputRef!.nativeElement.value  = value; 
+  }
 
 
 }

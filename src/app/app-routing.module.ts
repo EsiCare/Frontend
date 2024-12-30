@@ -4,7 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { DoctorHomeComponent } from './pages/doctor/pages/doctor-home/doctor-home.component';
 import { DoctorPreviewComponent } from './pages/doctor/pages/doctor-preview/doctor-preview.component';
 import { AdminComponent } from './pages/admin/pages/admin-home/admin.component';
-import { DpiComponent } from './pages/dpi/dpi.component';
+import { DoctorDpiComponent } from './pages/dpi/dpi.component';
 import { RadiologistComponent } from './pages/radiologist/radiologist.component';
 import { PatientHomeComponent } from './pages/patient/pages/patient-home/patient-home.component';
 import { NurseHomeComponent } from './pages/nurse/nurse.component';
@@ -14,12 +14,12 @@ import { BoilogistHomeComponent } from './pages/biologist/biologist.component';
 const routes: Routes = [
   {path: "", component:  LoginComponent},
   {path: "doctor", component: DoctorHomeComponent},
-  {path: "doctor/dpi/:id", component: DoctorPreviewComponent},
+  {path: "doctor/dpi", component: DoctorDpiComponent},
   {path: "patient", component: PatientHomeComponent},
   {path: "patient/dpi", component: DoctorPreviewComponent},
   
   {path: "administrative", component: AdminComponent},
-  {path: "dpi", component: DpiComponent},
+
   {path: "radiologist", component: RadiologistComponent},
   {path: "laborantin", component: BoilogistHomeComponent},
   {path: "nurse", component: NurseHomeComponent},

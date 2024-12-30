@@ -2,22 +2,21 @@
 
 
 
-    <div class="flex flex-row  w-full">
+    <div class="flex flex-row  w-full gap-2">
         <app-title-info class="flex-1 custom-text-gray" title="Name"
-            [info]="(authService.getActor() | async)!.name"></app-title-info>
+            [info]="(curPatient.actor)!.name"></app-title-info>
         <app-title-info class="flex-1 custom-text-gray" title="Gender"
-            [info]="(authService.getActor() | async)!.gender"></app-title-info>
-        <app-title-info class="flex-1 custom-text-gray" title="Address" [info]="'TEMP'"></app-title-info>
+            [info]="(curPatient.actor)!.gender"></app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="Address" [info]="curPatient.actor.address"></app-title-info>
         <app-title-info class="flex-1 custom-text-gray" title="Email"
-            [info]="(authService.getActor() | async)!.email"></app-title-info>
+            [info]="(curPatient.actor)!.email"></app-title-info>
     </div>
-    <div class="flex flex-row  w-full">
+    <div class="flex flex-row  w-full gap-2">
         <app-title-info class="flex-1 custom-text-gray" title="NSS"
-            [info]="(authService.getActor() | async)!.SSN"></app-title-info>
-        <!-- <app-title-info class="flex-1 custom-text-gray" title="Age" [info]="'TEMP'"></app-title-info> -->
+            [info]="(curPatient.actor)!.SSN"></app-title-info>
         <app-title-info class="flex-1 custom-text-gray" title="Phone Number"
-            [info]="(authService.getActor() | async)!.phoneNumber"></app-title-info>
-        <app-title-info class="flex-1 custom-text-gray" title="Emergency Contact" [info]="'TEMP'"></app-title-info>
+            [info]="(curPatient.actor)!.phoneNumber"></app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="Emergency Contact" [info]="curPatient.actor.emergencyContactPhone || 'None'"></app-title-info>
         <app-title-info class="flex-1 custom-text-gray" title="Age" info="20"></app-title-info>
     </div>
 

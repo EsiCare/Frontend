@@ -1,52 +1,68 @@
 <div class="p-4 flex gap-4 overflow-hidden h-full w-full" route-protect>
 
-<section class="flex flex-col gap-4 overflow-hidden h-full flex-1">
-    <div class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-2">
-        <div class="flex justify-between flex-1">
-            <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Patient {{userData?.name}}</h1>
-            <div class="flex gap-10">
-                <button class="border-2 custom-border-gray px-4 py-1 rounded-lg font-bold"
-                    style="color: #21323A">Preview Prescriptions</button>
-                <app-custom-button title="Create" class="self-end"> </app-custom-button>
+    <section class="flex flex-col gap-4 overflow-hidden h-full flex-1">
+        <div class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-2">
+            <div class="flex justify-between flex-1">
+                <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Patient {{curPatient?.name}}</h1>
+                <div class="flex gap-10">
+                    <button class="border-2 custom-border-gray px-4 py-1 rounded-lg font-bold"
+                        style="color: #21323A">Preview Prescriptions</button>
+                    <app-custom-button title="Create" class="self-end"> </app-custom-button>
+                </div>
             </div>
+            <div class="flex flex-col gap-2">
+                <h2 class="text-xl font-medium">Reason</h2>
+                <p class="text-lg">{{curDpi?.reason}}</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <h2 class="text-xl font-medium">Resume</h2>
+                <app-minput-field #resumeInp [default_value]="curDpi?.resume || ''" class="text-lg"
+                    title="eg. Severe abdominal pain prompted"></app-minput-field>
+            </div>
+            <app-custom-button title="Save" (click)="onClickSave()" class="self-end"> </app-custom-button>
         </div>
-        <div class="flex flex-col gap-2">
-            <h2 class="text-xl font-medium">Reason</h2>
-            <p class="text-lg">{{userData?.reason}}</p>
-        </div>
-        <div class="flex flex-col gap-2">
-            <h2 class="text-xl font-medium">Resume</h2>
-            <app-minput-field class="text-lg" title="eg. Severe abdominal pain prompted"></app-minput-field>
-            <!-- <p>{{userData?.reason}}</p> -->
-        </div>
-        <app-custom-button title="Save" class="self-end"> </app-custom-button>
-    </div>
 
 
-    <div class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-2 flex-1">
-        <div class="flex justify-between">
-            <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Request Tests</h1>
-            <br>
-            <br>
-        </div>
-        <div class="flex flex-row gap-2 flex-1">
-        <app-minput class="flex-1 rounded-lg" title="eg. IRM" required_title="Test Title"></app-minput>
-        <app-minput class="flex-1 rounded-lg" title="eg. IRM" required_title="Test Title"></app-minput>
-        </div>
-        <app-minput title="eg. IRM" required_title="Test Title"></app-minput>
-        <app-minput-field required_title="Description" class="text-lg flex-1 flex-1" in_class="h-full"
-            title="eg. Severe abdominal pain prompted"></app-minput-field>
-        <app-custom-button title="Request" class="self-end"> </app-custom-button>
-    </div>
-</section>
+        <div class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-2 flex-1">
+            <div class="flex justify-between">
+                <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Request Tests</h1>
+                <br>
+                <br>
+            </div>
+            <app-minput #titleInp title="eg. IRM" required_title="Test Title"></app-minput>
 
-<div [class.bar-hidden]="!(rightBarService.isPatientsBarVisible() | async)" 
-class="lg:static lg:p-0 lg:overflow-visible lg:bg-transparent lg:w-fit
+            <div class="flex flex-row gap-2 flex-1">
+                <div class="flex flex-col gap-4 flex-1">
+                    <p class="text-xl font-medium">Test to <span class="text-xl font-light text-red-600">*</span></p>
+                    <app-dropdown class="h-full" [selectedItem]="testTypeActor"
+                        [items]="['Radiologist','Laborantin','Nurse']"
+                        (onSelectItemCallback)="onClickSelectActor($event)"></app-dropdown>
+                </div>
+
+                <div class="flex flex-col gap-4 flex-1">
+                    <p class="text-xl font-medium">Test Priority<span class="text-xl font-light text-red-600">*</span>
+                    </p>
+                    <app-dropdown class="h-full w-full" [selectedItem]="testTypePriority" [items]="['Dangerous','Normal']"
+                        (onSelectItemCallback)="onClickSelectPriority($event)"></app-dropdown>
+                </div>
+
+
+
+                <!-- <app-minput class="flex-1 rounded-lg" title="eg. IRM" required_title="Test Title"></app-minput> -->
+                <!-- <app-minput class="flex-1 rounded-lg" title="eg. IRM" required_title="Test Title"></app-minput> -->
+            </div>
+            <app-minput-field #descInp required_title="Description" class="text-lg flex-1 flex-1" in_class="h-full"
+                title="eg. Severe abdominal pain prompted"></app-minput-field>
+            <app-custom-button (click)="onClickRequest()" title="Request" class="self-end"> </app-custom-button>
+        </div>
+    </section>
+
+    <div [class.bar-hidden]="!(rightBarService.isPatientsBarVisible() | async)" class="lg:static lg:p-0 lg:overflow-visible lg:bg-transparent lg:w-fit
        sm:absolute sm:right-0  sm:px-6 sm:pb-12 sm:overflow-hidden 
        h-full flex justify-end 
        z-10
        ">
 
-<app-test-history class="flex overflow-visible"> </app-test-history>
-</div>
+        <app-test-history class="flex overflow-visible"> </app-test-history>
+    </div>
 </div>

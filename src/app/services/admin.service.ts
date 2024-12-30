@@ -187,7 +187,6 @@ export class AdminService {
       })));
     } catch (e) { }
 
-    console.log(res);
 
 
 

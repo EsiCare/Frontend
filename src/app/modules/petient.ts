@@ -2,12 +2,29 @@ import Actor from "./actor";
 import { SGPHType } from "./patient-history-Item";
 
 interface HistoryItem {
-    doctor: string;
-    created: string,
-    duration: string,
-    state: SGPHType,
-    reason: string,
+    date  : string;
+    doctor  : string;
+    id  : string;
+    lastedFor  : string;
+    patient  : string;
+    reason  : string;
+    resume  : string;
 };
+
+
+interface TestItem {
+    id: number;
+    issueDate: string;
+    conductionDate: string;
+    status: "pending";
+    resume: string;
+    description: string;
+    title: string;
+    priorite: string;
+    mesurements: {};
+    patient: number;
+    medicalCondition: number;
+}
 
 interface Petient {
     actor: Actor,
@@ -16,5 +33,6 @@ interface Petient {
 
 export default Petient;
 export {
-    HistoryItem
+    HistoryItem,
+    TestItem
 } 

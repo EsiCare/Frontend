@@ -14,11 +14,11 @@ export class RouteProtectDirective {
       return
     }
     
+    
     let actor =   this.authService.loadFromLocalStorage();
     let path = window.location.href
 
-    if(path.endsWith("patient/dpi")) {
-      // jwt protect
+    if(path.endsWith("patient/dpi") || path.endsWith("doctor/dpi") ) {
       return;
     }
 
