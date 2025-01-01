@@ -6,3 +6,8 @@
 
 .completed { background-color: #DCFCE7; color: #14532D;}
 .completed div { background-color: #22C55E; }
+
+.selected {
+    background-color: #21323A;
+    color: white;
+}

@@ -2,7 +2,7 @@
 export interface RadioTest {
     status : "Dangerous" | "Normal";
     name : string;
-    petient_name: string;
-    petient_nns: string;
+    Patient_name: string;
+    Patient_nns: string;
 }
 

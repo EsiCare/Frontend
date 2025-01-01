@@ -5,10 +5,10 @@ import { MatTable } from '@angular/material/table';
 import { PatientHistoryDataSource } from './doctor-patient-history-datasource';
 import { Router } from '@angular/router';
 import { PopupService } from 'src/app/services/popup.service';
-import Petient, { HistoryItem } from 'src/app/modules/petient';
 import Actor from 'src/app/modules/actor';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { take } from 'rxjs';
+import Patient, { HistoryItem } from 'src/app/modules/petient';
 
 @Component({
   selector: 'app-doctor-patient-history',
@@ -23,7 +23,7 @@ export class DoctorPatientHistoryComponent implements AfterViewInit {
 
   optionMenuID : number = -1;
 
-  curPatient : Petient = {actor : Actor.fake(), history: []}; 
+  curPatient : Patient = {actor : Actor.fake(), history: []}; 
 
   
 
@@ -50,10 +50,10 @@ export class DoctorPatientHistoryComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
 
 
-    this.doctorService.selectedPetientIdx.asObservable().subscribe((idx) => {
+    this.doctorService.selectedPatientIdx.asObservable().subscribe((idx) => {
       if(idx < 0) { return; }  
-      let list : Petient[] = [];
-        this.doctorService.petientsList.asObservable().pipe(take(1)).subscribe(data => list = data).unsubscribe();
+      let list : Patient[] = [];
+        this.doctorService.patientsList.asObservable().pipe(take(1)).subscribe(data => list = data).unsubscribe();
         this.curPatient = list[idx];
         if(this.curPatient.actor.address.length > 20) {
           this.curPatient.actor.address = this.curPatient.actor.address.slice(0,20) + "..."; 

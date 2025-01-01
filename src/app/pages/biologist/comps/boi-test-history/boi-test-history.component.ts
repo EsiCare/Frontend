@@ -4,28 +4,31 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { DpiHistory } from 'src/app/modules/dpi-history';
 import { RadioTest } from 'src/app/modules/radio-test';
+import { BoilogistService } from 'src/app/services/boilogist.service';
+import { NursePatientTest } from 'src/app/services/nurse.service';
 import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
 @Component({
-  selector: 'app-radio-test-history',
-  templateUrl: './radio-test-history.component.html',
-  styleUrls: ['./radio-test-history.component.css']
+  selector: 'app-boi-test-history',
+  templateUrl: './boi-test-history.component.html',
+  styleUrls: ['./boi-test-history.component.css']
 })
 
 
-export class RadioTestHistoryComponent  {
+export class BoiTestHistoryComponent  {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  numbers = Array.from({ length: 10 }, (_, i) => i + 1);
   idx = 0;
-  history : RadioTest[] = [];
+  patientsList: NursePatientTest[] = [];
 
 
-  constructor(public popupService: PopupService,public rightBarService: RightBarService) {
-    for (let i = 0; i < 10; i++) {
-        this.history.push({status: 'Dangerous', name : "Head Radio", petient_name: "Boutawad Said", petient_nns: "018239873" });
-    }
+  constructor(public boilogistService : BoilogistService,public popupService: PopupService,public rightBarService: RightBarService) {
+
+
+    this.boilogistService.patientsList.asObservable().subscribe((list) => {
+      this.patientsList = list;
+    });
 
     // popupService.showPopup("doctor:create-prescription");
   }

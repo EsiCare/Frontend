@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MInputComponent } from 'src/app/comps/minput/minput.component';
+import { validateNoEmpty } from 'src/app/modules/input-validators';
+import Patient from 'src/app/modules/petient';
 import { AuthService } from 'src/app/services/auth.service';
+import { NursePatientTest, NurseService } from 'src/app/services/nurse.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
 
@@ -24,35 +28,33 @@ interface RadioRequestedTestInfo {
 })
 export class NurseHomeComponent implements OnInit {
   requested! :  RadioRequestedTestInfo;
-  @ViewChild("fileInput") fileInput : ElementRef<HTMLInputElement> | null = null;
+  @ViewChild("resumeInp") resumeInp : MInputComponent | null = null;
+  
+  patient : NursePatientTest | undefined = undefined;
 
 
-  constructor(public rightBarService: RightBarService,public authService :AuthService) {
-    this.requested = {
-      name: "Head Radio",
-      notes: [
-        "Skull X-rays: Lateral (side) view and AP (anteroposterior) view to evaluate fractures, lesions, or bone deformities.",
-        "If necessary, include Towne's view (to assess occipital bone and posterior cranial fossa).",
-      ],
-      imgs: [
+  constructor(public rightBarService: RightBarService,public authService :AuthService, public nurseService: NurseService) {
+    this.nurseService.getRequests().then(() => {
+      this.nurseService.selectedPatientIdx.next(0);
+    }); 
 
-      ],
-    }
+    this.nurseService.getSelectedPatientIdx().subscribe(idx => {
+      this.patient =  this.nurseService.patientsList.value[idx];
+    })
+
   }
 
   ngOnInit(): void {
   }
 
 
-  onInitFile() {
-    this.fileInput?.nativeElement.click();
-  }
-  async onUploadFile(e : any) {
-    let files = e.target.files as FileList;
-    let data =  (await files[0].stream().getReader().read()).value;
-    let name = files[0].name;
-    let date = new Date().toLocaleString(); 
-    this.requested.imgs.push({name, data,date});
+  async onClickSumbmit() {
+    if(!this.resumeInp?.validateInput(validateNoEmpty)) {
+      return;
+    }
+    this.nurseService.submitResult(this.resumeInp?.getInput() || '');
+
+    this.resumeInp.setInput("");
   }
 
 }

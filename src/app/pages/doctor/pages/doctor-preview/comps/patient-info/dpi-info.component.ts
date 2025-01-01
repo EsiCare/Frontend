@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { MInputFieldComponent } from 'src/app/comps/minputfield/minput-field.component';
 import Actor from 'src/app/modules/actor';
-import Petient, { HistoryItem } from 'src/app/modules/petient';
+import Patient, { HistoryItem } from 'src/app/modules/petient';
 import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
@@ -16,17 +16,17 @@ export class DpiInfoComponent implements OnInit {
   @ViewChild("reasonInp") reasonInp : MInputFieldComponent | null = null;
   @ViewChild("resumeInp") resumeInp : MInputFieldComponent | null = null;
 
-  curPatient : Petient = {actor : Actor.fake(), history: []}; 
+  curPatient : Patient = {actor : Actor.fake(), history: []}; 
   selectedDpi : HistoryItem | undefined = undefined;
 
   constructor(public doctorService: DoctorService,public router:  Router) { }
 
   ngOnInit(): void {
 
-    this.doctorService.selectedPetientIdx.asObservable().subscribe((idx) => {
+    this.doctorService.selectedPatientIdx.asObservable().subscribe((idx) => {
       if(idx < 0) { return; }  
-      let list : Petient[] = [];
-        this.doctorService.petientsList.asObservable().pipe(take(1)).subscribe(data => list = data).unsubscribe();
+      let list : Patient[] = [];
+        this.doctorService.patientsList.asObservable().pipe(take(1)).subscribe(data => list = data).unsubscribe();
         this.curPatient = list[idx];
         if(this.curPatient.actor.address.length > 20) {
           this.curPatient.actor.address = this.curPatient.actor.address.slice(0,20) + "..."; 

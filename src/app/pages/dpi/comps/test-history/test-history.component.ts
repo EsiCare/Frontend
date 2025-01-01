@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HistoryItem, TestItem } from 'src/app/modules/petient';
+import { TestItem } from 'src/app/modules/petient';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';

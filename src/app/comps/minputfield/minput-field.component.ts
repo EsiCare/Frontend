@@ -13,7 +13,9 @@ export class MInputFieldComponent implements OnInit {
   @Input()required_title  = "";
   @Input() none_required_title  = "";
   @Input() default_value = "";
+  @Input() disable : boolean = false;
 
+  
   constructor() { 
 
   }

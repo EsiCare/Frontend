@@ -24,7 +24,7 @@
   </div>
 
   <div class="flex flex-col gap-4 overflow-y-scroll pr-2 -mr-6">
-    <app-patient-card  *ngFor="let petient of this.patientsList; let  i = index" [selected]="i == (this.doctorService.selectedPetientIdx.asObservable() | async)" [petient]="petient" (click)="onClickSelectPetient(i)">
+    <app-patient-card  *ngFor="let Patient of this.patientsList; let  i = index" [selected]="i == (this.doctorService.selectedPatientIdx.asObservable() | async)" [Patient]="Patient" (click)="onClickSelectPatient(i)">
     </app-patient-card>
   </div>
 

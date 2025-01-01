@@ -4,7 +4,7 @@ import { take } from 'rxjs';
 import { MInputFieldComponent } from 'src/app/comps/minputfield/minput-field.component';
 import Actor from 'src/app/modules/actor';
 import { validateNoEmpty } from 'src/app/modules/input-validators';
-import Petient, { HistoryItem } from 'src/app/modules/petient';
+import { HistoryItem } from 'src/app/modules/petient';
 import { DoctorService, LASTEST_DPI } from 'src/app/services/doctor.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
@@ -40,8 +40,8 @@ export class DoctorDpiComponent implements OnInit {
 
     let savedData = JSON.parse(localStorage.getItem(LASTEST_DPI)!);
     this.curPatient = savedData["patientInfo"];
-    this.doctorService.petientsList.next([{ actor: this.curPatient!, history: [] }]);
-    this.doctorService.selectedPetientIdx.next(0);
+    this.doctorService.patientsList.next([{ actor: this.curPatient!, history: [] }]);
+    this.doctorService.selectedPatientIdx.next(0);
 
     this.doctorService.selectedHistory.asObservable().subscribe((data) => {
       this.curDpi = data.find(item => item.id.toString() == savedData.id)!;
@@ -53,9 +53,6 @@ export class DoctorDpiComponent implements OnInit {
       this.doctorService.getTestHistory();
 
     });
-
-
-  
 
   }
 
@@ -84,6 +81,9 @@ export class DoctorDpiComponent implements OnInit {
       return;
     }
     this.doctorService.sendTestRequest(this.titleInp?.getInput()!,this.descInp?.getInput()!,this.testTypeActor,this.testTypePriority);
+  
+    this.titleInp?.setInput("");
+    this.descInp?.setInput("");
   } 
 
   

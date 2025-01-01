@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import Actor from 'src/app/modules/actor';
-import Petient from 'src/app/modules/petient';
+import Patient from 'src/app/modules/petient';
 import { AuthService } from 'src/app/services/auth.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 
@@ -11,12 +11,15 @@ import { DoctorService } from 'src/app/services/doctor.service';
   styleUrls: ['./patient-info.component.css']
 })
 export class PatientInfoComponent implements OnInit {
-  curPatient : Petient = {actor : Actor.fake(), history: []}; 
+  @Input() curPatient : Actor | undefined = undefined;
 
-  constructor(public authService: AuthService,public doctorService: DoctorService) { }
+  constructor(public authService: AuthService) { 
+  }
 
   ngOnInit(): void {
-    
+    if(this.curPatient == undefined) {
+      this.curPatient = Actor.fake()
+    }
   }
 
 }

@@ -1,4 +1,7 @@
-<div class="flex gap-2  w-full border-2 px-2 py-2 rounded-lg items-center custom-border-color">
+<div class="flex gap-2  w-full border-2 px-2 py-2 rounded-lg items-center custom-border-color"
+[class.selected]="((this.radioService.getSelectedPatientIdx() | async)) == idx"
+(click)="onSelectPatient()"
+>
   <div>
     <svg width="50" height="50" viewBox="0 0 50 51" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect y="0.5" width="50" height="50" rx="25" fill="#BFBFC6" fill-opacity="0.18" />
@@ -11,17 +14,17 @@
   </div>
 
   <div class="flex  flex-col lg:text-xl sm:text-lg gap-2 flex-1">
-    <h1 class="lg:text-xl sm:text-lg font-medium">{{testItem?.name}}</h1>
+    <h1 class="lg:text-xl sm:text-lg font-medium">{{  patient?.title ? (patient?.title?.length || 2  > 10 ?  patient?.title?.slice(0,10) + "..."  :  (patient?.title)) : 'Head Injury'}}</h1>
 
     <div class="pl-2 pr-1 py-1 cursor-default  w-fit h-fit rounded-full flex items-center justfiy-between"
-      [class.failed]="testItem?.status == 'Dangerous'" [class.completed]="testItem?.status == 'Normal'">
+      [class.pending]="patient?.status == 'pending'" [class.completed]="patient?.status == 'completed'">
       <div class="w-2 h-2 rounded-full"></div>
-      <p class="mx-2 text-sm"> {{testItem?.status}}</p>
+      <p class="mx-2 text-sm"> {{ patient?.status![0].toUpperCase() + patient?.status!.slice(1)  }}</p>
     </div>
   </div>
   <div>
-    <p class="text-sm font-medium">{{testItem?.petient_name}}</p>
-    <p class="text-sm font-medium">{{testItem?.petient_nns}}</p>
+    <p class="text-sm font-medium">{{patient?.actor?.name}}</p>
+    <p class="text-sm font-medium">{{patient?.actor?.SSN}}</p>
   </div>
 
 

@@ -6,6 +6,7 @@
       <p *ngIf="none_required_title.length" class="text-xl font-medium">{{this.none_required_title}} </p>
       
       <textarea 
+      [disabled]="disable"
       [defaultValue]="default_value"
       #input 
       (input)="onChange()" 

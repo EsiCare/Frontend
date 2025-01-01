@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { DpiHistory } from 'src/app/modules/dpi-history';
-import { HistoryItem, TestItem } from 'src/app/modules/petient';
+import { TestItem } from 'src/app/modules/petient';
 import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
@@ -22,7 +22,6 @@ export class TestHistoryItemComponent  {
 
 
   constructor() {
-
   }
 
   ngAfterViewInit(): void {

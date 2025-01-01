@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import Petient from 'src/app/modules/petient';
+import Patient from 'src/app/modules/petient';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
@@ -11,19 +11,19 @@ import { RightBarService } from 'src/app/services/right-bar.service';
 export class PatientsComponent2 {
 
   displayedColumns = ['id', 'name'];
-  patientsList : Petient[] = [];
+  patientsList : Patient[] = [];
 
 
-  @Output() onSelectPetient :EventEmitter<any>  = new EventEmitter();
+  @Output() onSelectPatient :EventEmitter<any>  = new EventEmitter();
   constructor(public rightBarServise: RightBarService, public doctorService : DoctorService) {
-    doctorService.petientsList.asObservable().subscribe((list) => {
+    doctorService.patientsList.asObservable().subscribe((list) => {
       this.patientsList = list;
     })
   }
 
 
 
-  onClickSelectPetient(idx : number) {
+  onClickSelectPatient(idx : number) {
     this.doctorService.loadPatientInfo(idx);
   }
 

@@ -21,8 +21,8 @@ export class AdminComponent implements OnInit {
   workerList : WorkerInfo[] = [];
   
 
-  petientList : PatientHistoryItem[] = [];
-  @ViewChild("table") petientsTable!: AdminPatientsComponent;
+  PatientList : PatientHistoryItem[] = [];
+  @ViewChild("table") PatientsTable!: AdminPatientsComponent;
 
   hospitalStats? : HospitalStat;
 
@@ -41,10 +41,10 @@ export class AdminComponent implements OnInit {
         this.adminService.loadHospitalInfo(this.curHospital.name);
       }
     });
-    this. adminService.getPetientList().subscribe(list => {
-      this.petientList = list;
-      if(this.petientsTable) {
-        this.petientsTable.setData(list);
+    this. adminService.getPatientList().subscribe(list => {
+      this.PatientList = list;
+      if(this.PatientsTable) {
+        this.PatientsTable.setData(list);
       }
     });
     this. adminService.getWorkerList().subscribe(list => {

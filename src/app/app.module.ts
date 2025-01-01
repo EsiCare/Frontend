@@ -60,6 +60,10 @@ import { BoilogistHomeComponent } from "./pages/biologist/biologist.component";
 import { PatientsComponent2 } from "./pages/patient/pages/patient-home/comps/patients/patients.component";
 import { PatientHistoryComponent } from "./pages/patient/pages/patient-home/comps/patient-history/patient-history.component";
 import { DoctorPatientHistoryComponent } from "./pages/doctor/pages/doctor-home/comps/doctor-patient-history/doctor-patient-history.component";
+import { NurseTestHistoryComponent } from "./pages/nurse/comps/nurse-test-history/nurse-test-history.component";
+import { NurseTestHistoryItemComponent } from "./pages/nurse/comps/nurse-test-history-item/nurse-test-history-item.component";
+import { BoiTestHistoryItemComponent } from "./pages/biologist/comps/boi-test-history-item/boi-test-history-item.component";
+import { BoiTestHistoryComponent } from "./pages/biologist/comps/boi-test-history/boi-test-history.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,9 +112,14 @@ import { DoctorPatientHistoryComponent } from "./pages/doctor/pages/doctor-home/
     BoilogistHomeComponent,
     RouteProtectDirective,
     PatientHomeComponent,
-NurseHomeComponent,
-PatientsComponent2,
-DoctorPatientHistoryComponent,
+    NurseHomeComponent,
+    PatientsComponent2,
+    DoctorPatientHistoryComponent,
+    NurseTestHistoryComponent,
+    NurseTestHistoryItemComponent,
+
+BoiTestHistoryComponent,
+BoiTestHistoryItemComponent,
 
   ],
   imports: [
@@ -121,9 +130,9 @@ DoctorPatientHistoryComponent,
     MatSortModule,
     BrowserAnimationsModule,
     HttpClientModule,
-  MatFormFieldModule, MatSelectModule,  
-  FormsModule,
-  
+    MatFormFieldModule, MatSelectModule,
+    FormsModule,
+
 
   ],
   providers: [],

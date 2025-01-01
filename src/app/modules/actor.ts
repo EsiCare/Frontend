@@ -84,7 +84,7 @@ export default class Actor {
     static fake() {
         return new Actor(
             randUuid(),
-            "Petient",
+            "Patient",
             randUuid(),
             {
                 name: randFullName(),

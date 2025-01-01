@@ -20,7 +20,7 @@ export class DoctorHomeComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.doctorService.loadAllPetients();
+    this.doctorService.loadAllPatients();
   }
   
 

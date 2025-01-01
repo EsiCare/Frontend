@@ -1,23 +1,22 @@
 <div class="flex flex-col h-full grow" route-protect>
 
-    <app-nav-bar></app-nav-bar>
-
 <app-nav-bar></app-nav-bar>
 
 <div class="p-6 flex gap-4 overflow-hidden h-full w-full" route-protect>
 
     <section class="flex flex-col gap-4 overflow-hidden h-full flex-1">
-        <app-patient-info> </app-patient-info>
+        <app-patient-info [curPatient]="this.patient?.actor"> </app-patient-info>
 
 
         <div class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-8 flex-1 h-2 overflow-scroll">
             <div class="flex justify-between">
-                <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Requested Test : {{requested.name}}
+                <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Requested Test : {{this.patient?.title || 'Head Injury'}}
                 </h1>
             </div>
 
             <ul style="list-style-type:disc;" class="pl-4 text-lg font-medium">
-                <li *ngFor="let note of requested.notes">{{note}}</li>
+                {{patient?.resume}}
+                <!-- <li *ngFor="let note of requested.notes">{{note}}</li> -->
             </ul>
 
 
@@ -29,8 +28,8 @@
 
 
                     <app-frame class="overflow-scroll h-full"  in_class="h-full flex flex-col gap-4 overflow-y-scroll">
-                        <div *ngFor="let file of this.requested.imgs"  class="flex items-center gap-4 ">
-                            <svg width="41" height="41" viewBox="0 0 41 41" fill="none"
+                        <div *ngFor="let file of this.imgData; let i = index"  class="flex items-center gap-4 ">
+                            <svg (click)="onClickImg(i)" class="cursor-pointer" width="41" height="41" viewBox="0 0 41 41" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <rect width="41" height="41" rx="5" fill="#61CAE8" />
                                 <path
@@ -45,7 +44,7 @@
                             </div>
 
                             <div  class="flex-1 flex justify-end">
-                                <svg class="cursor-pointer" width="19" height="21" viewBox="0 0 19 21" fill="none"
+                                <svg (click)="onClickRemoveImg(i)" class="cursor-pointer" width="19" height="21" viewBox="0 0 19 21" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M2.62299 5.49984H4.1827M4.1827 5.49984H16.6604M4.1827 5.49984V17.1665C4.1827 17.6085 4.34703 18.0325 4.63953 18.345C4.93203 18.6576 5.32875 18.8332 5.74242 18.8332H13.541C13.9547 18.8332 14.3514 18.6576 14.6439 18.345C14.9364 18.0325 15.1007 17.6085 15.1007 17.1665V5.49984H4.1827ZM6.52227 5.49984V3.83317C6.52227 3.39114 6.6866 2.96722 6.9791 2.65466C7.27161 2.3421 7.66833 2.1665 8.08199 2.1665H11.2014C11.6151 2.1665 12.0118 2.3421 12.3043 2.65466C12.5968 2.96722 12.7611 3.39114 12.7611 3.83317V5.49984M8.08199 9.6665V14.6665M11.2014 9.6665V14.6665"
@@ -77,10 +76,10 @@
                 <div class="flex-1 h-full flex flex-col gap-1">
                     <h1 class="font-meduim text-2xl">Resume</h1>
 
-                    <app-minput-field title="..."   class="flex-1" in_class="h-full">
+                    <app-minput-field [default_value]="patient?.results || ''" #resumeInp title="..."   class="flex-1" in_class="h-full">
                     </app-minput-field>
 
-            <app-custom-button title="Submit" class="self-end"> </app-custom-button>
+            <app-custom-button (click)="onClickSubmit()" title="Submit" class="self-end"> </app-custom-button>
         </div>
             </div>
 

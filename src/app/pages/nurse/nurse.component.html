@@ -5,29 +5,33 @@
     <div class="p-6 flex gap-4 overflow-hidden h-full w-full" route-protect>
 
         <section class="flex flex-col gap-4 overflow-hidden h-full flex-1">
-            <app-patient-info> </app-patient-info>
+            <app-patient-info [curPatient]="patient?.actor"> </app-patient-info>
 
 
             <div
                 class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-8 flex-1 h-2 overflow-scroll">
                 <div class="flex justify-between">
                     <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Requested Test :
-                        {{requested.name}}
+                        {{patient?.title || 'Medecin'}}
                     </h1>
                 </div>
 
+
                 <ul style="list-style-type:disc;" class="pl-4 text-lg font-medium">
-                    <li *ngFor="let note of requested.notes">{{note}}</li>
+                    <li>
+                        {{patient?.resume || "check his blood presure"}}
+                    </li>
+                    <!-- <li *ngFor="let note of requested.notes">{{note}}</li> -->
                 </ul>
 
 
                 <div class="flex-1 h-full flex flex-col gap-1">
                     <h1 class="font-meduim text-2xl">Resume</h1>
 
-                    <app-minput-field title="..." class="flex-1" in_class="h-full">
+                    <app-minput-field [disable]="patient?.status == 'completed'" [default_value]="patient?.results || ''" #resumeInp title="..." class="flex-1" in_class="h-full">
                     </app-minput-field>
 
-                    <app-custom-button title="Submit" class="self-end"> </app-custom-button>
+                    <app-custom-button *ngIf="patient?.status != 'completed'"  (click)="onClickSumbmit()" title="Submit" class="self-end"> </app-custom-button>
                 </div>
             </div>
 
@@ -45,7 +49,7 @@
            z-10
            ">
 
-            <app-radio-test-history class="flex overflow-visible"> </app-radio-test-history>
+            <app-nurse-test-history class="flex overflow-visible"> </app-nurse-test-history>
         </div>
     </div>
 </div>

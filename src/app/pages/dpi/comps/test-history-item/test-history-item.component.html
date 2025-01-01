@@ -10,20 +10,23 @@
   </div>
 
   <div class="flex flex-1 flex-col lg:text-xl sm:text-lg gap-2">
-    <h1 class="text-lg font-medium">{{test?.title || 'IRM'}}</h1>
+    <div class="flex items-center justify-between">
+      <h1 class="text-lg font-medium">{{  test?.title? (test?.title!.length > 10 ? test?.title!.slice(0,10) + "..." : test?.title) : 'IRM'}}</h1>
+      <h1 class="text-sm text-right">{{test?.issueDate}}</h1>
+    </div>
     <div class="flex gap-4" style="justify-content: space-between;">
 
 
       <div class="pl-2 pr-1 py-1 cursor-default  h-fit rounded-full flex items-center justfiy-between gap-1"
         [class.pending]="test?.status == 'pending'" [class.completed]="test?.status != 'pending'">
         <div class="w-2 h-2 rounded-full"></div>
-        <p class="mx-2 text-sm"> {{test?.status || 'Pending'}}</p>
+        <p class="mx-2 text-sm"> {{test?.status ? (test!.status[0].toUpperCase() + test!.status.slice(1)) : 'Pending'}}</p>
       </div>
 
 
-      <button class="self-end text-xl p-1 w-fit rounded text-white font-medium bg-red-100  text-sm outline-none "
+      <button *ngIf="test?.status != 'pending'"  class="self-end text-xl p-1 w-fit rounded text-white font-medium bg-red-100  text-sm outline-none "
         style="background: rgb(97, 202, 232);">
-        <span>Resualt</span>
+        <span>Result</span>
       </button>
 
     </div>

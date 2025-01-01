@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import Petient from 'src/app/modules/petient';
+import Patient from 'src/app/modules/petient';
 
 @Component({
   selector: 'app-patient-card',
@@ -7,7 +7,7 @@ import Petient from 'src/app/modules/petient';
   styleUrls: ['./patient-card.component.css']
 })
 export class PatientCardComponent implements OnInit {
-  @Input() petient?  : Petient;
+  @Input() Patient?  : Patient;
   @Input() selected : boolean = false;
   constructor() { }
 

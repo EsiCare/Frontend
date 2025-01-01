@@ -4,7 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { DpiHistory } from 'src/app/modules/dpi-history';
 import { RadioTest } from 'src/app/modules/radio-test';
+import { NursePatientTest } from 'src/app/services/nurse.service';
 import { PopupService } from 'src/app/services/popup.service';
+import { RadioService } from 'src/app/services/radio.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
 @Component({
@@ -20,12 +22,15 @@ export class RadioTestHistoryComponent  {
   numbers = Array.from({ length: 10 }, (_, i) => i + 1);
   idx = 0;
   history : RadioTest[] = [];
+  patientsList: NursePatientTest[] = [];
 
 
-  constructor(public popupService: PopupService,public rightBarService: RightBarService) {
-    for (let i = 0; i < 10; i++) {
-        this.history.push({status: 'Dangerous', name : "Head Radio", petient_name: "Boutawad Said", petient_nns: "018239873" });
-    }
+  constructor(public radioService: RadioService,public popupService: PopupService,public rightBarService: RightBarService) {
+
+    this.radioService.patientsList.asObservable().subscribe((list) => {
+      this.patientsList = list;
+    });
+
 
     // popupService.showPopup("doctor:create-prescription");
   }

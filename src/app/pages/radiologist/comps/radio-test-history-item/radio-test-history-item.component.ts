@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RadioTest } from 'src/app/modules/radio-test';
+import { NursePatientTest } from 'src/app/services/nurse.service';
+import { RadioService } from 'src/app/services/radio.service';
 
 @Component({
   selector: 'app-radio-test-history-item',
@@ -7,9 +9,11 @@ import { RadioTest } from 'src/app/modules/radio-test';
   styleUrls: ['radio-test-history-item.component.css']
 })
 export class RadioTestHistoryItemComponent  {
-  @Input() testItem : RadioTest  | null = null;
+  @Input() patient : NursePatientTest  | null = null;
+  @Input() idx! : number;
 
-  constructor() {
+
+  constructor(public radioService: RadioService) {
 
   }
 
@@ -18,6 +22,8 @@ export class RadioTestHistoryItemComponent  {
   }
 
 
-  
+  onSelectPatient() {
+    this.radioService.selectedPatientIdx.next(this.idx);
+  }
 }
 

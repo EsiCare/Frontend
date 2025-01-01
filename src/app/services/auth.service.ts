@@ -36,9 +36,11 @@ export class AuthService {
 
     email = "taki@gmail.com"; // doctor
     // email = "aaroncunningham@example.com"; // patient
-    // email = "diazamy@example.com"; // radio
+    email = "diazamy@example.com"; // radio
     // email = "cookaudrey@example.com"; // nurse
     // email = "amyknight@example.com"; // boi
+    // email = "johntaylor@example.com"; // nurse
+    
     
     
     pass = "1111";

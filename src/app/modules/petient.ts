@@ -26,12 +26,12 @@ interface TestItem {
     medicalCondition: number;
 }
 
-interface Petient {
+interface Patient {
     actor: Actor,
     history: any,
 };
 
-export default Petient;
+export default Patient;
 export {
     HistoryItem,
     TestItem

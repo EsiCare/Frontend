@@ -22,7 +22,9 @@
 
 
   <div class="flex flex-col gap-3 overflow-scroll -mr-4">
-    <app-radio-test-history-item class="pr-2" *ngFor="let item of history" [testItem]="item"></app-radio-test-history-item>
+
+    <app-radio-test-history-item  class="pr-2 cursor-pointer" *ngFor="let item of patientsList; let i = index" [patient]="item" [idx]="i"></app-radio-test-history-item>
+
   </div>
  
   

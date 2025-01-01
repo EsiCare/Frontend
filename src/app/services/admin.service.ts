@@ -29,7 +29,7 @@ export class AdminService {
   hospitalList = new BehaviorSubject<HospitalInfo[]>([]);
   selectedHospitalName : string = ""; 
 
-  curHospitalPetients = new BehaviorSubject<PatientHistoryItem[]>([]);
+  curHospitalPatients = new BehaviorSubject<PatientHistoryItem[]>([]);
   curHospitalCounts = new BehaviorSubject<HospitalStat>({doctor_count : 0,nurse_count : 0,administrative_count : 0,radiologist_count : 0,laborantin_count : 0,});
   curHospitalWorkers = new BehaviorSubject<WorkerInfo[]>([]);
 
@@ -141,7 +141,7 @@ export class AdminService {
       });
     }
 
-    this.curHospitalPetients.next(patientsList);
+    this.curHospitalPatients.next(patientsList);
   }
 
 
@@ -308,8 +308,8 @@ export class AdminService {
   getHospitalList(): Observable<HospitalInfo[]> {
     return this.hospitalList.asObservable();
   }
-  getPetientList(): Observable<PatientHistoryItem[]> {
-    return this.curHospitalPetients.asObservable();
+  getPatientList(): Observable<PatientHistoryItem[]> {
+    return this.curHospitalPatients.asObservable();
   }
   getHospitalStats(): Observable<HospitalStat> {
     return this.curHospitalCounts.asObservable();
