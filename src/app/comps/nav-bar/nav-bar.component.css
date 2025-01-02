@@ -4,3 +4,7 @@
 .logo span{
     color: #4EA2BA;
 }
+
+* {
+    user-select: none;
+}

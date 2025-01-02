@@ -11,7 +11,6 @@ import { PatientCardComponent } from "./pages/doctor/comps/patient-card/patient-
 import { SgphStatusComponent } from "./pages/doctor/comps/sgph-status/sgph-status.component";
 import { DoctorPreviewComponent } from "./pages/doctor/pages/doctor-preview/doctor-preview.component";
 import { DpiInfoComponent } from "./pages/doctor/pages/doctor-preview/comps/patient-info/dpi-info.component";
-import { PatientInfoComponent } from "./pages/doctor/pages/doctor-home/comps/patient-info/patient-info.component";
 import { PriorityStatusComponent } from "./pages/doctor/comps/priority-status/priority-status.component";
 import { PatientsComponent } from "./pages/doctor/pages/doctor-home/comps/patients/patients.component";
 import { DpiHistoryComponent } from "./pages/doctor/pages/doctor-preview/comps/dpi-history/dpi-history.component";
@@ -69,6 +68,10 @@ import { MatSelectModule } from "@angular/material/select";
 import { ReceptionistHistoryItemComponent } from "./pages/receptionist/receptionist-history-item/receptionist-history-item.component";
 import { QrcodeComponent } from './popups/qrcode/qrcode.component';
 import { PreviewPresComponent } from './popups/preview-pres/preview-pres.component';
+import { PatientInfoComponent } from "./pages/doctor/pages/doctor-home/comps/patient-info/patient-info.component";
+import { CurPatientInfoComponent } from "./pages/patient/comps/cur-patient-info/cur-patient-info.component";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,10 +129,12 @@ import { PreviewPresComponent } from './popups/preview-pres/preview-pres.compone
     BoiTestHistoryItemComponent,
     ReceptionistComponent,
     ReceptionistHistoryComponent,
-ReceptionistHistoryComponent,
-ReceptionistHistoryItemComponent,
-QrcodeComponent,
-PreviewPresComponent
+    ReceptionistHistoryComponent,
+    ReceptionistHistoryItemComponent,
+    QrcodeComponent,
+    PreviewPresComponent,
+    CurPatientInfoComponent
+
 
 
   ],
@@ -141,7 +146,7 @@ PreviewPresComponent
     MatSortModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatSelectModule,
     FormsModule,
 

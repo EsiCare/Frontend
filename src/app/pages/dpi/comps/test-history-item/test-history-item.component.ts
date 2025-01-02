@@ -29,7 +29,6 @@ export class TestHistoryItemComponent  {
   }
 
   onClickResult(test : TestItem) {
-    console.log(test);
     switch(test.actor) {
       case "nurse": 
         this.popupService.setData({

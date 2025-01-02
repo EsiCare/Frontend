@@ -28,7 +28,6 @@ export class BoilogistService {
 
     } catch (e) { }
 
-    console.log(res);
 
     if (res["status"] == "success") {
       let list: NursePatientTest[] = [];

@@ -8,3 +8,13 @@
 .text {
     color: red;
 }
+
+
+.app-patients-hidden {
+    right: -360px;
+}
+
+
+* {
+    user-select: none;
+}

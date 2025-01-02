@@ -39,6 +39,8 @@ export class RadioTestHistoryComponent  {
 
   }
 
-  
+  onClickQRCode() {
+    this.popupService.showPopup("qr-code");
+  }  
 }
 

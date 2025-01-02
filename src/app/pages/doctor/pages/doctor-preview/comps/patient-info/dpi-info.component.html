@@ -3,8 +3,8 @@
     <div class="flex justify-between ">
         <h1 class="font-bold" style="font-size: 28px;">Patient {{this.curPatient.actor.name}}</h1>
         <div class="flex gap-4">
-            <button class="border-2 custom-border-gray px-4 py-1 rounded-lg font-bold" style="color: #21323A">Preview Prescriptions</button>
-            <button class="text-white border-2  px-4 py-1 rounded-lg font-bold" style="background-color: #61CAE8;">Create Prescriptoin</button>
+            <button (click)="onViewPrescription()" class="border-2 custom-border-gray px-4 py-1 rounded-lg font-bold" style="color: #21323A">Preview Prescriptions</button>
+            <button  *ngIf="(this.authService.getActor() | async)?.type == 'doctor'"   class="text-white border-2  px-4 py-1 rounded-lg font-bold" style="background-color: #61CAE8;">Create Prescriptoin</button>
             </div>
 
     </div>
@@ -14,8 +14,11 @@
     </div>
     <div class="flex flex-col gap-1">
         <h1 class="font-medium text-xl">Resume</h1>
-         <app-minput-field [default_value]="this.selectedDpi?.resume || ''"   #resumeInp title="eg. head injury...">
+         <app-minput-field *ngIf="(this.authService.getActor() | async)?.type == 'doctor'" [default_value]="this.selectedDpi?.resume || ''"   #resumeInp title="eg. head injury...">
          </app-minput-field>
+         <p *ngIf="(this.authService.getActor() | async)?.type != 'doctor'" >
+            {{this.selectedDpi?.resume || "No Resume Provided by the doctor"}}
+         </p>
     </div>
-    <app-custom-button (click)="onSave()" class="self-end" bg_color="#7DC8C1" title="Save"></app-custom-button>
+    <app-custom-button  *ngIf="(this.authService.getActor() | async)?.type == 'doctor'"  (click)="onSave()" class="self-end" bg_color="#7DC8C1" title="Save"></app-custom-button>
 </app-frame>

@@ -10,6 +10,7 @@ import { PopupService } from '../services/popup.service';
 export class RouteProtectDirective {
 
   constructor(public popupService: PopupService,public authService : AuthService,public router : Router) {
+    
     if(!Actor.check_localStorage()) {
       this.router.navigateByUrl("/");
       return
@@ -18,6 +19,7 @@ export class RouteProtectDirective {
     
     
     let actor =   this.authService.loadFromLocalStorage();
+    this.authService.actor = actor;
     let path = window.location.href
 
     if(path.endsWith("patient/dpi") || path.endsWith("doctor/dpi") ) {
@@ -26,7 +28,6 @@ export class RouteProtectDirective {
 
     // actor proection
     let actor_path = path.split("/")[path.split("/").length - 1]; 
-    console.log("[Actor Route]",actor_path,actor.type)
     if(actor_path != actor.type) {
       this.router.navigateByUrl("/");
     }

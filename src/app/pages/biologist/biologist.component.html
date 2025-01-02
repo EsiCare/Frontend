@@ -4,24 +4,25 @@
 
     <div class="p-6 flex gap-4 overflow-hidden h-full w-full" route-protect>
 
-        <section class="flex flex-col gap-4 overflow-hidden h-full flex-1">
+        <section class="relative flex flex-col gap-4 overflow-hidden h-full flex-1">
             <app-patient-info [curPatient]="patient?.actor"> </app-patient-info>
 
 
-            <div
-                class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col  flex-1 h-2 overflow-scroll">
+            <div [class.overflow-y-hidden]="this.patient == undefined" class="relative overflow-x-hidden custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col  flex-1 h-2 overflow-scroll">
+                <div *ngIf="this.patient == undefined" class="overlay absolute w-full top-0 left-0 z-10  h-full bg-gray-800 opacity-5">
+                </div>
+
                 <div class="flex justify-between">
                     <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Requested Test :
-                        <!-- {{requested.name}} -->
+                        {{this.patient?.title || ''}}
                     </h1>
                 </div>
-                <br>
 
-                <ul style="list-style-type:disc;" class="pl-4 text-lg font-medium">
+                <!-- <ul style="list-style-type:disc;" class="pl-4 text-lg font-medium"> -->
                     <!-- <li *ngFor="let note of requested.notes">{{note}}</li> -->
-                </ul>
+                <!-- </ul> -->
                 <br>
-                <div class="flex flex-col gap-1 flex-1">
+                <div class="flex flex-col gap-1">
                     <h1 class="font-meduim text-2xl">Mesurements</h1>
                     <table>
                         <tr class="border-b "> 
@@ -41,12 +42,13 @@
                       </table>
                 </div>
                 <br>
-
                 <div class="flex-1 h-full flex flex-col gap-1 ">
                     <h1 class="font-meduim text-2xl">Resume</h1>
-                    <app-minput-field #resInp [default_value]="this.patient?.resume || ''" title="..." class="flex-1" in_class="h-full">
+                    <app-minput-field #resInp [default_value]="this.patient?.resume || ''" 
+                    title="Patient's sample was handled and processed without issue, with initial observations aligning with expected results. The test showed no abnormalities, and all data was accurately recorded." 
+                    class="flex-1" in_class="h-full">
                     </app-minput-field>
-                    <app-custom-button (click)="onClickSubmit()" title="Submit" class="self-end"> </app-custom-button>
+                    <app-custom-button *ngIf="patient?.status != 'completed'" (click)="onClickSubmit()" title="Submit" class="self-end"> </app-custom-button>
                 </div>
             </div>
 

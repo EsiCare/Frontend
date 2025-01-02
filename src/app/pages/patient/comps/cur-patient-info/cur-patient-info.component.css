@@ -1,3 +1,7 @@
 .no-patient {
     min-height: 160px;
 }
+
+* {
+    user-select: none;
+}

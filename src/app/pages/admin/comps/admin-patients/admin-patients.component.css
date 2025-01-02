@@ -16,3 +16,8 @@
 .close {
   color: #F53A3A;
 }
+
+
+* {
+  user-select: none;
+}

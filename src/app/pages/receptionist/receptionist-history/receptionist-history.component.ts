@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import Actor from 'src/app/modules/actor';
 import Patient from 'src/app/modules/petient';
 import { DoctorService } from 'src/app/services/doctor.service';
@@ -13,6 +13,9 @@ import { RightBarService } from 'src/app/services/right-bar.service';
 })
 export class ReceptionistHistoryComponent {
   patientsList : Actor[] = [];
+
+
+@ViewChild("searchInp") searchInp : ElementRef<HTMLInputElement> | null = null ;
 
 
   @Output() onSelectPatient :EventEmitter<any>  = new EventEmitter();
@@ -32,6 +35,10 @@ export class ReceptionistHistoryComponent {
   }
 
 
+
+  searchByNNS() {
+    this.recpService.searchByNNS(this.searchInp?.nativeElement.value || '');
+  }
 
 
 }

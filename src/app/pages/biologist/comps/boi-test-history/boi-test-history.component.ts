@@ -38,5 +38,9 @@ export class BoiTestHistoryComponent  {
   }
 
   
+
+  onClickQRCode() {
+    this.popupService.showPopup("qr-code");
+  }  
 }
 

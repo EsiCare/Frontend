@@ -32,7 +32,7 @@ export class ReceptionistComponent implements OnInit {
         let patient = this.recpService.patientsList.value[idx];
         this.fullNameInp?.setInput(patient.name);
         this.NNSInp?.setInput(patient.SSN);
-        this.birthInp?.setInput(patient.dateAdded);
+        this.birthInp?.setInput(patient.dateOfBirth);
         this.genderInp?.setInput(patient.gender);
         this.addressInp?.setInput(patient.address);
         this.phoneNumInp?.setInput(patient.phoneNumber);
@@ -100,15 +100,57 @@ export class ReceptionistComponent implements OnInit {
     this.emNameInp?.getInput() || '',
     this.emPhoneInp?.getInput() || '',
     this.emailInp?.getInput() || '',
+    this.pastMedInp?.getInput() || '',
+
     );
 
 
 
   }
 
-  onClickEdit(id : string) {
-    
+  onClickEdit() {
+    let fullNameValid =  this.fullNameInp?.validateInput(validateNoEmpty);
+    let NNSValid =  this.NNSInp?.validateInput(validateNoEmpty);
+    let birthValid =  this.birthInp?.validateInput(validateNoEmpty);
+    let genderValid =  this.genderInp?.validateInput(validateNoEmpty);
+    let addressValid =  this.addressInp?.validateInput(validateNoEmpty);
+    let phoneNumValid =  this.phoneNumInp?.validateInput(validateNoEmpty);
+    let emailValid =  this.emailInp?.validateInput(validateNoEmpty);
+    let emNameValid =  this.emNameInp?.validateInput(validateNoEmpty);
+    let emPhoneValid =  this.emPhoneInp?.validateInput(validateNoEmpty);
+    let pastMedValid =  this.pastMedInp?.validateInput(validateNoEmpty);   
+
+    if(
+      !fullNameValid || 
+      !NNSValid || 
+      !birthValid || 
+      !genderValid || 
+      !addressValid || 
+      !phoneNumValid || 
+      !emailValid || 
+      !emNameValid || 
+      !emPhoneValid || 
+      !pastMedValid 
+    ) {
+      return;
+    }
+
+    this.recpService.editPatient(
+    this.addressInp?.getInput() || '',
+    this.fullNameInp?.getInput() || '',
+    this.phoneNumInp?.getInput() || '',
+    this.NNSInp?.getInput() || '',
+    this.birthInp?.getInput() || '',
+    this.genderInp?.getInput() || '',
+    this.emNameInp?.getInput() || '',
+    this.emPhoneInp?.getInput() || '',
+    this.emailInp?.getInput() || '',
+    this.pastMedInp?.getInput() || '',
+
+    );
   }
+
+
 
 
 }

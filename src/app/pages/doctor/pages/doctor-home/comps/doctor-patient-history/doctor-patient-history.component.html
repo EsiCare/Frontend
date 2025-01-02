@@ -60,7 +60,7 @@
     <tr mat-row class="!border-0" *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator   #paginator [pageIndex]="0"  pageSize="5" aria-label="Select page">
+  <mat-paginator  [class.opacity-0]="curPatient.history.length == 0"  #paginator [pageIndex]="0"  pageSize="5" aria-label="Select page">
   </mat-paginator>
 </div>
 

@@ -11,3 +11,7 @@
     background-color: #21323A;
     color: white;
 }
+
+* {
+    user-select: none;
+}

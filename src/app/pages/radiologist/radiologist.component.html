@@ -1,5 +1,7 @@
-<div class="flex flex-col h-full grow" route-protect>
+<div class="flex flex-col h-full grow relative" route-protect>
 
+
+    
 <app-nav-bar></app-nav-bar>
 
 <div class="p-6 flex gap-4 overflow-hidden h-full w-full" route-protect>
@@ -8,16 +10,24 @@
         <app-patient-info [curPatient]="this.patient?.actor"> </app-patient-info>
 
 
-        <div class="custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-8 flex-1 h-2 overflow-scroll">
+
+
+        <div [class.overflow-y-hidden]="this.patient == undefined"  class="overflow-x-hidden relative custom-border-gray border-2 rounded-lg px-8 py-6 bg-white flex w-full flex-col gap-8 flex-1 h-2 overflow-scroll">
+        
+            <div *ngIf="this.patient == undefined" class="overlay absolute w-full top-0 left-0 z-10  h-full bg-gray-800 opacity-5">
+            </div>
+
+
+
             <div class="flex justify-between">
-                <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Requested Test : {{this.patient?.title || 'Head Injury'}}
+                <h1 class="text-2xl font-bold" style="color: #222; font-size: 28px;">Requested Test: {{this.patient?.title || ''}}
                 </h1>
             </div>
 
-            <ul style="list-style-type:disc;" class="pl-4 text-lg font-medium">
-                {{patient?.resume}}
+            <!-- <ul style="list-style-type:disc;" class="pl-4 text-lg font-medium"> -->
+                <!-- {{patient?.resume}} -->
                 <!-- <li *ngFor="let note of requested.notes">{{note}}</li> -->
-            </ul>
+            <!-- </ul> -->
 
 
             <div class="flex gap-2  w-full h-full">
@@ -60,7 +70,7 @@
 
                     </app-frame>
 
-                    <button (click)="onInitFile()"
+                    <button *ngIf="!this.patient?.conductionDate" (click)="onInitFile()"
                         class="relative flex items-center gap-2 p-3 mr-2  border-2 self-end rounded-lg border-dashed outline-none">
                         <input #fileInput (change)="onUploadFile($event)"
                             class="absolute top-0 left-0 opacity-0 pointer-events-none" type="file" name="file"
@@ -80,10 +90,12 @@
                 <div class="flex-1 h-full flex flex-col gap-1">
                     <h1 class="font-meduim text-2xl">Resume</h1>
 
-                    <app-minput-field [default_value]="patient?.results || ''" #resumeInp title="..."   class="flex-1" in_class="h-full">
+                    <app-minput-field [default_value]="patient?.results || ''" #resumeInp 
+                    [title]="'eg: No evidence of acute intracranial hemorrhage or significant structural brain injury, No skull fractures detected. Normal brain parenchyma, with no evidence of contusions or edema.'"   
+                    class="flex-1" in_class="h-full">
                     </app-minput-field>
 
-            <app-custom-button (click)="onClickSubmit()" title="Submit" class="self-end"> </app-custom-button>
+            <app-custom-button *ngIf="!this.patient?.conductionDate" (click)="onClickSubmit()" title="Submit" class="self-end"> </app-custom-button>
         </div>
             </div>
 

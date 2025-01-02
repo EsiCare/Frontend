@@ -7,31 +7,26 @@
             </app-custom-button>
         </div>
 
-        <ng-component *ngIf="(authService.getActor() | async)!.type != 'patient'">
-
+        <ng-container *ngIf="(authService.getActor() | async)!.type != 'patient'">
 
             <div class="flex flex-col gap-4">
                 <div class="flex flex-row  w-full gap-4">
                     <app-title-info class="flex-1 custom-text-gray" title="Name"
                         [info]="(authService.getActor() | async)!.name"></app-title-info>
-                    <app-title-info class="flex-1 custom-text-gray" title="Gender"
-                        [info]="(authService.getActor() | async)!.gender"></app-title-info>
-                    <app-title-info class="flex-1 custom-text-gray" title="Address" [info]="'TEMP'"></app-title-info>
                     <app-title-info class="flex-1 custom-text-gray" title="Email"
                         [info]="(authService.getActor() | async)!.email"></app-title-info>
                 </div>
-                <div class="flex flex-row  w-full gap-4">
+                <div class="flex flex-row   w-full gap-4">
                     <app-title-info class="flex-1 custom-text-gray" title="NSS"
                         [info]="(authService.getActor() | async)!.SSN"></app-title-info>
-                    <!-- <app-title-info class="flex-1 custom-text-gray" title="Age" [info]="'TEMP'"></app-title-info> -->
                     <app-title-info class="flex-1 custom-text-gray" title="Phone Number"
                         [info]="(authService.getActor() | async)!.phoneNumber"></app-title-info>
-                    <app-title-info class="flex-1 custom-text-gray" title="Emergency Contact"
-                        [info]="'TEMP'"></app-title-info>
                 </div>
 
-            </div>
-        </ng-component>
+            </div> 
+
+            
+        </ng-container>
 
         <div class="flex flex-col gap-2">
 

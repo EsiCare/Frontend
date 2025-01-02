@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import Patient from 'src/app/modules/petient';
 import { DoctorService } from 'src/app/services/doctor.service';
+import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class PatientsComponent {
 
 
   @Output() onSelectPatient :EventEmitter<any>  = new EventEmitter();
-  constructor(public rightBarServise: RightBarService, public doctorService : DoctorService) {
+  constructor(public popupService: PopupService,public rightBarServise: RightBarService, public doctorService : DoctorService) {
     doctorService.patientsList.asObservable().subscribe((list) => {
       this.patientsList = list;
     })
@@ -28,6 +29,11 @@ export class PatientsComponent {
   }
 
 
+
+
+  onClickQRCode() {
+    this.popupService.showPopup("qr-code");
+  }
   
 
 

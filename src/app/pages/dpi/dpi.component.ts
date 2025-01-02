@@ -23,6 +23,8 @@ export class DoctorDpiComponent implements OnInit {
 
   testTypeActor : string = "Radiologist";
   testTypePriority : string = "Dangerous";
+
+  done : boolean = false;
   
 
   @ViewChild("reasonInp") reasonInp: MInputFieldComponent | null = null;
@@ -40,13 +42,14 @@ export class DoctorDpiComponent implements OnInit {
     }
 
     let savedData = JSON.parse(localStorage.getItem(LASTEST_DPI)!);
+    this.done = savedData.done.length != 0;
+
     this.curPatient = savedData["patientInfo"];
     this.doctorService.patientsList.next([{ actor: this.curPatient!, history: [] }]);
     this.doctorService.selectedPatientIdx.next(0);
 
     this.doctorService.selectedHistory.asObservable().subscribe((data) => {
       this.curDpi = data.find(item => item.id.toString() == savedData.id)!;
-
     });
 
     this.doctorService.loadMedicalHistory().then(() => {
@@ -59,6 +62,7 @@ export class DoctorDpiComponent implements OnInit {
 
 
   async onClickSave() {
+  
     await this.doctorService.EditDpi(this.reasonInp?.getInput() || this.curDpi!.reason,
       this.resumeInp!.getInput());
 

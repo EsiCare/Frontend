@@ -12,7 +12,6 @@ export class PreviewPresComponent implements OnInit {
     this.doctorService.previewPrescription();
     this.doctorService.curPresc.asObservable().subscribe((presc) => {
       this.presc = presc; 
-      console.log(this.presc)
     }); 
   }
 

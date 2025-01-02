@@ -7,7 +7,7 @@
             <app-title-info class="flex-1 custom-text-gray" title="Gender"
                 [info]="curPatient.gender"></app-title-info>
             <app-title-info class="flex-1 custom-text-gray" title="Address"
-                [info]="curPatient.address || ''"></app-title-info>
+                [info]="curPatient.address || '...'"></app-title-info>
             <app-title-info class="flex-1 custom-text-gray" title="Email" [info]="curPatient.email"></app-title-info>
         </div>
         <div class="flex flex-row  w-full gap-2">
@@ -18,12 +18,10 @@
                 [info]="curPatient.emergencyContactPhone || 'None'"></app-title-info>
             <app-title-info class="flex-1 custom-text-gray" title="Age" info="20"></app-title-info>
         </div>
-        <app-title-info class="flex-1 custom-text-gray" title="Past Medical Condition" [info]="this.curPatient.pastMedical || 'Hypertension (diagnosed in 2018), managed with Amlodipine 5 mg daily and lifestyle changes.Blood pressure stabilized since 2021 without complications.Patient adheres to a low-sodium diet and regular exercise routine.'">
-        </app-title-info>
+        <app-title-info class="flex-1 custom-text-gray" title="Past Medical Condition" [info]="this.curPatient.pastMedical || 'Hypertension (diagnosed in 2018), managed with Amlodipine 5 mg daily and lifestyle changes.Blood pressure stabilized since 2021 without complications.Patient adheres to a low-sodium diet and regular exercise routine.'"> </app-title-info>
     </ng-container>
     <ng-container *ngIf="curPatient == undefined">
         <h1 class="no-patient text-lg p-4 text-gray-700">No Selcted Patient</h1>
     </ng-container>
-
 
 </app-frame>

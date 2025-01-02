@@ -3,3 +3,10 @@
   flex-direction: column;
 }
 
+
+.INPUT {
+  box-shadow: none;
+}
+* {
+  user-select: none;
+}

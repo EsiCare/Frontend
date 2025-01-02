@@ -43,7 +43,6 @@ export class BoilogistHomeComponent implements OnInit {
 
     this.boilogistService.getSelectedPatientIdx().subscribe(idx => {
       this.patient = this.boilogistService.patientsList.value[idx];
-      // console.log((this.patient as any).mesurements)
       if(this.patient && this.patient.mesurements) {
         this.mesus =  this.patient.mesurements ? Object.values(this.patient.mesurements) : this.mesus;
         if(!this.mesus.length) {

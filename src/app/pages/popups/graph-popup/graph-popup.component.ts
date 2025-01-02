@@ -45,7 +45,6 @@ export class GraphPopupComponent implements OnInit {
         this.data[i].top = Number.parseInt((dd!.mesurements as any)[this.data[i].name] as string);
       }
 
-      console.log(this.data);
       let testIdx = tests.findIndex(test => test.id == dd.id);
       let prevTestIdx = -1;
       for (let i = testIdx; i < tests.length; i++) {

@@ -34,18 +34,19 @@ export class AuthService {
 
   public async onLoginIn(email: string, pass: string)  {
 
-    email = "taki@gmail.com"; // doctor
-    email = "aaroncunningham@example.com"; // patient
+    email = "denisefernandez@example.com"; // doctor
+    // email = "sean36@example.com"; // patient
     // email = "diazamy@example.com"; // radio
     // email = "cookaudrey@example.com"; // nurse
     // email = "amyknight@example.com"; // boi
-    // email = "johntaylor@excample.com"; // nurse
+    // email = "scottcarr@example.com"; // nurse
     // email = "floresanthony@example.com"; // recption
+    // email = "benjamin51@example.com"; // recption
     pass = "1111";
 
     this.login_status = "Loading";
     this.login_response = "Pending";
-    let res = {};
+    let res : any;
     try {
       res = await firstValueFrom(this.http.post("http://127.0.0.1:8000/api/login/",{"email": email,"password": pass}));
     } catch(e) { }
@@ -58,6 +59,9 @@ export class AuthService {
       return;
     } 
 
+    if(res.role == "unknown") {
+      res.role = "patient";
+    }
 
     this.login_response = "Successful";
     this.actor =  Actor.fromRes((res as any));

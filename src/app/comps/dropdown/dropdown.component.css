@@ -15,7 +15,8 @@
     padding: 8px;
     z-index: 1;
 
-    height: 160px;
+    height: fit-content;
+    max-height: 160px;
     overflow-y: scroll;
   }
   

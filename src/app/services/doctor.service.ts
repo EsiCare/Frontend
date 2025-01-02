@@ -20,11 +20,11 @@ export class DoctorService {
 
 
   curPresc = new BehaviorSubject<any>(null);
-   
+
 
   dpiTests = new BehaviorSubject<TestItem[]>([]);
 
-  constructor(public http: HttpClient, public authService: AuthService) {}
+  constructor(public http: HttpClient, public authService: AuthService) { }
 
 
 
@@ -39,15 +39,20 @@ export class DoctorService {
     } catch (e) { }
 
 
-    let list: Patient[] = [];
-    for (let i = 0; i < res.results.data.length; i++) {
-      let data = res.results.data[i];
-      let patientActor = new Actor(data["id"], "Patient", "", data);
-      list.push({ actor: patientActor, history: [] });
+    if (res["count"] != 0) {
+
+
+      let list: Patient[] = [];
+      for (let i = 0; i < res.results.data.length; i++) {
+        let data = res.results.data[i];
+        let patientActor = new Actor(data["id"], "Patient", "", data);
+        list.push({ actor: patientActor, history: [] });
+      }
+
+      this.patientsList.next(list);
+      this.loadPatientInfo(0);
     }
 
-    this.patientsList.next(list);
-    this.loadPatientInfo(0);
   }
 
 
@@ -65,9 +70,22 @@ export class DoctorService {
     } catch (e) { }
 
     if (res["status"] == "success" && res["data"].length) {
+      for (let i = 0; i < res.data.length; i++) {
+        // const element = array[i];
+        if(res.data[i].resume) {
+          if(res.data[i].resume.length > 15) {
+            res.data[i].resume = res.data[i].resume.slice(0,15) + "...";
+          }
+          if(res.data[i].reason.length > 15) {
+            res.data[i].reason = res.data[i].reason.slice(0,15) + "...";
+          }          
+        }
+        
+      }
       res["data"].reverse();
       this.selectedHistory.next(res["data"]);
-    }else {
+    } else {
+
     }
 
 
@@ -98,32 +116,33 @@ export class DoctorService {
   public async EditDpi(reason: string, resume: string) {
     let pk = this.selectedDpi.value?.id;
 
+
     let res;
     try {
       res = await lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/medicalHistory/edit/${pk}`,
         { reason, resume, },
         this.jwtHeader(),
       ).pipe(catchError((e) => { return of(e["error"]); })));
-    } catch (e) {     }
-    
-    if(res["status"] == "success") {
+    } catch (e) { }
 
-    await this.loadMedicalHistory();
-    this.selectedDpi.next({
-      ...this.selectedDpi.value,
-      reason,
-      resume,
-    } as HistoryItem
-    );
-      
+    if (res["status"] == "success") {
+
+      await this.loadMedicalHistory();
+      this.selectedDpi.next({
+        ...this.selectedDpi.value,
+        resume,
+        reason,        
+      } as HistoryItem
+      );
+
     } else {
-      console.log(res);
     }
+    
   }
 
 
 
-  async addPrescritption(entries: any,notes : string) {
+  async addPrescritption(entries: any, notes: string) {
     let pk = this.selectedDpi.value?.id;
     let res;
     try {
@@ -134,25 +153,24 @@ export class DoctorService {
         },
         this.jwtHeader(),
       ).pipe(catchError((e) => { return of(e["error"]); })));
-    } catch (e) {     }
+    } catch (e) { }
 
 
   }
 
-    async previewPrescription() {
+  async previewPrescription() {
     let pk = this.selectedDpi.value?.id;
-    
+
 
     let res;
-      try {
-        res = await lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/prescriptions?condition_pk=${pk}&patient_SSN=${this.getCurPatient().actor.SSN}`,
-          this.jwtHeader(),
-        ).pipe(catchError((e) => { return of(e["error"]); })));
-      } catch (e) {     }
+    try {
+      res = await lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/prescriptions?condition_pk=${pk}&patient_SSN=${this.getCurPatient().actor.SSN}`,
+        this.jwtHeader(),
+      ).pipe(catchError((e) => { return of(e["error"]); })));
+    } catch (e) { }
 
-      this.curPresc.next(res.data[0]);
-      console.log(res);
-    }
+    this.curPresc.next(res.data[0]);
+  }
 
 
 
@@ -181,7 +199,7 @@ export class DoctorService {
 
 
 
-async getTestHistory() {
+  async getTestHistory() {
     let res;
     try {
       res = await lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/testhistory/${this.selectedDpi.value?.id}`,
@@ -191,26 +209,23 @@ async getTestHistory() {
 
 
     if (res["status"] == "success") {
-      let tests : any = [];
-      for(let actorTest of Object.keys(res["data"])) {
-        
-        for(let test of res["data"][actorTest]) {
-          test.actor  =   actorTest.split("_")[0];
+      let tests: any = [];
+      for (let actorTest of Object.keys(res["data"])) {
+
+        for (let test of res["data"][actorTest]) {
+          test.actor = actorTest.split("_")[0];
         }
         tests = tests.concat(res["data"][actorTest]);
       }
       this.dpiTests.next([...tests]);
     } else {
-
+      this.dpiTests.next([]);
     }
-
-
-    console.log(res)
   }
 
   public setSelectedDpi(id: number) {
-    localStorage.setItem(LASTEST_DPI, JSON.stringify({ id: id, patientInfo: this.getCurPatient().actor }));
     this.selectedDpi.next(this.selectedHistory.value.find(item => item.id.toString() == id.toString()));
+    localStorage.setItem(LASTEST_DPI, JSON.stringify({ id: id,done: this.selectedDpi.value?.lastedFor,  patientInfo: this.getCurPatient().actor }));
   }
 
 
@@ -231,12 +246,9 @@ async getTestHistory() {
   jwtHeader() {
     let actor: Actor | null = null;
     this.authService.getActor().pipe(take(1)).subscribe(data => actor = data).unsubscribe();
-
-
-
     return {
       headers: new HttpHeaders({
-        // "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": "application/json; charset=utf-8",
         "Authorization": `Bearer ${actor!.token}`
 
       })

@@ -6,3 +6,7 @@
 .app-patients-hidden {
     right: -310px;
 }
+
+* {
+    user-select: none;
+}

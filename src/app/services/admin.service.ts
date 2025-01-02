@@ -5,7 +5,7 @@ import HospitalInfo, { HospitalStat, WorkerInfo } from '../modules/hospital-info
 import PatientHistoryItem from '../modules/patient-history-Item';
 import Actor from '../modules/actor';
 import { PopupService } from './popup.service';
-import { lowertalize } from '../utils/func';
+import { capitalize, lowertalize } from '../utils/func';
 import { AuthService } from './auth.service';
 
 
@@ -125,16 +125,20 @@ export class AdminService {
     } catch (e) { }
     let patientsList: PatientHistoryItem[] = [];
     for (let i = 0; i < res["results"]["data"].length; i++) {
+      res["results"]["data"][i].address = res["results"]["data"][i].address || "Taher , Jijel";
+      if(res["results"]["data"][i].address.length > 20) {
+        res["results"]["data"][i].address = res["results"]["data"][i].address.substr(0,20) + "...";
+      }
+
       patientsList.push({
-        entered_at: "2024-12-07 at 15:45",
-        nss: "0001823498",
-        address: "Taher , Jijel",
-        
+        entered_at:  res["results"]["data"][i].dateAdded.split(".")[0].replace("T"," "), 
+        nss: res["results"]["data"][i].SSN,
+        address: res["results"]["data"][i].address,
         dateOfBirth: res["results"]["data"][i].dateOfBirth,
         email: res["results"]["data"][i].email,
         emergencyContactName: res["results"]["data"][i].emergencyContactName,
         emergencyContactPhone: res["results"]["data"][i].emergencyContactPhone,
-        gender: res["results"]["data"][i].gender,
+        gender:  capitalize(res["results"]["data"][i].gender),
         id: res["results"]["data"][i].id,
         name: res["results"]["data"][i].name,
         phoneNumber: res["results"]["data"][i].phoneNumber,

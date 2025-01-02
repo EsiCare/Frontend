@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: "patient", component: PatientHomeComponent},
   {path: "patient/dpi", component: DoctorPreviewComponent},
   
-  {path: "administrator", component: AdminComponent},
+  {path: "admin", component: AdminComponent},
   {path: "administrative", component: ReceptionistComponent},
 
   {path: "radiologist", component: RadiologistComponent},

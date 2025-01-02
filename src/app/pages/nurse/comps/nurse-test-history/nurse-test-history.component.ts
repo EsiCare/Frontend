@@ -35,6 +35,10 @@ export class NurseTestHistoryComponent {
 
   }
 
+  onClickQRCode() {
+    this.popupService.showPopup("qr-code");
+  }  
+
 
 }
 

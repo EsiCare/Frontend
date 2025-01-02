@@ -20,6 +20,8 @@ export interface NursePatientTest {
   mesurements: any;
   imgs: Array<any>;
   medicalCondition: 4;
+  pastMedical : string | null;
+
 }
 
 @Injectable({

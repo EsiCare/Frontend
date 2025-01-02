@@ -28,7 +28,6 @@ export class RadiologyPopupComponent implements OnInit {
 
 
   onClick(e : any) {
-    // console.log(e);
     e.stopPropagation();
   }
 
