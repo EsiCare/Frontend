@@ -1,0 +1,59 @@
+<div class="flex w-full gap-4 " route-protect>
+    <app-frame title="Create Patient DPI" class="flex-1"  in_class="flex flex-col gap-2 h-full "> 
+        <section class="flex flex-col gap-2">
+            <h1 class="text-2xl font-bold">Patient Info</h1>
+            <div class="flex gap-8">
+                <app-minput #fullNameInp class="flex-1" required_title="Full Name" title="eg. sohaib"></app-minput>
+                <app-minput #NNSInp class="flex-1" required_title="NNS" title="eg. 00018297348"></app-minput>
+            </div>
+        
+            <div class="flex gap-8">
+                <app-minput #birthInp class="flex-1" required_title="Date Of Birth" title="eg. dd/mm/yyyy"></app-minput>
+                <app-minput #genderInp class="flex-1" required_title="Gender" title="eg. Male"></app-minput>
+            </div>
+            <app-minput #addressInp class="flex-1" required_title="Address" title="eg. eg. Azazga, Tizi Ouzou"></app-minput>
+        </section>
+    
+    
+        <section class="flex flex-col ">
+            <h1 class="text-2xl font-bold">Contact</h1>
+            <div class="flex gap-8">
+                <app-minput #phoneNumInp class="flex-1" required_title="Phone Number" title="eg. 0652 25 52 25"></app-minput>
+                <app-minput #emailInp class="flex-1" required_title="Email" title="eg. tipaza@gmail.com"></app-minput>
+            </div>
+        </section>
+    
+    
+    
+        <section class="flex flex-col ">
+            <h1 class="text-2xl font-bold">Emergency Contact</h1>
+            <div class="flex gap-8">
+                <app-minput #emNameInp class="flex-1" required_title="Person Name" title="eg. Ayoub"></app-minput>
+                <app-minput #emPhoneInp class="flex-1" required_title="Phone Number" title="eg. 0652 25 52 25"></app-minput>
+            </div>
+        </section>
+    
+        <app-minput-field #pastMedInp  required_title="Past Medical Condition" title="The patient has a history of Type 2 diabetes mellitus, managed with oral hypoglycemic agents for the past 10 years."> </app-minput-field>
+    
+        <div class="flex self-end justify-self-end gap-4">
+            <app-custom-button *ngIf="this.isNew" (click)="onClickClear()" title="Clear" bg_color="white" class="border-2 rounded" in_class="text-gray-800"></app-custom-button>
+            <app-custom-button *ngIf="this.isNew" (click)="onClickCreate()" title="Create" ></app-custom-button>
+            <app-custom-button *ngIf="!this.isNew" (click)="onClickCreate()" title="Update" ></app-custom-button>
+        </div>
+    </app-frame>
+
+
+    <div [class.app-patients-hidden]="!(rightBarService.isPatientsBarVisible() | async)" 
+    class="lg:static lg:p-0 lg:overflow-visible lg:bg-transparent lg:w-fit
+           sm:absolute sm:right-0  sm:px-6 sm:pb-12 sm:overflow-hidden 
+           h-full flex justify-end 
+           z-10
+           h-auto
+           ">
+
+    <app-receptionist-history  class="flex h-full" > </app-receptionist-history>
+</div>
+
+
+
+</div>

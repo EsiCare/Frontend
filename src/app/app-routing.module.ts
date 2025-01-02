@@ -9,6 +9,7 @@ import { RadiologistComponent } from './pages/radiologist/radiologist.component'
 import { PatientHomeComponent } from './pages/patient/pages/patient-home/patient-home.component';
 import { NurseHomeComponent } from './pages/nurse/nurse.component';
 import { BoilogistHomeComponent } from './pages/biologist/biologist.component';
+import { ReceptionistComponent } from './pages/receptionist/receptionist.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: "patient", component: PatientHomeComponent},
   {path: "patient/dpi", component: DoctorPreviewComponent},
   
-  {path: "administrative", component: AdminComponent},
+  {path: "administrator", component: AdminComponent},
+  {path: "administrative", component: ReceptionistComponent},
 
   {path: "radiologist", component: RadiologistComponent},
   {path: "laborantin", component: BoilogistHomeComponent},

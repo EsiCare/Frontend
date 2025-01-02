@@ -10,16 +10,13 @@
             </svg>
         </div>
 
-    <h1 class="text-lg"> Done By {{(popupService.getData() | async).actor}} At {{(popupService.getData() | async).done_at}} </h1>
+    <h1 class="text-lg"> Done At {{(popupService.getData() | async).done_at}} </h1>
 
     </div>
     <div class="flex flex-col gap-4">
         <h1 class="obs font-medium text-2xl">Observation:</h1>
-        <ul>
-            <li *ngFor="let obs of (popupService.getData() | async).obs" class="flex flex-row items-center gap-2"> <div class="w-1 h-1 rounded-full bg-black"></div> {{obs}}</li>
-            
-        </ul> 
-    
-
+        <p style="word-break: break-all">
+            {{(popupService.getData() | async).obs}}
+        </p>
     </div>
 </div>

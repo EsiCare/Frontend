@@ -2,7 +2,7 @@
     <app-nav-bar></app-nav-bar>
     <div class=" flex gap-4 p-6 overflow-hidden justify-around relative flex-1">
         <div class="flex flex-col gap-4">
-            <app-patient-info> </app-patient-info>
+            <app-patient-info [curPatient]="this.doctorService.getCurPatient()?.actor"> </app-patient-info>
             <app-doctor-patient-history class="flex overflow-hidden h-full"> </app-doctor-patient-history>
         </div>
         <div [class.app-patients-hidden]="!(rightBarService.isPatientsBarVisible() | async)" 

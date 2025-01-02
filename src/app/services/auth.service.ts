@@ -35,14 +35,12 @@ export class AuthService {
   public async onLoginIn(email: string, pass: string)  {
 
     email = "taki@gmail.com"; // doctor
-    // email = "aaroncunningham@example.com"; // patient
-    email = "diazamy@example.com"; // radio
+    email = "aaroncunningham@example.com"; // patient
+    // email = "diazamy@example.com"; // radio
     // email = "cookaudrey@example.com"; // nurse
     // email = "amyknight@example.com"; // boi
-    // email = "johntaylor@example.com"; // nurse
-    
-    
-    
+    // email = "johntaylor@excample.com"; // nurse
+    // email = "floresanthony@example.com"; // recption
     pass = "1111";
 
     this.login_status = "Loading";
@@ -53,7 +51,6 @@ export class AuthService {
     } catch(e) { }
     this.login_status = "Pending";
    
-
     
 
     if((res as any)["status"] != "success") {

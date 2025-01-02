@@ -4,8 +4,9 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 type PopupType = "None" | 
                 "user:profile"|
                 "dpi:radiology" | "dpi:medical" | "dpi:graph" | 
-                "doctor:create-dpi" | "doctor:create-prescription" |
-                "admin:create-hospital" | "admin:create-worker" | "admin:delete-worker";
+                "doctor:create-dpi" | "doctor:create-prescription" | "doctor:preview-presc" |
+                "admin:create-hospital" | "admin:create-worker" | "admin:delete-worker" | 
+                "qr-code";
 
 @Injectable({
   providedIn: 'root'

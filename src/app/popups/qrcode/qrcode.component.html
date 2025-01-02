@@ -1,0 +1,26 @@
+<div id="form-popup" class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-4 shadow items-center"
+    (click)="onClick($event)">
+    
+    <h1 class="text-3xl font-medium">Scan Patient's QR code</h1>
+    <img (click)="onClickQRCode()" class="cursor-pointer" src="/assets/qrcode.png" alt="qrcode.png">
+
+    <div class="flex flex-col items-center gap-2">
+        <h1 class="text-lg font-medium">Or Enter The NSS Manually</h1>
+        <div class="flex gap-4">
+            <app-minput title="eg. 0001823838"></app-minput>
+            <div class="p-4 rounded-xl border-2 custom-border-color">
+    
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.7 1.66675H9.455C7.985 1.66675 6.82 1.66675 5.90917 1.79008C4.97083 1.91675 4.21167 2.18341 3.61333 2.78425C3.01417 3.38508 2.74833 4.14758 2.6225 5.08925C2.5 6.00425 2.5 7.17341 2.5 8.64925V13.5142C2.5 14.7709 3.26667 15.8476 4.35583 16.2992C4.3 15.5409 4.3 14.4784 4.3 13.5934V9.41841C4.3 8.35091 4.3 7.43008 4.39833 6.69341C4.50417 5.90341 4.7425 5.14675 5.35417 4.53258C5.96583 3.91841 6.72 3.67925 7.50667 3.57258C8.24 3.47425 9.15667 3.47425 10.2208 3.47425H12.7792C13.8425 3.47425 14.7575 3.47425 15.4917 3.57258C15.2718 3.01116 14.8878 2.52903 14.3898 2.18907C13.8918 1.8491 13.303 1.66709 12.7 1.66675Z" fill="#667085"/>
+                    <path d="M5.5 9.49739C5.5 7.22572 5.5 6.08989 6.20333 5.38406C6.90583 4.67822 8.03667 4.67822 10.3 4.67822H12.7C14.9625 4.67822 16.0942 4.67822 16.7975 5.38406C17.5008 6.08989 17.5 7.22572 17.5 9.49739V13.5141C17.5 15.7857 17.5 16.9216 16.7975 17.6274C16.0942 18.3332 14.9625 18.3332 12.7 18.3332H10.3C8.0375 18.3332 6.90583 18.3332 6.20333 17.6274C5.5 16.9216 5.5 15.7857 5.5 13.5141V9.49739Z" fill="#667085"/>
+                    </svg>
+                </div>
+        </div>
+    </div>
+    <input #qrcodeInp class="absolute opacity-0" type="file" accept="image/*" capture="camera">
+
+    <div class="flex gap-2">
+        <app-custom-button (click)="onClickContinue()" title="Cancel" bg_color="bg-white" in_class="border custom-border-color text-gray-700"></app-custom-button>
+        <app-custom-button (click)="onCLickCancel()" title="Continue"></app-custom-button>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-16 shadow" (click)="onClick($event)">
+<div class="medical-popup flex flex-col px-12 py-8 bg-white rounded-xl text-lg gap-8 shadow" (click)="onClick($event)">
     <div class="flex flex-col gap-4">
         <div class="flex justify-between">
             <h1 class="font-medium text-3xl">{{(popupService.getData() | async).title}}</h1>
@@ -8,11 +8,11 @@
             </svg>
         </div>
 
-    <h1 class="text-lg"> Done By {{(popupService.getData() | async).actor}} At {{(popupService.getData() | async).done_at}} </h1>
-
+    <h1 class="text-lg"> Done At {{(popupService.getData() | async).done_at}} </h1>
     </div>
     <div class="flex flex-col gap-8">
         <h1 class="obs font-medium text-2xl">Observation:</h1>
+        <p>{{(popupService.getData() | async).obs}} </p>
         <figure id="bar" class="self-center"></figure>
     </div>
 </div>

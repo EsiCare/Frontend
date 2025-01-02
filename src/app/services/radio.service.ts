@@ -33,13 +33,14 @@ export class RadioService {
 
     } catch (e) { }
 
-    console.log(res);
 
     if (res["status"] == "success") {
+      console.log(res);
       let list: NursePatientTest[] = [];
       for (let i = 0; i < res.data.length; i++) {
         list.push({ actor: res.patients[i], ...res.data[i] });
       }
+      console.log(list);
       this.patientsList.next([...list]);
     }
   }

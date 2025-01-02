@@ -87,7 +87,7 @@ export class DoctorPatientHistoryComponent implements AfterViewInit {
 
   onClickPreivewDPI(id : number) {
     this.doctorService.setSelectedDpi(id);
-      // this.router.navigateByUrl("doctor/dpi");
+      this.router.navigateByUrl("doctor/dpi");
   }
 
   onClickAddDpi() {

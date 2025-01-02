@@ -28,6 +28,8 @@
 
 
                     <app-frame class="overflow-scroll h-full"  in_class="h-full flex flex-col gap-4 overflow-y-scroll">
+                      
+                      
                         <div *ngFor="let file of this.imgData; let i = index"  class="flex items-center gap-4 ">
                             <svg (click)="onClickImg(i)" class="cursor-pointer" width="41" height="41" viewBox="0 0 41 41" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +75,8 @@
                         <p>Upload Files</p>
                     </button>
                 </div>
+
+                
                 <div class="flex-1 h-full flex flex-col gap-1">
                     <h1 class="font-meduim text-2xl">Resume</h1>
 

@@ -6,6 +6,7 @@ import Actor from 'src/app/modules/actor';
 import { validateNoEmpty } from 'src/app/modules/input-validators';
 import { HistoryItem } from 'src/app/modules/petient';
 import { DoctorService, LASTEST_DPI } from 'src/app/services/doctor.service';
+import { PopupService } from 'src/app/services/popup.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class DoctorDpiComponent implements OnInit {
   @ViewChild("descInp") descInp: MInputFieldComponent | null = null;
 
 
-  constructor(public router: Router, public rightBarService: RightBarService, public doctorService: DoctorService) {
+  constructor(public popupService: PopupService,public router: Router, public rightBarService: RightBarService, public doctorService: DoctorService) {
   }
 
   ngOnInit(): void {
@@ -86,6 +87,15 @@ export class DoctorDpiComponent implements OnInit {
     this.descInp?.setInput("");
   } 
 
+
+  onClickCreatePrescription() {
+    this.popupService.showPopup("doctor:create-prescription");
+  }
+
+  onViewPrescription() {
+
+    this.popupService.showPopup("doctor:preview-presc");
+  }
   
 
 }

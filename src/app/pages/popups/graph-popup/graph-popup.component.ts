@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { PopupService } from 'src/app/services/popup.service';
 import * as d3 from 'd3';
+import { DoctorService } from 'src/app/services/doctor.service';
+import { TestItem } from 'src/app/modules/petient';
 
 
 interface GraphData {
@@ -19,22 +21,8 @@ interface GraphData {
 
 
 export class GraphPopupComponent implements OnInit {
-
-
-
-  constructor(public popupService: PopupService) { }
-
-
-  ngOnInit(): void {
-    this.drawBars(this.data);
-  }
-
-
-  onClick(e: any) {
-    e.stopPropagation();
-  }
-  private data = [
-    { name: "HB", bottom: 10, top: 15 },
+  data = [
+    { name: "Hb", bottom: 10, top: 15 },
     { name: "WBC", bottom: 5, top: 15 },
     { name: "PLT", bottom: 10, top: 2 },
     { name: "Glycémie", bottom: 10, top: 6 },
@@ -45,6 +33,53 @@ export class GraphPopupComponent implements OnInit {
     { name: "ALT", bottom: 10, top: 6 },
     { name: "CRP", bottom: 10, top: 6 },
   ];
+
+
+  constructor(public popupService: PopupService,public doctorService: DoctorService) {
+    this.doctorService.dpiTests.asObservable().subscribe(tests => {
+      let dd : TestItem;
+      this.popupService.getData().pipe(take(1)).subscribe(d => dd = d).unsubscribe();
+
+
+      for (let i = 0; i < 10; i++) {
+        this.data[i].top = Number.parseInt((dd!.mesurements as any)[this.data[i].name] as string);
+      }
+
+      console.log(this.data);
+      let testIdx = tests.findIndex(test => test.id == dd.id);
+      let prevTestIdx = -1;
+      for (let i = testIdx; i < tests.length; i++) {
+          if(tests[i].actor == "baio") {
+            prevTestIdx = i;
+            break;
+          }
+      }
+      if(prevTestIdx == -1) {
+        for (let i = 0; i < 10; i++) {
+          this.data[i].bottom = Number.parseInt((dd!.mesurements as any)[this.data[i].name] as string);
+        }
+      } else {
+        dd = tests[prevTestIdx];
+        for (let i = 0; i < 10; i++) {
+          this.data[i].bottom = Number.parseInt((dd!.mesurements as any)[this.data[i].name] as string);
+        }
+      }
+    });
+
+
+
+   }
+
+
+  ngOnInit(): void {
+    this.drawBars(this.data);
+  }
+
+
+  onClick(e: any) {
+    e.stopPropagation();
+  }
+ 
   private cols = ["name", "bottom", "top"];
 
 

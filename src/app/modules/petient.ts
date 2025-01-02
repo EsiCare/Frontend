@@ -18,12 +18,15 @@ interface TestItem {
     conductionDate: string;
     status: "pending";
     resume: string;
+    results: string;
     description: string;
     title: string;
     priorite: string;
     mesurements: {};
     patient: number;
     medicalCondition: number;
+    imgs : string[];
+    actor : string;
 }
 
 interface Patient {

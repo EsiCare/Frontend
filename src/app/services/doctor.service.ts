@@ -19,11 +19,12 @@ export class DoctorService {
   selectedDpi = new BehaviorSubject<HistoryItem | undefined>(undefined);
 
 
+  curPresc = new BehaviorSubject<any>(null);
+   
+
   dpiTests = new BehaviorSubject<TestItem[]>([]);
 
-  constructor(public http: HttpClient, public authService: AuthService) {
-
-  }
+  constructor(public http: HttpClient, public authService: AuthService) {}
 
 
 
@@ -66,9 +67,9 @@ export class DoctorService {
     if (res["status"] == "success" && res["data"].length) {
       res["data"].reverse();
       this.selectedHistory.next(res["data"]);
-      console.log(res);
     }else {
     }
+
 
   }
 
@@ -89,10 +90,10 @@ export class DoctorService {
 
 
     await this.loadMedicalHistory();
-
-
-
   }
+
+
+
 
   public async EditDpi(reason: string, resume: string) {
     let pk = this.selectedDpi.value?.id;
@@ -105,21 +106,53 @@ export class DoctorService {
       ).pipe(catchError((e) => { return of(e["error"]); })));
     } catch (e) {     }
     
-    console.log(res)
-    // if(res["status"] == "success") {
+    if(res["status"] == "success") {
 
-    // await this.loadMedicalHistory();
-    // this.selectedDpi.next({
-    //   ...this.selectedDpi.value,
-    //   reason,
-    //   resume,
-    // } as HistoryItem
-    // );
+    await this.loadMedicalHistory();
+    this.selectedDpi.next({
+      ...this.selectedDpi.value,
+      reason,
+      resume,
+    } as HistoryItem
+    );
       
-    // } else {
-    //   console.log(res);
-    // }
+    } else {
+      console.log(res);
+    }
   }
+
+
+
+  async addPrescritption(entries: any,notes : string) {
+    let pk = this.selectedDpi.value?.id;
+    let res;
+    try {
+      res = await lastValueFrom(this.http.post(`http://127.0.0.1:8000/api/prescriptions/add/${pk}`,
+        {
+          notes,
+          entries
+        },
+        this.jwtHeader(),
+      ).pipe(catchError((e) => { return of(e["error"]); })));
+    } catch (e) {     }
+
+
+  }
+
+    async previewPrescription() {
+    let pk = this.selectedDpi.value?.id;
+    
+
+    let res;
+      try {
+        res = await lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/prescriptions?condition_pk=${pk}&patient_SSN=${this.getCurPatient().actor.SSN}`,
+          this.jwtHeader(),
+        ).pipe(catchError((e) => { return of(e["error"]); })));
+      } catch (e) {     }
+
+      this.curPresc.next(res.data[0]);
+      console.log(res);
+    }
 
 
 
@@ -145,6 +178,9 @@ export class DoctorService {
   }
 
 
+
+
+
 async getTestHistory() {
     let res;
     try {
@@ -157,19 +193,23 @@ async getTestHistory() {
     if (res["status"] == "success") {
       let tests : any = [];
       for(let actorTest of Object.keys(res["data"])) {
+        
+        for(let test of res["data"][actorTest]) {
+          test.actor  =   actorTest.split("_")[0];
+        }
         tests = tests.concat(res["data"][actorTest]);
-
       }
       this.dpiTests.next([...tests]);
     } else {
-    console.log(res)
 
     }
 
 
+    console.log(res)
   }
 
   public setSelectedDpi(id: number) {
+    localStorage.setItem(LASTEST_DPI, JSON.stringify({ id: id, patientInfo: this.getCurPatient().actor }));
     this.selectedDpi.next(this.selectedHistory.value.find(item => item.id.toString() == id.toString()));
   }
 
@@ -196,7 +236,7 @@ async getTestHistory() {
 
     return {
       headers: new HttpHeaders({
-        "Content-Type": "application/json; charset=utf-8",
+        // "Content-Type": "application/json; charset=utf-8",
         "Authorization": `Bearer ${actor!.token}`
 
       })

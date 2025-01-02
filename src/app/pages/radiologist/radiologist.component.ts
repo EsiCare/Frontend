@@ -45,7 +45,11 @@ export class RadiologistComponent implements OnInit {
     this.radioService.getSelectedPatientIdx().subscribe(idx => {
       this.patient = this.radioService.patientsList.value[idx];
       if(this.patient) {
-        this.imgData = this.patient.imgs;
+        if(Object.keys(this.patient.imgs).length == 0) {
+          this.imgData = [];
+        }else {
+          this.imgData = this.patient.imgs;
+        }
       }
     })
 

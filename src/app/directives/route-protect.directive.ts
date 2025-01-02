@@ -2,17 +2,19 @@ import { Directive } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import Actor from '../modules/actor';
 import { Router } from '@angular/router';
+import { PopupService } from '../services/popup.service';
 
 @Directive({
   selector: '[route-protect]'
 })
 export class RouteProtectDirective {
 
-  constructor(public authService : AuthService,public router : Router) {
+  constructor(public popupService: PopupService,public authService : AuthService,public router : Router) {
     if(!Actor.check_localStorage()) {
       this.router.navigateByUrl("/");
       return
     }
+    this.popupService.hidePopup();
     
     
     let actor =   this.authService.loadFromLocalStorage();

@@ -27,11 +27,11 @@
             </svg>
         </div>
 
-    <h1 class="text-lg"> Done By {{(popupService.getData() | async).actor}} At {{(popupService.getData() | async).done_at}} </h1>
-
+    <h1 class="text-lg"> Done At {{(popupService.getData() | async).done_at}} </h1>
+        <p>{{(popupService.getData() | async).results}}</p>
     </div>
 
-    <div class="flex flex-row justify-center  items-center gap-2 self-center rounded flex-1 overflow-hidden">
+    <div class="w-full flex flex-row justify-center  items-center gap-2 self-center rounded flex-1 overflow-hidden">
         <div [class.hidden]="(popupService.getData() | async).imgs.length == 1" class="cursor-pointer" (click)="decImgIdx()">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -40,8 +40,10 @@
             </svg>
         </div>
         
-        <div class="flex-1 h-full">
-            <img class="h-full rounded" src="{{(popupService.getData() | async).imgs[imgIndex]}}" alt="">
+        <div class="flex-1 h-full items-center justify-center flex ">
+            <div class="flex flex-1 items-center justify-center">
+                <img class="h-full rounded" src="{{(popupService.getData() | async).imgs[imgIndex].url}}" alt="">
+            </div>
         </div>
         <div [class.hidden]="(popupService.getData() | async).imgs.length == 1" class="cursor-pointer" (click)="incImgIdx()">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">

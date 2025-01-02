@@ -17,6 +17,7 @@ export class PatientInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     if(this.curPatient == undefined) {
       this.curPatient = Actor.fake()
     }

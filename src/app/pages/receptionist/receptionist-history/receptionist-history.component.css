@@ -1,0 +1,16 @@
+.full-width-table {
+  width: 100%;
+}
+
+.mat-table td{
+  border: none; 
+}
+
+.search {
+  box-shadow: none;
+}
+
+
+.hidden-bar {
+  position: absolute;
+}

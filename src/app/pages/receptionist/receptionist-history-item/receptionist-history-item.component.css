@@ -1,0 +1,11 @@
+.selected {
+    background-color: #21323A;
+    color: white;
+}
+
+
+
+.selected svg:last-child path { 
+    stroke: #21323A;
+    fill: white;
+}

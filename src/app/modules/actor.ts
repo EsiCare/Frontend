@@ -15,10 +15,13 @@ export default class Actor {
     address: string = "";
     hospital: string = "";
     emergencyContactPhone : string = "";
+    emergencyContactName : string = "";
+    pastMedical : string = "";
+    
 
 
     constructor(id: string, type: string,  token: string, 
-        { gender, name, phoneNumber, SSN, dateAdded, email,hospital, address, emergencyContactPhone }: any
+        { gender, name, phoneNumber, SSN, dateAdded, email,hospital, address, emergencyContactPhone,emergencyContactName, pastMedical }: any
     ) {
         this.id = id;
         this.type = type;
@@ -34,6 +37,9 @@ export default class Actor {
         this.hospital = hospital;
         this.address = address;
         this.emergencyContactPhone = emergencyContactPhone;
+        this.emergencyContactName = emergencyContactName;
+        this.pastMedical = pastMedical;
+        
 
     }
 
@@ -63,6 +69,8 @@ export default class Actor {
             hospital: this.hospital,
             address : this.address, 
             emergencyContactPhone : this.emergencyContactPhone,   
+            emergencyContactName : this.emergencyContactName,   
+            pastMedical : this.pastMedical,
         };
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
     }

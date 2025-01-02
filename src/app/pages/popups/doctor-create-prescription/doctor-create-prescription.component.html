@@ -7,7 +7,7 @@
         <div>
             <h1 class="text-2xl">Medications</h1>
 
-            <table>
+            <table #entries>
                 <tr class="text-left border-b-2">
                     <th>Drug name</th>
                     <th>Dosage</th>
@@ -16,7 +16,7 @@
                     <th>Instructions</th>
                     <th></th>
                 </tr>
-                <ng-container *ngFor="let prescription of prescriptions; let i = index">
+                <ng-container  *ngFor="let prescription of prescriptions; let i = index">
                     <tr *ngIf="i != prescriptions.length - 1" class="my-4 relative">
                         <td><app-minput in_class="bg-red-100" [defaultValue]="prescription.drug" title="eg. cocaine"></app-minput></td>
                         <td><app-minput in_class="bg-red-100" [defaultValue]="prescription.dosage" title="eg. 1000mg"></app-minput></td>
@@ -77,14 +77,14 @@
 
         <div class="flex flex-col gap-2"> 
             <h1 class="lg:text-2xl sm:text-sm ">Additional Notes</h1>
-            <app-minput-field class="h-40" title="eg. souhaib is  the greatest of all time  valorant player"></app-minput-field>
+            <app-minput-field #notesInp class="h-40" title="eg. souhaib is  the greatest of all time  valorant player"></app-minput-field>
         </div>  
         <div class="flex gap-2 self-end">
             <button  class="text-xl px-6 py-1 w-fit h-full  rounded  font-bold border-2 custom-border-color">
                 <span>Preview</span>
             </button>
 
-            <app-custom-button title="Create"></app-custom-button>
+            <app-custom-button (click)="onCreatePrescription()" title="Create"></app-custom-button>
             
     </div>
     </div>

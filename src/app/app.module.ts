@@ -48,8 +48,6 @@ import { RadioTestHistoryComponent } from "./pages/radiologist/comps/radio-test-
 import { RadioTestHistoryItemComponent } from "./pages/radiologist/comps/radio-test-history-item/radio-test-history-item.component";
 import { HttpClientModule } from "@angular/common/http";
 import { LoadingIndicatorComponent } from './comps/loading-indicator/loading-indicator.component';
-import { MatFormField, MatFormFieldModule, MatLabel } from "@angular/material/form-field";
-import { MatSelect, MatSelectModule } from "@angular/material/select";
 import { FormsModule } from "@angular/forms";
 import { DropdownComponent } from './comps/dropdown/dropdown.component';
 import { UserSettingComponent } from './pages/popups/user-setting/user-setting.component';
@@ -64,6 +62,13 @@ import { NurseTestHistoryComponent } from "./pages/nurse/comps/nurse-test-histor
 import { NurseTestHistoryItemComponent } from "./pages/nurse/comps/nurse-test-history-item/nurse-test-history-item.component";
 import { BoiTestHistoryItemComponent } from "./pages/biologist/comps/boi-test-history-item/boi-test-history-item.component";
 import { BoiTestHistoryComponent } from "./pages/biologist/comps/boi-test-history/boi-test-history.component";
+import { ReceptionistComponent } from './pages/receptionist/receptionist.component';
+import { ReceptionistHistoryComponent } from "./pages/receptionist/receptionist-history/receptionist-history.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelectModule } from "@angular/material/select";
+import { ReceptionistHistoryItemComponent } from "./pages/receptionist/receptionist-history-item/receptionist-history-item.component";
+import { QrcodeComponent } from './popups/qrcode/qrcode.component';
+import { PreviewPresComponent } from './popups/preview-pres/preview-pres.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,9 +122,15 @@ import { BoiTestHistoryComponent } from "./pages/biologist/comps/boi-test-histor
     DoctorPatientHistoryComponent,
     NurseTestHistoryComponent,
     NurseTestHistoryItemComponent,
+    BoiTestHistoryComponent,
+    BoiTestHistoryItemComponent,
+    ReceptionistComponent,
+    ReceptionistHistoryComponent,
+ReceptionistHistoryComponent,
+ReceptionistHistoryItemComponent,
+QrcodeComponent,
+PreviewPresComponent
 
-BoiTestHistoryComponent,
-BoiTestHistoryItemComponent,
 
   ],
   imports: [
@@ -130,7 +141,8 @@ BoiTestHistoryItemComponent,
     MatSortModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatFormFieldModule, MatSelectModule,
+    MatFormFieldModule, 
+    MatSelectModule,
     FormsModule,
 
 
