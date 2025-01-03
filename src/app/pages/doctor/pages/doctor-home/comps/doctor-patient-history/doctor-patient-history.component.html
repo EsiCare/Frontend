@@ -28,7 +28,7 @@
 
     <ng-container matColumnDef="reason">
       <th class="custom-text-gray" mat-header-cell *matHeaderCellDef mat-sort-header>Reason</th>
-      <td class="text-lg" mat-cell *matCellDef="let row">{{row.reason}}</td>
+      <td class="text-lg" mat-cell *matCellDef="let row">{{!row.reason ? '' : (row.reason.length < 15 ? row.reason: row.reason.slice(0,15) + '...')}}</td>
     </ng-container>
 
 

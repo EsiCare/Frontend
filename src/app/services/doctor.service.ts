@@ -82,8 +82,21 @@ export class DoctorService {
         }
         
       }
+      
       res["data"].reverse();
-      this.selectedHistory.next(res["data"]);
+
+      let done = [];
+      let not_done = [];
+      for(let cond of res["data"]) {
+
+        if(cond.lastedFor.length == 0) {
+          not_done.push(cond);
+        } else {
+          done.push(cond);
+        }
+      }
+
+      this.selectedHistory.next([...not_done,done]);
     } else {
 
     }
@@ -217,7 +230,22 @@ export class DoctorService {
         }
         tests = tests.concat(res["data"][actorTest]);
       }
-      this.dpiTests.next([...tests]);
+
+      let done = [];
+      let not_done = [];
+      for(let test of tests) {
+        
+        if(!test.conductionDate) {
+          not_done.push(test);
+        } else {
+          done.push(test);
+        }
+      }
+
+
+
+
+      this.dpiTests.next([...not_done,...done]);
     } else {
       this.dpiTests.next([]);
     }

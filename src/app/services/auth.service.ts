@@ -34,14 +34,14 @@ export class AuthService {
 
   public async onLoginIn(email: string, pass: string)  {
 
-    email = "denisefernandez@example.com"; // doctor
+    // email = "denisefernandez@example.com"; // doctor
     // email = "sean36@example.com"; // patient
     // email = "diazamy@example.com"; // radio
     // email = "cookaudrey@example.com"; // nurse
     // email = "amyknight@example.com"; // boi
     // email = "scottcarr@example.com"; // nurse
-    // email = "floresanthony@example.com"; // recption
-    // email = "benjamin51@example.com"; // recption
+    email = "nsmith@example.com"; // recption
+    // email = "andrew14@example.com" // admin
     pass = "1111";
 
     this.login_status = "Loading";

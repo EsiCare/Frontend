@@ -70,6 +70,7 @@ export class AdminService {
       this.hospitalCreationStatus.next("Successful");
     }
     this.hospitalCreationMsg = res["message"];
+    this.loadAllHospitals()
   }
 
   public async loadAllHospitals() {
@@ -160,11 +161,15 @@ export class AdminService {
       let doctors = res["data"]["doctors"]["results"] as WorkerInfo[];
       let nurses = res["data"]["nurses"]["results"] as WorkerInfo[];
       let radiologists = res["data"]["radiologists"]["results"] as WorkerInfo[];
+      let labo_data = res["data"]["labo"]["results"] as WorkerInfo[];
+      
+      console.log(labo_data)
       this.curHospitalWorkers.next([
         ...administrative,
         ...doctors,
         ...nurses,
         ...radiologists,
+        ...labo_data,
       ]);
     }
   }
@@ -204,8 +209,10 @@ export class AdminService {
     this.workerCreationMsg = res["message"];
 
     this.loadHospitalWorker(this.selectedHospitalName);
+    this.loadHospitalStats(this.selectedHospitalName);
     
-  } 
+  }     
+
 
 
   public async updateWorker(role:  string,spec:  string,name: string,email: string,phone: string,nss: string,) {

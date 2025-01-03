@@ -42,7 +42,10 @@ export class DoctorDpiComponent implements OnInit {
     }
 
     let savedData = JSON.parse(localStorage.getItem(LASTEST_DPI)!);
-    this.done = savedData.done.length != 0;
+
+    if(savedData.done != undefined) {
+      this.done = savedData.done?.length != 0;
+    }
 
     this.curPatient = savedData["patientInfo"];
     this.doctorService.patientsList.next([{ actor: this.curPatient!, history: [] }]);
