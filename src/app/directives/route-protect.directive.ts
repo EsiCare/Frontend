@@ -10,6 +10,7 @@ import { PopupService } from '../services/popup.service';
 export class RouteProtectDirective {
 
   constructor(public popupService: PopupService,public authService : AuthService,public router : Router) {
+    console.clear();
     
     if(!Actor.check_localStorage()) {
       this.router.navigateByUrl("/");
