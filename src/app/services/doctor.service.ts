@@ -257,6 +257,34 @@ export class DoctorService {
   }
 
 
+  public async searchByNNS(nns: string) {
+    if (!nns) {
+      this.loadAllPatients();
+      return;
+    }
+
+    let res: any;
+    try {
+      res = await lastValueFrom(this.http.get(`http://127.0.0.1:8000/api/search-patient/${nns}/`
+      ).pipe(catchError((e) => { return of(e["error"]); })));
+    } catch (e) { }
+   
+    if(res["status"]=="success") {
+      let data = res.data;
+
+
+      let patientActor = new Actor(data["id"], "Patient", "", data);
+      this.patientsList.next([{actor: patientActor, history: []}])
+      this.selectedPatientIdx.next(0);
+      this.loadMedicalHistory();
+    } else {
+      this.patientsList.next([])
+      this.selectedHistory.next([]);
+    }
+  }
+
+
+
 
 
   public async getSelectedPatient() {

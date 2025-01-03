@@ -72,6 +72,7 @@ import { PatientInfoComponent } from "./pages/doctor/pages/doctor-home/comps/pat
 import { CurPatientInfoComponent } from "./pages/patient/comps/cur-patient-info/cur-patient-info.component";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

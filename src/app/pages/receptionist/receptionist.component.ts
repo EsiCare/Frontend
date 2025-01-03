@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MInputComponent } from 'src/app/comps/minput/minput.component';
 import { validateNoEmpty } from 'src/app/modules/input-validators';
+import { QrcodeService } from 'src/app/services/qrcode.service';
 import { RecpService } from 'src/app/services/recp.service';
 import { RightBarService } from 'src/app/services/right-bar.service';
 
@@ -25,7 +26,7 @@ export class ReceptionistComponent implements OnInit {
 
   isNew : boolean = true;
 
-  constructor(public rightBarService: RightBarService,public recpService : RecpService) { 
+  constructor(public rightBarService: RightBarService,public qrcodeService: QrcodeService,public recpService : RecpService) { 
     this.recpService.selectedPatientIdx.asObservable().subscribe((idx) => {
       this.isNew = idx == -1;
       if(!this.isNew) {
@@ -47,6 +48,7 @@ export class ReceptionistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
   }
 
 

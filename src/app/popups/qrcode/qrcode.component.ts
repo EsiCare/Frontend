@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PopupService } from 'src/app/services/popup.service';
+import QrScanner from 'qr-scanner'; // if installed via package and bundling with a module bundler like webpack or rollup
+import { MInputComponent } from 'src/app/comps/minput/minput.component';
+import { QrcodeService } from 'src/app/services/qrcode.service';
+
 
 @Component({
   selector: 'app-qrcode',
@@ -7,9 +11,13 @@ import { PopupService } from 'src/app/services/popup.service';
   styleUrls: ['./qrcode.component.css']
 })
 export class QrcodeComponent implements OnInit {
-  @ViewChild("qrcodeInp") qrcodeInp: ElementRef<HTMLInputElement> | null = null ;
+  @ViewChild("qrcodeInp") qrcodeInp: ElementRef<HTMLInputElement> | null = null;
+  @ViewChild("textInput") textInput: MInputComponent | null = null;
+  @ViewChild("vidInp") vidInp: ElementRef<HTMLVideoElement> | null = null;
 
-  constructor(public popupService : PopupService ) { }
+  qr_visible : boolean = false;
+
+  constructor(public qrcodeService: QrcodeService,public popupService: PopupService) { }
 
   ngOnInit(): void {
   }
@@ -17,14 +25,28 @@ export class QrcodeComponent implements OnInit {
 
   onClick(e: any) {
     e.stopPropagation();
-  } 
+  }
 
 
   onClickQRCode() {
-    this.qrcodeInp?.nativeElement.click();
+    const qrScanner = new QrScanner(
+      this.vidInp?.nativeElement!,
+      result => {
+        this.textInput!.setInput(result.data);
+        qrScanner.stop();
+        this.qr_visible = false; 
+      },
+      {
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+      }
+    );
+    qrScanner.start().then(() => this.qr_visible = true);
+
   }
 
   onClickContinue() {
+    this.qrcodeService.qrCodeText.next(this.textInput?.getInput() || '');
     this.popupService.hidePopup();
   }
   onCLickCancel() {

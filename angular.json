@@ -20,6 +20,7 @@
             "customWebpackConfig": {
               "path": "webpack.config.js"
             },
+           
             "outputPath": "dist/angular-tailwind-template",
             "index": "src/index.html",
             "main": "src/main.ts",

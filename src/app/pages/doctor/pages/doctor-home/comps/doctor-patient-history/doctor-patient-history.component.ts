@@ -64,7 +64,7 @@ export class DoctorPatientHistoryComponent implements AfterViewInit {
         }
     });
     this.doctorService.selectedHistory.asObservable().subscribe((list) => {
-      if(!list.length) return;
+      // if(!list.length) return;
       this.dataSource.data = list;
       this.dataSource.paginator = this.paginator;
       this.paginator.length = list.length;
