@@ -34,7 +34,7 @@ export class AuthService {
 
   public async onLoginIn(email: string, pass: string)  {
 
-    email = "denisefernandez@example.com"; // doctor
+    // email = "denisefernandez@example.com"; // doctor
     // email = "sean36@example.com"; // patient
     // email = "diazamy@example.com"; // radio
     // email = "cookaudrey@example.com"; // nurse
@@ -42,7 +42,7 @@ export class AuthService {
     // email = "scottcarr@example.com"; // nurse
     // email = "nsmith@example.com"; // recption
     // email = "andrew14@example.com" // admin
-    pass = "1111";
+    // pass = "1111";
 
     this.login_status = "Loading";
     this.login_response = "Pending";
