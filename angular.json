@@ -98,7 +98,6 @@
       }
     }
   },
-  "defaultProject": "angular-tailwind-template",
   "cli": {
     "analytics": "271157b9-285e-4eeb-8361-68345bc633ff"
   }
